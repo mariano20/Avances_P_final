@@ -1,0 +1,132 @@
+\documentclass[a4paper,12pt]{report} %poner [twoside, 12pt] si lo vamos a imprimir
+
+%-----------------------------------------|PAQUETES|-----------------------------------------
+\usepackage{graphicx}
+\usepackage{geometry} 
+\usepackage{fancyhdr}
+\usepackage[spanish]{babel}
+\usepackage{pdfpages} 
+\usepackage{verbatim}
+\usepackage{amssymb}
+\usepackage{tabularx}
+\usepackage{parskip}
+\usepackage{textcomp}
+\usepackage{subfigure}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{afterpage}
+\usepackage{emptypage}
+\usepackage{pdfpages}
+%\usepackage{tikz}
+%\usetikzlibrary{mindmap,trees}
+\usepackage{amsmath}
+%\usepackage{soul} %Para resaltar
+%\usepackage{color} %Para resaltar
+
+%------------------------------|CONFIGURACION DE PAGINA Y MARGENES|-------------------------
+
+%\pagestyle{fancy}
+\geometry{
+	a4paper,
+	total={210mm,297mm},
+	left=25mm,
+	right=20mm,
+	top=20mm,
+	bottom=20mm}
+
+
+%-----------------------------------------|ENCABEZADOS|-----------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\lhead{Mónaco - Ipóliti}
+\rhead{\leftmark}
+%\lfoot[\thepage]{}
+%\rfoot[]{\thepage}
+\cfoot{\thepage}
+
+%-----------------------------------|CAMBIO NOMBRE "CAPITULO" POR "UNIDAD"|-----------------------------------
+\addto\captionsspanish{\renewcommand{\chaptername}{Tarea}} 
+
+\begin{document}
+	
+%-----------------------------------------|PORTADA EN PDF|-----------------------------------------
+%\includepdf{caratula}
+	
+
+
+%-----------------------------------------|PORTADA CON TITELPAGE|-----------------------------------------
+	 \begin{titlepage}
+		\centering
+		\vspace{1cm}
+		{\bfseries\LARGE Universidad Tecnológica Nacional \par}
+		\vspace{1cm}
+		{\includegraphics[scale=0.5]{logo}\par}
+		\vspace{2cm}
+		{\scshape\Large Facultad Regional Córdoba \par}
+		\vspace{3cm}
+		{\scshape\Huge Instrumentación para el Monitoreo de Redes de Telefonía Móvil \par}
+		\vspace{3cm}
+		{\itshape\Large Proyecto Fin de Grado \par}
+		\vfill
+		{\Large Autores: \par} %si borras el comando \par el nombre y la palabra autor quedan en la misma linea, de nada.
+		{\Large Mónaco Mariano - Ipóliti Gino \par}
+		{\Large 2020-2021 \par}
+	\end{titlepage} 
+
+	
+	
+%-----------------------------------------|INDICE|-----------------------------------------
+\tableofcontents
+\thispagestyle{empty}
+\cleardoublepage
+\setcounter{page}{1}
+
+	
+%-----------------------------------------|DOCUMENTO|-----------------------------------------
+\section*{Prologo}
+Este documento fue creado para llevar en él las notas y los avances teóricos del proyecto final de grado. Formará parte del informe final.
+Ademas de este documento llevamos una Bitácora (dos en realidad) donde vamos anotando hechos, tareas realizadas, problemáticas, ideas que surgen, dudas, etc. 
+ \chapter{Definición de Requerimientos}
+%\newpage
+
+\textbf{20/07/2020 - Mariano}
+
+\section{Generales}
+
+De manera \textbf{general} el instrumento debe ser capaz de extraer la inforamción de una red LTE y procesarla para evaluar distintos aspectos de la red y del sistema en general.
+
+\begin{enumerate}
+	\item Debe ser capaz de extraer información de redes LTE
+	\item Procesar la información extraída de las redes LTE
+	\item Las mediciones que debería poder realizar son:\footnote{Mediciones de capa física en transmición de downlink mediante instrumentos de campo}
+		\begin{enumerate}
+			\item Mediciones de calidad de Radiofrecuencia:
+				\begin{enumerate}
+					\item Potencia y ancho de banda de canal
+					\item Potencias en ON y OFF (sólo para frames TDD)
+					\item Emisiones fuera de banda
+						\subitem Relación de fuga de canal adyacente
+						\subitem Máscara de emisión espectral
+					\item Piso de ruido en recepción: interferencia en UL
+				\end{enumerate}
+			\item Mediciones de calidad de la modulación:
+				\begin{enumerate}
+					\item Magnitud de Error Vectorial (EVM) pico y RMS
+						\subitem Según canal: PBCH (control), PDSCH (datos), PCFICH, PSS, SSS
+						\subitem Según modulación: QPSK, 16QAM, 64QAM
+					\item Potencia de señales de soporte
+						\subitem Señales de sincronismo: PSS y SSS
+						\subitem otencia en la señal de referencia (RS)
+					\item Error o corrimiento de frecuencia
+					\item Error de alineación de tiempo
+				\end{enumerate}
+		\end{enumerate}
+\end{enumerate}
+
+
+
+
+\bibliographystyle{IEEEtran}	
+\bibliography{bibliografia}
+\nocite{*}
+\end{document}
