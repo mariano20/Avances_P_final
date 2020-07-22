@@ -1,6 +1,7 @@
 Avances.aux
 Avances.bbl
-.blg
-.log
-.gz
-.toc
+Avances.blg
+Avances.log
+Avances.synctex.gz
+Avances.toc
+texput.log
