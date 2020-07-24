@@ -1,7 +1,0 @@
-Avances.aux
-Avances.bbl
-Avances.blg
-Avances.log
-Avances.synctex.gz
-Avances.toc
-texput.log
