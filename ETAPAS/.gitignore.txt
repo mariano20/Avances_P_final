@@ -1,6 +1,0 @@
-Avances.aux
-Avances.bbl
-.blg
-.log
-.gz
-.toc
