@@ -22,6 +22,7 @@
 \usepackage{amsmath}
 %\usepackage{soul} %Para resaltar
 %\usepackage{color} %Para resaltar
+\usepackage{hyperref}
 
 %------------------------------|CONFIGURACION DE PAGINA Y MARGENES|-------------------------
 
@@ -83,9 +84,11 @@
 
 	
 %-----------------------------------------|DOCUMENTO|-----------------------------------------
-\section*{Prologo}
+\section*{Prólogo}
 Este documento fue creado para llevar en él las notas y los avances teóricos del proyecto final de grado. Formará parte del informe final.
 Ademas de este documento llevamos una Bitácora (dos en realidad) donde vamos anotando hechos, tareas realizadas, problemáticas, ideas que surgen, dudas, etc. 
+\thispagestyle{empty}
+
  \chapter{Definición de Requerimientos}
 %\newpage
 
@@ -93,30 +96,32 @@ Ademas de este documento llevamos una Bitácora (dos en realidad) donde vamos an
 
 \section{Generales}
 
-De manera \textbf{general} el instrumento debe ser capaz de extraer la inforamción de una red LTE y procesarla para evaluar distintos aspectos de la red y del sistema en general.
+De manera \textbf{general} el instrumento debe ser capaz de extraer la información de una red LTE y procesarla para evaluar distintos aspectos de la red y del sistema en general.
+
+(\textbf{Página interesante:}\url{https://www.sharetechnote.com/html/Handbook_LTE.html})
 
 \begin{enumerate}
 	\item Debe ser capaz de extraer información de redes LTE
 	\item Procesar la información extraída de las redes LTE
-	\item Las mediciones que debería poder realizar son:\footnote{Mediciones de capa física en transmición de downlink mediante instrumentos de campo}
+	\item Las mediciones que debería poder realizar son:\footnote{Mediciones de capa física en transmisión de downlink mediante instrumentos de campo}
 		\begin{enumerate}
 			\item Mediciones de calidad de Radiofrecuencia:
 				\begin{enumerate}
 					\item Potencia y ancho de banda de canal
-					\item Potencias en ON y OFF (sólo para frames TDD)
+					\item Potencias en ON y OFF (sólo para frames TDD\footnote{TDD: Duplexación por división de tiempo})
 					\item Emisiones fuera de banda
 						\subitem Relación de fuga de canal adyacente
 						\subitem Máscara de emisión espectral
-					\item Piso de ruido en recepción: interferencia en UL
+					\item Piso de ruido en recepción: Interferencia en UL
 				\end{enumerate}
 			\item Mediciones de calidad de la modulación:
 				\begin{enumerate}
-					\item Magnitud de Error Vectorial (EVM) pico y RMS
-						\subitem Según canal: PBCH (control), PDSCH (datos), PCFICH, PSS, SSS
-						\subitem Según modulación: QPSK, 16QAM, 64QAM
+					\item Magnitud de Error Vectorial (EVM\footnote{EVM: Magnitud del vector error}) pico y RMS
+						\subitem Según canal: PBCH\footnote{Physical Broadcast Channel} (control), PDSCH\footnote{Physical Broadcast Channel} (datos), PCFICH\footnote{Physical Control Format Indicator Channel}, PSS\footnote{Primary Synchronization Signal}, SSS\footnote{Secondary Synchronization Signal}
+						\subitem Según modulación: QPSK\footnote{Modulación por desplazamiento cuadrafásica}, 16QAM\footnote{Modulación de amplitud en cuadratura}, 64QAM
 					\item Potencia de señales de soporte
 						\subitem Señales de sincronismo: PSS y SSS
-						\subitem otencia en la señal de referencia (RS)
+						\subitem Potencia en la señal de referencia (RS)
 					\item Error o corrimiento de frecuencia
 					\item Error de alineación de tiempo
 				\end{enumerate}
@@ -124,6 +129,25 @@ De manera \textbf{general} el instrumento debe ser capaz de extraer la inforamci
 \end{enumerate}
 
 
+\textbf{28/07/2020 - Gino}
+
+\section{Técnicos}
+
+Especificaciones definidas por norma o necesarias y que se reflejan directamente en la selección del hardware.
+
+\begin{enumerate}
+	\item Bandas LTE usadas en Argentina\footnote{Argentina está dentro de la ITU Region 2}:
+	\begin{itemize}
+		\item \textbf{Banda 2:} 1900 MHz (1850 MHz - 1990 MHz)
+		\item \textbf{Banda 4:} 1700 MHz (1710 MHz - 2155 MHz)
+		\item \textbf{Banda 5:} 850 MHz (824 MHz - 894 MHz)
+		\item \textbf{Banda 7:} 2600 MHz (2500 MHz - 2690 MHz)
+		\item \textbf{Banda 28:} 700 MHz (703 MHz - 803 MHz)
+	\end{itemize}
+	\item Todas las bandas utilizan el modo FDD\footnote{FDD: Frequency Division Duplexing}.
+	\item Rango completo de frecuencias: 703 MHz a 2690 MHz.
+	\item Anchos de banda posibles \textbf{[MHz]}: 1.4, 3, 5, 10, 15, 20.
+\end{enumerate}
 
 
 \bibliographystyle{IEEEtran}	
