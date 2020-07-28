@@ -1,3 +1,0 @@
-\babel@toc {spanish}{}
-\contentsline {chapter}{\numberline {1}Definición de Requerimientos}{2}{chapter.1}%
-\contentsline {section}{\numberline {1.1}Generales}{2}{section.1.1}%
