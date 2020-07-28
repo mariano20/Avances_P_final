@@ -112,13 +112,13 @@ De manera \textbf{general} el instrumento debe ser capaz de extraer la informaci
 					\item Emisiones fuera de banda
 						\subitem Relación de fuga de canal adyacente
 						\subitem Máscara de emisión espectral
-					\item Piso de ruido en recepción: interferencia en UL
+					\item Piso de ruido en recepción: Interferencia en UL
 				\end{enumerate}
 			\item Mediciones de calidad de la modulación:
 				\begin{enumerate}
 					\item Magnitud de Error Vectorial (EVM\footnote{EVM: Magnitud del vector error}) pico y RMS
-						\subitem Según canal: PBCH\footnote{Physical Broadcast Channe} (control), PDSCH\footnote{Physical Broadcast Channel} (datos), PCFICH\footnote{Physical Control Format Indicator Channel}, PSS\footnote{Primary synchronization signa}, SSS\footnote{Secondary synchronization signal}
-						\subitem Según modulación: QPSK\footnote{modulación por desplazamiento cuadrafásica}, 16QAM\footnote{modulación de amplitud en cuadratura}, 64QAM
+						\subitem Según canal: PBCH\footnote{Physical Broadcast Channel} (control), PDSCH\footnote{Physical Broadcast Channel} (datos), PCFICH\footnote{Physical Control Format Indicator Channel}, PSS\footnote{Primary Synchronization Signal}, SSS\footnote{Secondary Synchronization Signal}
+						\subitem Según modulación: QPSK\footnote{Modulación por desplazamiento cuadrafásica}, 16QAM\footnote{Modulación de amplitud en cuadratura}, 64QAM
 					\item Potencia de señales de soporte
 						\subitem Señales de sincronismo: PSS y SSS
 						\subitem Potencia en la señal de referencia (RS)
@@ -129,6 +129,25 @@ De manera \textbf{general} el instrumento debe ser capaz de extraer la informaci
 \end{enumerate}
 
 
+\textbf{28/07/2020 - Gino}
+
+\section{Técnicos}
+
+Especificaciones definidas por norma o necesarias y que se reflejan directamente en la selección del hardware.
+
+\begin{enumerate}
+	\item Bandas LTE usadas en Argentina\footnote{Argentina está dentro de la ITU Region 2}:
+	\begin{itemize}
+		\item \textbf{Banda 2:} 1900 MHz (1850 MHz - 1990 MHz)
+		\item \textbf{Banda 4:} 1700 MHz (1710 MHz - 2155 MHz)
+		\item \textbf{Banda 5:} 850 MHz (824 MHz - 894 MHz)
+		\item \textbf{Banda 7:} 2600 MHz (2500 MHz - 2690 MHz)
+		\item \textbf{Banda 28:} 700 MHz (703 MHz - 803 MHz)
+	\end{itemize}
+	\item Todas las bandas utilizan el modo FDD\footnote{FDD: Frequency Division Duplexing}.
+	\item Rango completo de frecuencias: 703 MHz a 2690 MHz.
+	\item Anchos de banda posibles \textbf{[MHz]}: 1.4, 3, 5, 10, 15, 20.
+\end{enumerate}
 
 
 \bibliographystyle{IEEEtran}	
