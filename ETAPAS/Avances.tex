@@ -150,6 +150,45 @@ Especificaciones definidas por norma o necesarias y que se reflejan directamente
 \end{enumerate}
 
 
+\chapter{Relevamiento de soluciones existentes}
+
+\chapter{Diseño de Arquitectura}
+
+\section{Esquemas propuestos}
+
+(Posiblemente surjan mas alternativas, por esto el título está en plural)
+
+\subsection{Alternativa 1}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Imagenes/Arquitectura/esquema1}
+\end{figure}
+
+
+
+\section{Transmisor y Receptor OFDM \cite{tesis}}
+
+Los diagramas de la figura \ref{txrx} son implementaciones analógicas de transmisor y receptor de señales OFDM:
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Transmisor OFDM]{\includegraphics[scale=0.8]{Imagenes/Arquitectura/tx_ofdm} \label{tx_ofdm}}
+	\subfigure[Receptor OFDM]{\includegraphics[scale=0.8]{Imagenes/Arquitectura/rx_ofdm}\label{rx_ofdm}}
+	\caption{TX y RX OFDM ANALÓGICOS}
+	\label{txrx}
+\end{figure}
+
+Como esta implementación (analógica) es costosa y un poco engorrosa se opta por una alternativa basada en el cálculo de la transformada discreta de Fourier mediante el algoritmo de la transformada Rápida de Fourier cuya eficiencia y facilidad de implementación fue la que permitió el éxito de OFDM. Esta alternativa digital se ve en la figura \ref{alt_dig}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.9]{Imagenes/Arquitectura/alt_dig}
+	\caption{TX y RX OFDM DIGITALES}
+	\label{alt_dig}
+\end{figure}
+
+
 \bibliographystyle{IEEEtran}	
 \bibliography{bibliografia}
 \nocite{*}
