@@ -272,6 +272,7 @@ Las redes de adaptación pueden no ser necesarias. La más feasible es la segund
 	\includegraphics[scale=0.6]{Imagenes/Arquitectura/diagrama2}
 \end{figure}
 
+\textbf{03/08/2020 - Gino}
 \subsection{Alternativa 3}
 
 Esta bien podría ser la versión final de la arquitectura ya que se contemplan de forma general cada bloque necesario de un diseño típico de hardware SDR. Se supone que todas las interconexiones están adaptadas.
@@ -281,6 +282,7 @@ Esta bien podría ser la versión final de la arquitectura ya que se contemplan 
 	\includegraphics[scale=0.6]{Imagenes/Arquitectura/diagrama3}
 \end{figure}
 
+\textbf{29/07/20 Mariano}
 \section{Transmisor y Receptor OFDM \cite{tesis}}
 
 Los diagramas de la figura \ref{txrx} son implementaciones analógicas de transmisor y receptor de señales OFDM:
@@ -301,6 +303,40 @@ Como esta implementación (analógica) es costosa y un poco engorrosa se opta po
 	\caption{TX y RX OFDM DIGITALES}
 	\label{alt_dig}
 \end{figure}
+
+En la figura \ref{alt_dig} los bloques en verde indican los cambios respecto al TX y RX analógico.
+
+
+\chapter{Elección de componentes de cada bloque de la arquitectura}
+
+\textbf{04/08/20 Mariano}
+
+\section{Aspectos generales} \cite{sdr_engineers}
+
+En lineas generales un SDR está conformado por las siguientes secciones:
+
+\begin{itemize}
+	\item Una sección analógica de RF (antena, filtros RF, multiplexores, LNA, atenuadores, mezcladores).
+	\item Una sección analógica de Banda base (filtros analógicos, ADS y/o DAC).
+	\item Unidades de procesamiento de señal (Filtros dentro del transductor, FPGA o DSP, o procesadores de propósitos generales).
+\end{itemize}
+
+Para tener una referencia observamos el caso de PLUTO SDR. Las secciones anteriores, en esta plataforma especifica se ven conformadas por lo siguiente:
+
+\begin{itemize}
+	\item Una sección analógica de RF (antena, filtros RF, multiplexores, LNA, atenuadores, mezcladores)
+		\subitem Antena y filtros de RF son responsabilidad del usuario.
+		\subitem Los demas items (multiplexores, LNA, atenuadores y mezcladores) están integrados en el tranceptor AD9363.
+		
+	\item Una sección analógica de Banda base (filtros analógicos, ADS y/o DAC).
+		\subitem toda esta sección está implementada dentro del tranceptor nombrado anteriormente.
+		 
+	\item Unidades de procesamiento de señal (Filtros dentro del transductor, FPGA o DSP, o procesadores de propósitos generales). Esta sección se divide entre lo siguiente:
+		\subitem una parte es implementada en el AD9363. Esto  incluye los filtros de interpolación y diezmado de la banda media y los filtros FIR programables de 128 taps.
+		\subitem filtrados y diezmados opcionales se hacen con la FPGA Xilinx Zynq.
+		\subitem La información I/Q pasa por el USB al host y de ahí se puede continuar procesandola con MATLAB.
+\end{itemize}
+
 
 
 \bibliographystyle{IEEEtran}	
