@@ -22,6 +22,7 @@
 \usepackage{amsmath}
 %\usepackage{soul} %Para resaltar
 %\usepackage{color} %Para resaltar
+\usepackage{hyperref}
 
 %------------------------------|CONFIGURACION DE PAGINA Y MARGENES|-------------------------
 
@@ -60,7 +61,7 @@
 		\vspace{1cm}
 		{\bfseries\LARGE Universidad Tecnológica Nacional \par}
 		\vspace{1cm}
-		{\includegraphics[scale=0.5]{logo}\par}
+		{\includegraphics[scale=0.5]{Imagenes/logo}\par}
 		\vspace{2cm}
 		{\scshape\Large Facultad Regional Córdoba \par}
 		\vspace{3cm}
@@ -83,46 +84,258 @@
 
 	
 %-----------------------------------------|DOCUMENTO|-----------------------------------------
-\section*{Prologo}
+\section*{Prólogo}
 Este documento fue creado para llevar en él las notas y los avances teóricos del proyecto final de grado. Formará parte del informe final.
 Ademas de este documento llevamos una Bitácora (dos en realidad) donde vamos anotando hechos, tareas realizadas, problemáticas, ideas que surgen, dudas, etc. 
+\thispagestyle{empty}
+
  \chapter{Definición de Requerimientos}
 %\newpage
 
 \textbf{20/07/2020 - Mariano}
 
-\section{Generales}
+\section{Generales \cite{gutierrez2020measurement}}
 
-De manera \textbf{general} el instrumento debe ser capaz de extraer la inforamción de una red LTE y procesarla para evaluar distintos aspectos de la red y del sistema en general.
+De manera \textbf{general} el instrumento debe ser capaz de extraer la información de una red LTE y procesarla para evaluar distintos aspectos de la red y del sistema en general.
+
+(\textbf{Página interesante:}\url{https://www.sharetechnote.com/html/Handbook_LTE.html})
 
 \begin{enumerate}
 	\item Debe ser capaz de extraer información de redes LTE
 	\item Procesar la información extraída de las redes LTE
-	\item Las mediciones que debería poder realizar son:\footnote{Mediciones de capa física en transmición de downlink mediante instrumentos de campo}
+	\item Las mediciones que debería poder realizar son:\footnote{Mediciones de capa física en transmisión de downlink mediante instrumentos de campo}
 		\begin{enumerate}
 			\item Mediciones de calidad de Radiofrecuencia:
 				\begin{enumerate}
 					\item Potencia y ancho de banda de canal
-					\item Potencias en ON y OFF (sólo para frames TDD)
+					\item Potencias en ON y OFF (sólo para frames TDD\footnote{TDD: Duplexación por división de tiempo})
 					\item Emisiones fuera de banda
 						\subitem Relación de fuga de canal adyacente
 						\subitem Máscara de emisión espectral
-					\item Piso de ruido en recepción: interferencia en UL
+					\item Piso de ruido en recepción: Interferencia en UL
 				\end{enumerate}
 			\item Mediciones de calidad de la modulación:
 				\begin{enumerate}
-					\item Magnitud de Error Vectorial (EVM) pico y RMS
-						\subitem Según canal: PBCH (control), PDSCH (datos), PCFICH, PSS, SSS
-						\subitem Según modulación: QPSK, 16QAM, 64QAM
+					\item Magnitud de Error Vectorial (EVM\footnote{EVM: Magnitud del vector error}) pico y RMS
+						\subitem Según canal: PBCH\footnote{Physical Broadcast Channel} (control), PDSCH\footnote{Physical Broadcast Channel} (datos), PCFICH\footnote{Physical Control Format Indicator Channel}, PSS\footnote{Primary Synchronization Signal}, SSS\footnote{Secondary Synchronization Signal}
+						\subitem Según modulación: QPSK\footnote{Modulación por desplazamiento cuadrafásica}, 16QAM\footnote{Modulación de amplitud en cuadratura}, 64QAM
 					\item Potencia de señales de soporte
 						\subitem Señales de sincronismo: PSS y SSS
-						\subitem otencia en la señal de referencia (RS)
+						\subitem Potencia en la señal de referencia (RS)
 					\item Error o corrimiento de frecuencia
 					\item Error de alineación de tiempo
 				\end{enumerate}
 		\end{enumerate}
 \end{enumerate}
 
+
+\textbf{28/07/2020 - Gino}
+
+\section{Técnicos}
+
+Especificaciones definidas por norma o necesarias y que se reflejan directamente en la selección del hardware.
+
+\begin{enumerate}
+	\item Bandas LTE \cite{bandas_lte} usadas en Argentina\footnote{Argentina está dentro de la ITU Region 2}:
+	\begin{itemize}
+		\item \textbf{Banda 2:} 1900 MHz (1850 MHz - 1990 MHz)
+		\item \textbf{Banda 4:} 1700 MHz (1710 MHz - 2155 MHz)
+		\item \textbf{Banda 5:} 850 MHz (824 MHz - 894 MHz)
+		\item \textbf{Banda 7:} 2600 MHz (2500 MHz - 2690 MHz)
+		\item \textbf{Banda 28:} 700 MHz (703 MHz - 803 MHz)
+	\end{itemize}
+	\item Todas las bandas utilizan el modo FDD\footnote{FDD: Frequency Division Duplexing}.
+	\item Rango completo de frecuencias: 703 MHz a 2690 MHz.
+	\item Anchos de banda posibles \textbf{[MHz]}: 1.4, 3, 5, 10, 15, 20.
+\end{enumerate}
+
+
+\chapter{Relevamiento de soluciones existentes}
+
+\textbf{01/08/2020 - Gino}
+
+\section{Anritsu BTS Master MT8220T \cite{anritsu}}
+
+The BTS Master MT8220T Base Station Analyzer is the essential multi-function instrument for senior wireless technicians and RF engineers to accurately and quickly verify the installation and commissioning of base stations for optimal wireless network performance and for the on-going maintenance and troubleshooting to keep wireless network infrastructure fine-tuned.
+The BTS Master MT8220T is small, lightweight and battery operated making it easy for the technician to use it anywhere at a cell site. With less than 5 minute warm-up time you get more useful battery life and you can start making measurements sooner. A GPS receiver is a standard feature allowing convenient mapping and triangulation of problematic interference signals in conjunction with Anritsu's interference hunting solutions.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics{Imagenes/anritsu1}
+\end{figure}
+
+%Cable and Antenna Analyzer
+%\begin{itemize}
+%	\item 400 MHz to 6 GHz
+%	\item Measurements: RL, VSWR, Cable Loss, DTF, Phase (1- and 2-port), Gain
+%	\item 2-port gain measurement uncertainty: < 0.45 dB
+%	\item 2-port dynamic range: > 100 dB, typical 110 dB (400 MHz to 2800 MHz)
+%	\item RF immunity: +17 dBm on-channel, +10 dBm on-frequency
+%	\item Calibration: OSL and FlexCal™
+%\end{itemize}
+%
+%Spectrum Analyzer
+%\begin{itemize}
+%	\item 150 kHz to 7.1 GHz
+%	\item Measurements: Occupied Bandwidth, Channel Power, ACPR, C/I, Field Strength, Spectral Emissions, PIM Hunting
+%	\item Dynamic range: > 95 dB in 1 Hz RBW
+%	\item DANL: –163 dBm in 1 Hz RBW
+%	\item Phase noise: –100 dBc/Hz @ 10 kHz offset
+%	\item Frequency accuracy: ± 25 ppb with GPS On
+%	\item Fast, Performance, No FFT and Burst Detect™ sweep modes
+%\end{itemize}
+
+Características
+\begin{itemize}
+	\item 2-port Cable and Antenna Analyzer 400 MHz to 6 GHz
+	\item Spectrum Analyzer 150 kHz to 7.1 GHz
+	\item Power Meter 10 MHz to 7.1 GHz
+	\item GPS Receiver with Antenna
+	\item Bias Tee
+	\item High Accuracy Power Meter (up to 26 GHz with external sensor)
+	\item Interference Analyzer with Mapping
+	\item Channel Scanner
+	\item Vector Signal Generator 400 MHz to 6 GHz
+	\item Signal Analyzers
+	\begin{itemize}
+		\item LTE/LTE-A FDD/TDD, NB-IoT, W-CDMA/HSPA+,
+		\item GSM/GPRS/EDGE, TD-SCDMA/HSPA+
+		\item CDMA, EV-DO
+		\item Fixed and Mobile WiMAX
+	\end{itemize}
+	\item CPRI\footnote{Common Public Radio Interface} RF Analyzer
+	\item OBSAI RF Analyzer
+	\item BBU Emulation
+	\item PIM over CPRI
+	\item eMBMS
+	\item PIM\footnote{Passive Intermodulation} Alert (a downloadable easyTest™ script)
+	\item Standard three-year warranty (battery one-year warranty)
+\end{itemize}
+
+\large{\textbf{Precio (desde): U\$D 16000 (usado)}}
+
+\section{R\&S FSH Spectrum Analyzer \cite{fsh}}
+
+The R\&S® FSH is a handheld spectrum analyzer and – depending on the model and the options installed – a power meter, a cable and antenna tester and a two-port vector network analyzer. It provides the most important RF analysis functions that an RF service technician or an installation and maintenance team needs to solve daily routine measurement tasks. For example, it can be used for maintaining or installing transmitter systems, checking cables and antennas, assessing signal quality in broadcasting, radiocommunications and service, measuring electric field strength or in simple lab applications. The R\&S® FSH can perform any of these tasks quickly, reliably and with high measurement accuracy. Weighing only 3 kg, the R\&S® FSH is a handy instrument.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Imagenes/FSH}
+\end{figure}
+
+\begin{itemize}
+	\item Power measurements on pulsed signals
+	\item Channel power measurements
+	\item Adjacent channel power measurements
+	\item Measurement of spurious emissions (spectrum emission mask)
+	\item Measurement of the modulation spectrum on pulsed signals with gated sweep
+	\item Analysis of transmit signals (connected to BTS or OTA)
+	\begin{itemize}
+		\item GSM/GPRS/EDGE
+		\item WCDMA/HSDPA/HSPA+
+		\item CDMA2000®
+		\item 1xEV-DO
+		\item LTE FDD/TDD
+		\item NB-IoT
+		\item TD-SCDMA/HSDPA
+	\end{itemize}
+	\item Vector network analysis
+	\item One-port cable loss measurements
+	\item Distance-to-fault measurements
+	\item Vector voltmeter
+	\item Position finding and increased measurement accuracy using the GPS receiver
+\end{itemize}
+
+\large{\textbf{Precio (desde): U\$D 10300}}
+
+\chapter{Diseño de Arquitectura}
+
+\textbf{29/07/2020 - Gino}
+
+\section{Esquemas propuestos}
+
+Los bloques con bordes discontinuos son aquellos opcionales o que no necesariamente deban estar en esa posición.
+
+\subsection{Alternativa 1}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Imagenes/Arquitectura/diagrama1}
+\end{figure}
+
+\subsection{Alternativa 2}
+
+Las redes de adaptación pueden no ser necesarias. La más feasible es la segunda, ya que los transceptores suelen tener salidas diferenciales y es preferible tener una con terminación única en algunos casos.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Imagenes/Arquitectura/diagrama2}
+\end{figure}
+
+\textbf{03/08/2020 - Gino}
+\subsection{Alternativa 3}
+
+Esta bien podría ser la versión final de la arquitectura ya que se contemplan de forma general cada bloque necesario de un diseño típico de hardware SDR. Se supone que todas las interconexiones están adaptadas.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Imagenes/Arquitectura/diagrama3}
+\end{figure}
+
+\textbf{29/07/20 Mariano}
+\section{Transmisor y Receptor OFDM \cite{tesis}}
+
+Los diagramas de la figura \ref{txrx} son implementaciones analógicas de transmisor y receptor de señales OFDM:
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Transmisor OFDM]{\includegraphics[scale=0.8]{Imagenes/Arquitectura/tx_ofdm} \label{tx_ofdm}}
+	\subfigure[Receptor OFDM]{\includegraphics[scale=0.8]{Imagenes/Arquitectura/rx_ofdm}\label{rx_ofdm}}
+	\caption{TX y RX OFDM ANALÓGICOS}
+	\label{txrx}
+\end{figure}
+
+Como esta implementación (analógica) es costosa y un poco engorrosa se opta por una alternativa basada en el cálculo de la transformada discreta de Fourier mediante el algoritmo de la transformada Rápida de Fourier cuya eficiencia y facilidad de implementación fue la que permitió el éxito de OFDM. Esta alternativa digital se ve en la figura \ref{alt_dig}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.9]{Imagenes/Arquitectura/alt_dig}
+	\caption{TX y RX OFDM DIGITALES}
+	\label{alt_dig}
+\end{figure}
+
+En la figura \ref{alt_dig} los bloques en verde indican los cambios respecto al TX y RX analógico.
+
+
+\chapter{Elección de componentes de cada bloque de la arquitectura}
+
+\textbf{04/08/20 Mariano}
+
+\section{Aspectos generales} \cite{sdr_engineers}
+
+En lineas generales un SDR está conformado por las siguientes secciones:
+
+\begin{itemize}
+	\item Una sección analógica de RF (antena, filtros RF, multiplexores, LNA, atenuadores, mezcladores).
+	\item Una sección analógica de Banda base (filtros analógicos, ADS y/o DAC).
+	\item Unidades de procesamiento de señal (Filtros dentro del transductor, FPGA o DSP, o procesadores de propósitos generales).
+\end{itemize}
+
+Para tener una referencia observamos el caso de PLUTO SDR. Las secciones anteriores, en esta plataforma especifica se ven conformadas por lo siguiente:
+
+\begin{itemize}
+	\item Una sección analógica de RF (antena, filtros RF, multiplexores, LNA, atenuadores, mezcladores)
+		\subitem Antena y filtros de RF son responsabilidad del usuario.
+		\subitem Los demas items (multiplexores, LNA, atenuadores y mezcladores) están integrados en el tranceptor AD9363.
+		
+	\item Una sección analógica de Banda base (filtros analógicos, ADS y/o DAC).
+		\subitem toda esta sección está implementada dentro del tranceptor nombrado anteriormente.
+		 
+	\item Unidades de procesamiento de señal (Filtros dentro del transductor, FPGA o DSP, o procesadores de propósitos generales). Esta sección se divide entre lo siguiente:
+		\subitem una parte es implementada en el AD9363. Esto  incluye los filtros de interpolación y diezmado de la banda media y los filtros FIR programables de 128 taps.
+		\subitem filtrados y diezmados opcionales se hacen con la FPGA Xilinx Zynq.
+		\subitem La información I/Q pasa por el USB al host y de ahí se puede continuar procesandola con MATLAB.
+\end{itemize}
 
 
 
