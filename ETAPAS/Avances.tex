@@ -285,6 +285,53 @@ Los diagramas de la figura \ref{txrx} son implementaciones analógicas de transm
 	\label{txrx}
 \end{figure}
 
+\subsection{Descripción del Transmisor}
+
+\textbf{ADC / Codificador fuente:} Se encarga del muestreo y la cuantificación de la señal proveniente (normalmente) de una fuente adicional.
+
+\textbf{Cifrador:} Incorpora algoritmos que proporcionan algún mecanismo de seguridad para la
+comunicación a nivel de la capa física.
+
+\textbf{Codificador de canal:} La codificación del canal se usa para solucionar el problema de requerir altos niveles de potencia de transmisión para lograr tasas de errores bajas. (Mas detalles en \cite{tesis}).
+
+\textbf{Modulador:} Mapea el flujo binario entrante según un esquema de modulación digital convirtiéndolo a la salida en un flujo de símbolos complejos a una tasa $D_{serie}$ símbolos por segundo, o lo que es lo mismo con un tiempo de símbolo $T_{serie}$.
+
+\textbf{Conversor serie/paralelo y Mapeador de subportadoras:} Demultiplexa el flujo de símbolos complejos en  símbolos paralelos haciendo corresponder, a continuación, un símbolo modulado serie a cada subportadora mediante
+unas reglas determinadas de mapeo. El subflujo
+de símbolos paralelo sale con una tasa $D = D_{serie}/K$ símbolos por segundo (con un
+tiempo de símbolo $T = K\cdot T_{serie}$) y se denota mediante $S_{kl}$ , donde $k$ es el subíndice queindica la frecuencia de la subportadora que le corresponde, comprendido entre $k = ±1, ±2, ... , ±K/2$ (la componente DC suele dejarse vacía en sistemas prácticos debidoa motivos de implementación) y $l$ es el subíndice comprendido entre 0 y $L-1$ queindica el instante temporal en la transmisión.
+
+\textbf{Banco de K filtros paso-banda paralelos $+$ sumador:} Esta etapa incorpora los osciladores y aparece solo en la versión analógica. Cada subflujo  a la salida del conversor S/P se hace pasar a través de un filtro
+paso-banda. La señal a la salida de cada uno de estos filtros se suma, dando lugar a la señal
+OFDM sin prefijo cíclico.
+Como se detalla en el esquema digital, los osciladores se implementan mediante la FFT. (Para mas detalles de la versión analógica de este bloque dirigirse a \cite{tesis}).
+
+\textbf{Incorporación del prefijo cíclico:} EL prefijo cíclico es es periodo que se añade entre símbolos para evitar, principalmente, la interferencia ínter-símbolos (ISI). En términos generales consiste en copiar una ultima parte del último símbolo y reproducirlo en este intervalo de guarda, como se ve en la figura \ref{CP}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=1]{imagenes/arquitectura/CP}
+	\caption{Cyclic Prefix}
+	\label{CP}
+\end{figure}
+
+Tras el sumador, se añade el prefijo cíclico y como consecuencia la duración del pulso es de $T_s = T + \Delta$. Como efecto no deseado, la incorporación del CP trae consigo una reducción de la eficiencia energetica y la tasa binaria transmitida.
+
+\textbf{Oscilador RF y modulador IQ:} Consiste en un oscilador VCO o PLL que proporciona la portadora de la señal OFDM a frecuencia de UHF. Para que no haya una disminución de la SNR es muy importante que el oscilador en el transmisor y en le receptor estén sincronizados.
+
+La portadora en fase se desfasa 90° obteniéndose la portadora en cuadratura. Ambas son multiplicadas respectivamente por la parte real e imaginaria de la señal OFDM.
+
+\textbf{Amplificador de potencia:} Encargado de la amplificación de la señal para ser alimentada a la antena o a las L antenas.
+
+\subsection{Descripción del Receptor} %Revisar conceptos
+
+La señal recibida por la antena es bajada en frecuencia por un oscilador local que debe estar lo más adaptado posible al oscilador del transmisor. Aun así, los errores causados por desplazamiento en frecuencia y ruido de fase deben ser corregidos mediante técnicas de sincronización en frecuencia.
+
+
+
+
+
+%--------------------------------
 Como esta implementación (analógica) es costosa y un poco engorrosa se opta por una alternativa basada en el cálculo de la transformada discreta de Fourier mediante el algoritmo de la transformada Rápida de Fourier cuya eficiencia y facilidad de implementación fue la que permitió el éxito de OFDM. Esta alternativa digital se ve en la figura \ref{alt_dig}.
 
 \begin{figure}[H]
