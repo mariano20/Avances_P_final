@@ -8,3 +8,9 @@
 *.out
 # No subir el pdf
 ETAPAS/*.pdf
+# Archivos de Altium
+__Previews/
+History/
+* Logs*
+Project Outputs *
+*.DSNlck
