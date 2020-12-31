@@ -1,0 +1,5 @@
+(sym_lib_table
+  (lib (name hackrf-one-cache)(type Legacy)(uri D:/Descargas/hackrf-master/hardware/hackrf-one/hackrf-one-cache.lib)(options "")(descr "")(disabled))
+  (lib (name hackrf)(type Legacy)(uri D:/Descargas/hackrf-master/hardware/kicad/hackrf.lib)(options "")(descr ""))
+  (lib (name gsg-symbols)(type Legacy)(uri D:/Descargas/gsg-kicad-lib/gsg-symbols.lib)(options "")(descr ""))
+)
