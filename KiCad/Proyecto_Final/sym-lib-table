@@ -1,0 +1,4 @@
+(sym_lib_table
+  (lib (name hackrf-one-cache)(type Legacy)(uri C:/Users/monac/Downloads/hackrf-one-cache.lib)(options "")(descr ""))
+  (lib (name Transceptor-rescue)(type Legacy)(uri ${KIPRJMOD}/Transceptor-rescue.lib)(options "")(descr ""))
+)

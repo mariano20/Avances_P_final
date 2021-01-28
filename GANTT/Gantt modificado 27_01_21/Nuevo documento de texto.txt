@@ -1,0 +1,7 @@
+
+FUNDAMENTOS DE LOS CAMBIOS DEL GANTT:
+
+1)  TAREAS ESQUEMATICO Y CORRIMIENTO DEL PRIMER HITO: 
+
+Debido a una situación personal de salud de Mariano Mónaco, especificamente una cirugía, que tomó lugar el dia 19/11/20 se atrazó el desarrollo del primer hito por obvias razones. Dada esta situación nos pusimos en contacto con el Ingenierio Galleguillo y acordamos modificar el Gannt para que refleje la realidad del proyecto. 
+Tras haber empezado el desarrollo del esquematico vimos que hacerlo por partes (dada su complejidad) 
