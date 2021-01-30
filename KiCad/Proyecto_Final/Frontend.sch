@@ -903,4 +903,8 @@ Wire Wire Line
 	5450 5500 5900 5500
 Text Label 5900 5500 2    50   ~ 0
 REF_IN
+Text Notes 7100 2350 0    50   ~ 10
+50 Ohms
+Text Notes 8200 3500 0    50   ~ 10
+50 Ohms
 $EndSCHEMATC
