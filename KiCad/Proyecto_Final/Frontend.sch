@@ -14,13 +14,13 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L hackrf:RFFC5072 U?
+L hackrf:hackrf_RFFC5072 U?
 U 1 1 5FF11A11
 P 5700 3950
 F 0 "U?" H 5650 4050 60  0000 L CNN
 F 1 "RFFC5072" H 5500 3950 60  0000 L CNN
-F 2 "" H 5700 3950 60  0000 C CNN
-F 3 "" H 5700 3950 60  0000 C CNN
+F 2 "Package_DFN_QFN:QFN-32-1EP_5x5mm_P0.5mm_EP3.7x3.7mm" H 5700 3950 60  0001 C CNN
+F 3 "" H 5700 3950 60  0001 C CNN
 	1    5700 3950
 	1    0    0    -1  
 $EndComp
@@ -556,7 +556,7 @@ Wire Wire Line
 Wire Wire Line
 	5850 2800 5850 2550
 $Comp
-L hackrf:BALUN_1-1 T?
+L Frontend-rescue:BALUN_1-1-hackrf T?
 U 1 1 5FEE321F
 P 6300 2500
 F 0 "T?" H 6300 2826 70  0000 C CNN
@@ -669,7 +669,7 @@ GP03
 NoConn ~ 4550 3700
 NoConn ~ 4550 3800
 $Comp
-L hackrf:BALUN_1-1 T?
+L Frontend-rescue:BALUN_1-1-hackrf T?
 U 1 1 5FEE1677
 P 7450 3650
 F 0 "T?" H 7450 3976 70  0000 C CNN
