@@ -1,0 +1,29 @@
+EESchema-DOCLIB  Version 2.0
+#
+$CMP DEA162690LT-5051B1
+D Signal Conditioning Low Pass Filter for LTE
+F https://www.mouser.com/datasheet/2/400/tdk_DEA162690LT-5051B1-1207127.pdf
+$ENDCMP
+#
+$CMP DEA162690LT-5064A1
+D Multilayer Low Pass Filter (699-2690MHz)
+F https://product.tdk.com/info/en/documents/data_sheet/rf_lpf_dea162690lt-5064a1_en.pdf
+$ENDCMP
+#
+$CMP NE555DR
+D Single Precision Timer
+F http://www.ti.com/lit/ds/symlink/ne555.pdf
+$ENDCMP
+#
+$CMP SKY13317-373LF
+D RF Switch ICs 20MHz-6GHz SP3T GaAs IL .5dB @2.5GHz
+F https://componentsearchengine.com/Datasheets/1/SKY13317-373LF.pdf
+$ENDCMP
+#
+$CMP IRLML0040TRPBF
+D INFINEON - IRLML0040TRPBF - MOSFET & DIODE,N CH,40V,3.6A,SOT23
+K
+F https://www.infineon.com/dgdl/irlml0040pbf.pdf?fileId=5546d462533600a401535664894825e4
+$ENDCMP
+#
+#End Doc Library
