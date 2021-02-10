@@ -35,4 +35,16 @@ D RF Switch ICs 20MHz-6GHz SP3T GaAs IL .5dB @2.5GHz
 F https://componentsearchengine.com/Datasheets/1/SKY13317-373LF.pdf
 $ENDCMP
 #
+$CMP 2450BL05A0100T
+D Signal Conditioning 2.4G BALUN
+K
+F https://www.arrow.com/en/products/2450bl05a0100t/johanson-dielectrics
+$ENDCMP
+#
+$CMP BSS315PH6327XTSA1
+D INFINEON - BSS315PH6327XTSA1 - Power MOSFET, P Channel, 30 V, 1.5 A, 0.113 ohm, SOT-23, Surface Mount
+K
+F 
+$ENDCMP
+#
 #End Doc Library

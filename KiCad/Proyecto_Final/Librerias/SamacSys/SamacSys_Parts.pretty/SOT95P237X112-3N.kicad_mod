@@ -1,6 +1,6 @@
 (module "SOT95P237X112-3N" (layer F.Cu)
-  (descr "Micro3 (SOT23)")
-  (tags "Transistor")
+  (descr "SOT-23-ren9")
+  (tags "MOSFET (P-Channel)")
   (attr smd)
   (fp_text reference Q** (at 0 0) (layer F.SilkS)
     (effects (font (size 1.27 1.27) (thickness 0.254)))
@@ -28,7 +28,7 @@
   (pad 1 smd rect (at -1.05 -0.95 90) (size 0.6 1.3) (layers F.Cu F.Paste F.Mask))
   (pad 2 smd rect (at -1.05 0.95 90) (size 0.6 1.3) (layers F.Cu F.Paste F.Mask))
   (pad 3 smd rect (at 1.05 0 90) (size 0.6 1.3) (layers F.Cu F.Paste F.Mask))
-  (model "D:\\Universidad\\Proyecto Final\\Avances_P_final\\KiCad\\Proyecto_Final\\Librerias\\SamacSys\\SamacSys_Parts.3dshapes\\IRLML0040TRPBF.stp"
+  (model "D:\\Universidad\\Proyecto Final\\Avances_P_final\\KiCad\\Proyecto_Final\\Librerias\\SamacSys\\SamacSys_Parts.3dshapes\\BSS315PH6327XTSA1.stp"
     (at (xyz 0 0 0))
     (scale (xyz 1 1 1))
     (rotate (xyz 0 0 0))
