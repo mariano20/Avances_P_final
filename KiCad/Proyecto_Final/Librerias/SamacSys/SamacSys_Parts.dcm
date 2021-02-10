@@ -1,5 +1,10 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP B0310J50100AHF
+D Signal Conditioning 300-1000MHz 50/100 Ohm IL=1.0dB
+F https://cdn.anaren.com/product-documents/Xinger/BalunTransformers/B0310J50100AHF/B0310J50100AHF_DataSheet(Rev_D).pdf
+$ENDCMP
+#
 $CMP DEA162690LT-5051B1
 D Signal Conditioning Low Pass Filter for LTE
 F https://www.mouser.com/datasheet/2/400/tdk_DEA162690LT-5051B1-1207127.pdf
@@ -10,6 +15,16 @@ D Multilayer Low Pass Filter (699-2690MHz)
 F https://product.tdk.com/info/en/documents/data_sheet/rf_lpf_dea162690lt-5064a1_en.pdf
 $ENDCMP
 #
+$CMP IRLML0040TRPBF
+D INFINEON - IRLML0040TRPBF - MOSFET & DIODE,N CH,40V,3.6A,SOT23
+F https://www.infineon.com/dgdl/irlml0040pbf.pdf?fileId=5546d462533600a401535664894825e4
+$ENDCMP
+#
+$CMP MAAL-010200-TR3000
+D RF Amplifier 70-3000MHz NF 1.4dB Gain 11dB
+F https://cdn.macom.com/datasheets/MAAL-010200.pdf
+$ENDCMP
+#
 $CMP NE555DR
 D Single Precision Timer
 F http://www.ti.com/lit/ds/symlink/ne555.pdf
@@ -18,12 +33,6 @@ $ENDCMP
 $CMP SKY13317-373LF
 D RF Switch ICs 20MHz-6GHz SP3T GaAs IL .5dB @2.5GHz
 F https://componentsearchengine.com/Datasheets/1/SKY13317-373LF.pdf
-$ENDCMP
-#
-$CMP IRLML0040TRPBF
-D INFINEON - IRLML0040TRPBF - MOSFET & DIODE,N CH,40V,3.6A,SOT23
-K
-F https://www.infineon.com/dgdl/irlml0040pbf.pdf?fileId=5546d462533600a401535664894825e4
 $ENDCMP
 #
 #End Doc Library

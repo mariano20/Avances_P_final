@@ -1,5 +1,15 @@
 EESchema-DOCLIB  Version 2.0
 #
+$CMP B0310J50100AHF
+D Signal Conditioning 300-1000MHz 50/100 Ohm IL=1.0dB
+F https://cdn.anaren.com/product-documents/Xinger/BalunTransformers/B0310J50100AHF/B0310J50100AHF_DataSheet(Rev_D).pdf
+$ENDCMP
+#
+$CMP IRLML0040TRPBF
+D INFINEON - IRLML0040TRPBF - MOSFET & DIODE,N CH,40V,3.6A,SOT23
+F https://www.infineon.com/dgdl/irlml0040pbf.pdf?fileId=5546d462533600a401535664894825e4
+$ENDCMP
+#
 $CMP MAAL-010200
 D Miniature Broadband Gain Stage (70 - 3000 MHz)
 $ENDCMP
