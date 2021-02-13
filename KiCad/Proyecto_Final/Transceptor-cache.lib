@@ -1,6 +1,23 @@
 EESchema-LIBRARY Version 2.4
 #encoding utf-8
 #
+# Connector_TestPoint
+#
+DEF Connector_TestPoint TP 0 30 N N 1 F N
+F0 "TP" 0 270 50 H V C CNN
+F1 "Connector_TestPoint" 0 200 50 H V C CNN
+F2 "" 200 0 50 H I C CNN
+F3 "" 200 0 50 H I C CNN
+$FPLIST
+ Pin*
+ Test*
+$ENDFPLIST
+DRAW
+C 0 130 30 0 1 0 N
+X 1 1 0 0 100 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
 # Device_C
 #
 DEF Device_C C 0 10 N Y 1 F N
@@ -42,11 +59,46 @@ X 2 2 0 -150 50 U 50 50 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Transceptor-rescue_hackrf_BALUN-hackrf-one-cache
+# Device_R
 #
-DEF Transceptor-rescue_hackrf_BALUN-hackrf-one-cache T 0 40 Y N 1 F N
+DEF Device_R R 0 0 N Y 1 F N
+F0 "R" 80 0 50 V V C CNN
+F1 "Device_R" 0 0 50 V V C CNN
+F2 "" -70 0 50 V I C CNN
+F3 "" 0 0 50 H I C CNN
+$FPLIST
+ R_*
+$ENDFPLIST
+DRAW
+S -40 -100 40 100 0 1 10 N
+X ~ 1 0 150 50 D 50 50 1 1 P
+X ~ 2 0 -150 50 U 50 50 1 1 P
+ENDDRAW
+ENDDEF
+#
+# gsg-symbols_SMA-KIT-1.5MF
+#
+DEF gsg-symbols_SMA-KIT-1.5MF P 0 40 Y N 2 F N
+F0 "P" 0 130 50 H V C CNN
+F1 "gsg-symbols_SMA-KIT-1.5MF" 120 0 50 V V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+A -2 0 71 1636 0 0 1 10 N -70 20 70 0
+A -1 0 71 0 -1638 0 1 10 N 70 0 -70 -20
+C 0 0 20 0 1 8 N
+X RF 1 -200 0 180 R 50 50 1 1 P
+X SHIELD 2 0 -200 130 U 50 50 1 1 P
+X RF 3 -200 0 180 R 50 50 2 1 P
+X SHIELD 4 0 -200 130 U 50 50 2 1 P
+ENDDRAW
+ENDDEF
+#
+# hackrf_hackrf_BALUN
+#
+DEF hackrf_hackrf_BALUN T 0 40 Y N 1 F N
 F0 "T" 0 250 70 H V C CNN
-F1 "Transceptor-rescue_hackrf_BALUN-hackrf-one-cache" 0 -300 70 H V C CNN
+F1 "hackrf_hackrf_BALUN" 0 -300 70 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -76,11 +128,11 @@ X PM 5 -400 0 300 R 60 60 1 1 P
 ENDDRAW
 ENDDEF
 #
-# Transceptor-rescue_hackrf_MAX2837-hackrf-one-cache
+# hackrf_hackrf_MAX2837
 #
-DEF Transceptor-rescue_hackrf_MAX2837-hackrf-one-cache U 0 40 Y Y 1 F N
+DEF hackrf_hackrf_MAX2837 U 0 40 Y Y 1 F N
 F0 "U" 0 50 60 H V C CNN
-F1 "Transceptor-rescue_hackrf_MAX2837-hackrf-one-cache" 0 -50 60 H V C CNN
+F1 "hackrf_hackrf_MAX2837" 0 -50 60 H V C CNN
 F2 "" 0 0 60 H V C CNN
 F3 "" 0 0 60 H V C CNN
 DRAW
@@ -162,6 +214,21 @@ P 2 0 1 0 -30 50 0 100 N
 P 2 0 1 0 0 0 0 100 N
 P 2 0 1 0 0 100 30 50 N
 X VAA 1 0 0 0 U 50 50 1 1 W N
+ENDDRAW
+ENDDEF
+#
+# power_VCC
+#
+DEF power_VCC #PWR 0 0 Y Y 1 F P
+F0 "#PWR" 0 -150 50 H I C CNN
+F1 "power_VCC" 0 150 50 H V C CNN
+F2 "" 0 0 50 H I C CNN
+F3 "" 0 0 50 H I C CNN
+DRAW
+P 2 0 1 0 -30 50 0 100 N
+P 2 0 1 0 0 0 0 100 N
+P 2 0 1 0 0 100 30 50 N
+X VCC 1 0 0 0 U 50 50 1 1 W N
 ENDDRAW
 ENDDEF
 #
