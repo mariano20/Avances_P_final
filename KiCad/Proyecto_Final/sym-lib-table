@@ -4,4 +4,5 @@
   (lib (name SamacSys_Parts)(type Legacy)(uri ${KIPRJMOD}/Librerias/SamacSys/SamacSys_Parts.lib)(options "")(descr ""))
   (lib (name Frontend-rescue)(type Legacy)(uri ${KIPRJMOD}/Frontend-rescue.lib)(options "")(descr ""))
   (lib (name Tesis2020-21)(type Legacy)(uri ${KIPRJMOD}/Tesis2020-21.lib)(options "")(descr ""))
+  (lib (name Transceptor-rescue)(type Legacy)(uri ${KIPRJMOD}/Transceptor-rescue.lib)(options "")(descr ""))
 )
