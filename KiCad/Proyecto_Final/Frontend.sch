@@ -790,42 +790,40 @@ Text Notes 12150 8700 0    50   ~ 10
 $Comp
 L Connector:Conn_Coaxial J?
 U 1 1 601DB430
-P 950 8350
-F 0 "J?" H 878 8588 50  0000 C CNN
-F 1 "Conn_Coaxial" H 878 8497 50  0000 C CNN
-F 2 "Connector_Coaxial:SMA_Molex_73251-2120_EdgeMount_Horizontal" H 950 8350 50  0001 C CNN
-F 3 " ~" H 950 8350 50  0001 C CNN
-	1    950  8350
+P 700 6950
+F 0 "J?" H 628 7188 50  0000 C CNN
+F 1 "Conn_Coaxial" H 628 7097 50  0000 C CNN
+F 2 "Connector_Coaxial:SMA_Molex_73251-2120_EdgeMount_Horizontal" H 700 6950 50  0001 C CNN
+F 3 " ~" H 700 6950 50  0001 C CNN
+	1    700  6950
 	-1   0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0125
 U 1 1 601E095C
-P 950 8550
-F 0 "#PWR0125" H 950 8300 50  0001 C CNN
-F 1 "GND" H 955 8377 50  0000 C CNN
-F 2 "" H 950 8550 50  0001 C CNN
-F 3 "" H 950 8550 50  0001 C CNN
-	1    950  8550
+P 700 7150
+F 0 "#PWR0125" H 700 6900 50  0001 C CNN
+F 1 "GND" H 705 6977 50  0000 C CNN
+F 2 "" H 700 7150 50  0001 C CNN
+F 3 "" H 700 7150 50  0001 C CNN
+	1    700  7150
 	1    0    0    -1  
 $EndComp
 $Comp
 L power:GND #PWR0126
 U 1 1 601E0CAC
-P 2250 8950
-F 0 "#PWR0126" H 2250 8700 50  0001 C CNN
-F 1 "GND" H 2255 8777 50  0000 C CNN
-F 2 "" H 2250 8950 50  0001 C CNN
-F 3 "" H 2250 8950 50  0001 C CNN
-	1    2250 8950
+P 2100 10450
+F 0 "#PWR0126" H 2100 10200 50  0001 C CNN
+F 1 "GND" H 2105 10277 50  0000 C CNN
+F 2 "" H 2100 10450 50  0001 C CNN
+F 3 "" H 2100 10450 50  0001 C CNN
+	1    2100 10450
 	1    0    0    -1  
 $EndComp
 Wire Wire Line
-	2250 8950 2250 8850
+	2100 10450 2100 10350
 Wire Wire Line
-	2450 8850 2250 8850
-Wire Wire Line
-	1150 8350 1550 8350
+	2300 10350 2100 10350
 $Comp
 L gsg-symbols:SKY13351 U?
 U 1 1 601DE6A1
@@ -1585,18 +1583,18 @@ $EndComp
 $Comp
 L SamacSys_Parts:DEA162690LT-5064A1 FL?
 U 1 1 602BA3B8
-P 1750 8650
-F 0 "FL?" H 2350 9415 50  0000 C CNN
-F 1 "DEA162690LT-5064A1" H 2350 9324 50  0000 C CNN
-F 2 "SamacSys_Parts:DEA162690LT5051B1" H 1750 9800 50  0001 L CNN
-F 3 "https://product.tdk.com/info/en/documents/data_sheet/rf_lpf_dea162690lt-5064a1_en.pdf" H 1750 9700 50  0001 L CNN
-F 4 "Signal Conditioning Low Pass Filter for LTE" H 1750 9600 50  0001 L CNN "Description"
-F 5 "TDK" H 1750 9400 50  0001 L CNN "Manufacturer_Name"
-F 6 "DEA162690LT-5064A1" H 1750 9300 50  0001 L CNN "Manufacturer_Part_Number"
-	1    1750 8650
+P 1600 10150
+F 0 "FL?" H 2200 10915 50  0000 C CNN
+F 1 "DEA162690LT-5064A1" H 2200 10824 50  0000 C CNN
+F 2 "SamacSys_Parts:DEA162690LT5051B1" H 1600 11300 50  0001 L CNN
+F 3 "https://product.tdk.com/info/en/documents/data_sheet/rf_lpf_dea162690lt-5064a1_en.pdf" H 1600 11200 50  0001 L CNN
+F 4 "Signal Conditioning Low Pass Filter for LTE" H 1600 11100 50  0001 L CNN "Description"
+F 5 "TDK" H 1600 10900 50  0001 L CNN "Manufacturer_Name"
+F 6 "DEA162690LT-5064A1" H 1600 10800 50  0001 L CNN "Manufacturer_Part_Number"
+	1    1600 10150
 	1    0    0    -1  
 $EndComp
-Connection ~ 2250 8850
+Connection ~ 2100 10350
 $Comp
 L Device:C C?
 U 1 1 602BAAD5
@@ -1628,4 +1626,198 @@ Text Notes 14000 2350 0    50   ~ 10
 50 Ohms
 Text Notes 5800 2400 0    50   ~ 10
 100 Ohms\nDiferencial
+$Comp
+L gsg-symbols:SKY13351 U?
+U 1 1 605D67FE
+P 1300 8350
+F 0 "U?" H 1300 8787 60  0000 C CNN
+F 1 "SKY13351" H 1300 8681 60  0000 C CNN
+F 2 "" H 1300 8350 60  0000 C CNN
+F 3 "" H 1300 8350 60  0000 C CNN
+	1    1300 8350
+	-1   0    0    -1  
+$EndComp
+$Comp
+L gsg-symbols:SKY13351 U?
+U 1 1 605D6FA1
+P 2700 8350
+F 0 "U?" H 2700 8787 60  0000 C CNN
+F 1 "SKY13351" H 2700 8681 60  0000 C CNN
+F 2 "" H 2700 8350 60  0000 C CNN
+F 3 "" H 2700 8350 60  0000 C CNN
+	1    2700 8350
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 605E6132
+P 3250 9850
+F 0 "C?" V 2998 9850 50  0000 C CNN
+F 1 "100pF" V 3089 9850 50  0000 C CNN
+F 2 "" H 3288 9700 50  0001 C CNN
+F 3 "~" H 3250 9850 50  0001 C CNN
+	1    3250 9850
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:C C?
+U 1 1 605E65E1
+P 1250 9600
+F 0 "C?" V 998 9600 50  0000 C CNN
+F 1 "100pF" V 1089 9600 50  0000 C CNN
+F 2 "" H 1288 9450 50  0001 C CNN
+F 3 "~" H 1250 9600 50  0001 C CNN
+	1    1250 9600
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	3000 9850 3100 9850
+Wire Wire Line
+	3400 9850 3400 9150
+Wire Wire Line
+	3400 9150 2250 9150
+Wire Wire Line
+	2250 9150 2250 8450
+Wire Wire Line
+	1250 9750 1250 9850
+Wire Wire Line
+	1250 9850 1400 9850
+Wire Wire Line
+	1250 9450 1250 9150
+Wire Wire Line
+	1250 9150 1750 9150
+Wire Wire Line
+	1750 9150 1750 8450
+$Comp
+L Device:C C?
+U 1 1 6061BD95
+P 2000 8250
+F 0 "C?" V 1748 8250 50  0000 C CNN
+F 1 "100pF" V 1839 8250 50  0000 C CNN
+F 2 "" H 2038 8100 50  0001 C CNN
+F 3 "~" H 2000 8250 50  0001 C CNN
+	1    2000 8250
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1850 8250 1750 8250
+Wire Wire Line
+	2150 8250 2250 8250
+$Comp
+L Device:C C?
+U 1 1 6062BF03
+P 1100 7200
+F 0 "C?" V 848 7200 50  0000 C CNN
+F 1 "100pF" V 939 7200 50  0000 C CNN
+F 2 "" H 1138 7050 50  0001 C CNN
+F 3 "~" H 1100 7200 50  0001 C CNN
+	1    1100 7200
+	-1   0    0    1   
+$EndComp
+Wire Wire Line
+	1100 7050 1100 6950
+Wire Wire Line
+	1100 6950 900  6950
+Wire Wire Line
+	650  8350 850  8350
+Text GLabel 1600 6300 0    50   Input ~ 0
+Filtro
+$Comp
+L Device:C C?
+U 1 1 6063DA2E
+P 1750 6450
+F 0 "C?" H 1865 6496 50  0000 L CNN
+F 1 "33pF" H 1865 6405 50  0000 L CNN
+F 2 "" H 1788 6300 50  0001 C CNN
+F 3 "~" H 1750 6450 50  0001 C CNN
+	1    1750 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6063DE57
+P 1750 6600
+F 0 "#PWR?" H 1750 6350 50  0001 C CNN
+F 1 "GND" H 1755 6427 50  0000 C CNN
+F 2 "" H 1750 6600 50  0001 C CNN
+F 3 "" H 1750 6600 50  0001 C CNN
+	1    1750 6600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1600 6300 1750 6300
+Connection ~ 1750 6300
+Wire Wire Line
+	1750 6300 2000 6300
+Text GLabel 2650 6300 0    50   Input ~ 0
+!Filtro
+$Comp
+L Device:C C?
+U 1 1 60648B05
+P 2800 6450
+F 0 "C?" H 2915 6496 50  0000 L CNN
+F 1 "33pF" H 2915 6405 50  0000 L CNN
+F 2 "" H 2838 6300 50  0001 C CNN
+F 3 "~" H 2800 6450 50  0001 C CNN
+	1    2800 6450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 60648B0B
+P 2800 6600
+F 0 "#PWR?" H 2800 6350 50  0001 C CNN
+F 1 "GND" H 2805 6427 50  0000 C CNN
+F 2 "" H 2800 6600 50  0001 C CNN
+F 3 "" H 2800 6600 50  0001 C CNN
+	1    2800 6600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	2650 6300 2800 6300
+Connection ~ 2800 6300
+Wire Wire Line
+	2800 6300 3050 6300
+$Comp
+L power:GND #PWR?
+U 1 1 6065228E
+P 2000 8500
+F 0 "#PWR?" H 2000 8250 50  0001 C CNN
+F 1 "GND" H 2005 8327 50  0000 C CNN
+F 2 "" H 2000 8500 50  0001 C CNN
+F 3 "" H 2000 8500 50  0001 C CNN
+	1    2000 8500
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1750 8350 2000 8350
+Wire Wire Line
+	2000 8350 2000 8500
+Wire Wire Line
+	2250 8350 2000 8350
+Connection ~ 2000 8350
+Text GLabel 2000 6300 2    50   Input ~ 0
+Filt
+Text GLabel 3050 6300 2    50   Input ~ 0
+Filt_Bypass
+Text GLabel 3150 8450 2    50   Input ~ 0
+Filt
+Text GLabel 850  8450 0    50   Input ~ 0
+Filt
+Text GLabel 3150 8100 1    50   Input ~ 0
+Filt_Bypass
+Wire Wire Line
+	3150 8100 3150 8250
+Text GLabel 1200 7750 2    50   Input ~ 0
+Filt_Bypass
+Wire Wire Line
+	1200 7750 850  7750
+Wire Wire Line
+	850  7750 850  8250
+Wire Wire Line
+	1100 7350 1100 7450
+Wire Wire Line
+	1100 7450 650  7450
+Wire Wire Line
+	650  7450 650  8350
 $EndSCHEMATC
