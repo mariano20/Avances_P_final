@@ -5,4 +5,6 @@
   (lib (name Frontend-rescue)(type Legacy)(uri ${KIPRJMOD}/Frontend-rescue.lib)(options "")(descr ""))
   (lib (name Tesis2020-21)(type Legacy)(uri ${KIPRJMOD}/Tesis2020-21.lib)(options "")(descr ""))
   (lib (name Transceptor-rescue)(type Legacy)(uri ${KIPRJMOD}/Transceptor-rescue.lib)(options "")(descr ""))
+  (lib (name TPD4S012DRYR)(type Legacy)(uri ${KIPRJMOD}/Librerias/TPD4S012DRYR.lib)(options "")(descr ""))
+  (lib (name STM32F723VCT6)(type Legacy)(uri ${KIPRJMOD}/Librerias/STM32F723VCT6.lib)(options "")(descr ""))
 )

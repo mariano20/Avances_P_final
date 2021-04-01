@@ -1,10 +1,10 @@
 EESchema Schematic File Version 4
 EELAYER 30 0
 EELAYER END
-$Descr A4 11693 8268
+$Descr A3 16535 11693
 encoding utf-8
 Sheet 1 1
-Title ""
+Title "MCU, Power, USB"
 Date ""
 Rev ""
 Comp ""
@@ -13,4 +13,148 @@ Comment2 ""
 Comment3 ""
 Comment4 ""
 $EndDescr
+$Comp
+L Connector:USB_B_Micro J?
+U 1 1 606516B5
+P 1250 3400
+F 0 "J?" H 1307 3867 50  0000 C CNN
+F 1 "USB_B_Micro" H 1307 3776 50  0000 C CNN
+F 2 "" H 1400 3350 50  0001 C CNN
+F 3 "~" H 1400 3350 50  0001 C CNN
+	1    1250 3400
+	1    0    0    -1  
+$EndComp
+Text GLabel 1650 3200 2    50   Input ~ 0
+VCC
+$Comp
+L power:GND #PWR?
+U 1 1 60652B42
+P 1250 3900
+F 0 "#PWR?" H 1250 3650 50  0001 C CNN
+F 1 "GND" H 1255 3727 50  0000 C CNN
+F 2 "" H 1250 3900 50  0001 C CNN
+F 3 "" H 1250 3900 50  0001 C CNN
+	1    1250 3900
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1550 3400 1700 3400
+$Comp
+L TPD4S012DRYR:TPD4S012DRYR U?
+U 1 1 60646F91
+P 1750 3400
+F 0 "U?" H 2850 3350 60  0000 C CNN
+F 1 "TPD4S012DRYR" H 2850 3200 60  0000 C CNN
+F 2 "DRY6" H 2850 3640 60  0001 C CNN
+F 3 "" H 1750 3400 60  0000 C CNN
+	1    1750 3400
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	1750 3500 1650 3500
+Wire Wire Line
+	1750 3600 1600 3600
+Wire Wire Line
+	1650 3200 1600 3200
+Wire Wire Line
+	1600 3200 1600 2900
+Wire Wire Line
+	1600 2900 1800 2900
+Wire Wire Line
+	3950 2900 3950 3400
+Connection ~ 1600 3200
+Wire Wire Line
+	1600 3200 1550 3200
+Wire Wire Line
+	1250 3900 1250 3850
+Wire Wire Line
+	1250 3850 3950 3850
+Wire Wire Line
+	3950 3850 3950 3600
+Connection ~ 1250 3850
+Wire Wire Line
+	1250 3850 1250 3800
+Wire Wire Line
+	6850 5050 1700 5050
+Wire Wire Line
+	1700 5050 1700 3400
+Connection ~ 1700 3400
+Wire Wire Line
+	1700 3400 1750 3400
+Wire Wire Line
+	1650 3500 1650 5250
+Wire Wire Line
+	1650 5250 6850 5250
+Connection ~ 1650 3500
+Wire Wire Line
+	1650 3500 1550 3500
+Wire Wire Line
+	6850 5450 1600 5450
+Wire Wire Line
+	1600 5450 1600 3600
+Connection ~ 1600 3600
+Wire Wire Line
+	1600 3600 1550 3600
+Wire Wire Line
+	6850 5350 4100 5350
+Wire Wire Line
+	4100 5350 4100 3400
+Wire Wire Line
+	4100 3400 3950 3400
+Connection ~ 3950 3400
+$Comp
+L Device:LED D?
+U 1 1 6064AD5A
+P 1200 2550
+F 0 "D?" H 1193 2767 50  0000 C CNN
+F 1 "LED" H 1193 2676 50  0000 C CNN
+F 2 "" H 1200 2550 50  0001 C CNN
+F 3 "~" H 1200 2550 50  0001 C CNN
+	1    1200 2550
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 6064BFBC
+P 1650 2550
+F 0 "R?" V 1443 2550 50  0000 C CNN
+F 1 "220" V 1534 2550 50  0000 C CNN
+F 2 "" V 1580 2550 50  0001 C CNN
+F 3 "~" H 1650 2550 50  0001 C CNN
+	1    1650 2550
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	1500 2550 1350 2550
+Wire Wire Line
+	1800 2550 1800 2900
+Connection ~ 1800 2900
+Wire Wire Line
+	1800 2900 3950 2900
+$Comp
+L power:GND #PWR?
+U 1 1 6064CC71
+P 900 2650
+F 0 "#PWR?" H 900 2400 50  0001 C CNN
+F 1 "GND" H 905 2477 50  0000 C CNN
+F 2 "" H 900 2650 50  0001 C CNN
+F 3 "" H 900 2650 50  0001 C CNN
+	1    900  2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	900  2650 900  2550
+Wire Wire Line
+	900  2550 1050 2550
+$Comp
+L Tesis2020-21:STM32F723VCTx U?
+U 1 1 60673E66
+P 8800 4600
+F 0 "U?" H 8750 1711 50  0000 C CNN
+F 1 "STM32F723VCTx" H 8750 1620 50  0000 C CNN
+F 2 "Package_QFP:LQFP-100_14x14mm_P0.5mm" H 8100 2000 50  0001 R CNN
+F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00330506.pdf" H 8800 4600 50  0001 C CNN
+	1    8800 4600
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
