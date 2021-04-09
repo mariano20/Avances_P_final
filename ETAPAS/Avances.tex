@@ -446,6 +446,20 @@ Transceptor de Analog Devices de costo medio (entre \textbf{60 y 120 dólares}).
 
 Transceptor de Nordic Semiconductor. Tiene un costo bajo (\textbf{25 dólares} aproximadamente). La desventaja es que está diseñado para NB-IoT por ende los ancho de banda soportados son de 200 kHz y 1.4 MHz. Además, solo soporta frecuencias de entrada hasta los 2200 MHz, por lo que la banda 7 quedaría fuera. Lo bueno es que trae integrado un procesador Arm Cortex-M33 y existe software dedicado a monitoreo de enlaces LTE (\url{https://www.youtube.com/watch?v=m5V4Vo_Xemk})
 
+\section{Cristales}
+\subsection{MCU}
+Para el STM32F723ZC se utilizará un cristal de 25 MHz como sugiere el fabricante. Los valores de los capacitores de carga se calculan de la siguiente manera:
+\begin{equation}
+	C_L = 2 \cdot (C_{Load\_cristal} - C_{parasita}\footnotemark)
+\end{equation}
+Para este caso:
+\begin{align}
+	C_{Load\_cristal} = 8 pF \\
+	C_{parasita} = 2 pF \\
+	C_L = 12 pF
+\end{align}
+\footnotetext{Capacitancia parásita del PCB.}
+
 \chapter*{Varios}
 
 \textbf{10/09/20 Gino}
