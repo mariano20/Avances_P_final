@@ -177,7 +177,7 @@ Wire Wire Line
 Wire Wire Line
 	5300 5150 5300 5000
 Text GLabel 3900 4950 0    50   Input ~ 0
-SCLK
+SPI1_SCK
 Wire Wire Line
 	3900 4950 4000 4950
 Wire Wire Line
@@ -386,7 +386,7 @@ Wire Wire Line
 	7400 5100 7400 5250
 Connection ~ 7400 5250
 Text GLabel 6950 4550 3    50   Input ~ 0
-ENABLE
+Trx_Enable
 Wire Wire Line
 	6950 4550 6950 4250
 $Comp
@@ -454,13 +454,13 @@ F 3 "" H 7750 4250 50  0001 C CNN
 $EndComp
 Text GLabel 8300 3950 2    50   Input ~ 0
 VDD
-Text GLabel 8700 3850 2    50   Input ~ 0
-DOUT
-Text GLabel 7550 3750 2    50   Input ~ 0
-CSB
-Text GLabel 7750 3650 2    50   Input ~ 0
-DIN
-Text GLabel 7100 3550 2    50   Input ~ 0
+Text GLabel 6950 3850 2    50   Input ~ 0
+SPI1_MISO
+Text GLabel 6950 3750 2    50   Input ~ 0
+SPI1_CS1
+Text GLabel 6950 3650 2    50   Input ~ 0
+SPI1_MOSI
+Text GLabel 6950 3550 2    50   Input ~ 0
 RSSI
 $Comp
 L Device:R R?
@@ -646,7 +646,7 @@ Connection ~ 5450 1100
 Text GLabel 5100 1750 0    50   Input ~ 0
 TXENABLE
 Text GLabel 4850 1950 0    50   Input ~ 0
-RXENABLE
+Trx_Rx_Enable
 Wire Wire Line
 	5100 1750 5200 1750
 Wire Wire Line
@@ -1099,14 +1099,6 @@ Wire Wire Line
 Connection ~ 7750 3950
 Wire Wire Line
 	7750 3950 8300 3950
-Wire Wire Line
-	6950 3850 8700 3850
-Wire Wire Line
-	6950 3750 7550 3750
-Wire Wire Line
-	7750 3650 6950 3650
-Wire Wire Line
-	6950 3550 7100 3550
 NoConn ~ 5900 2400
 Wire Wire Line
 	5300 1100 5300 2400

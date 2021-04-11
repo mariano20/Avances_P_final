@@ -1233,4 +1233,75 @@ Text GLabel 7850 6050 0    50   Input ~ 0
 Rx_Mix
 Text GLabel 10450 7350 2    50   Input ~ 0
 Rx_Mix_Bypass
+$Comp
+L Device:C C?
+U 1 1 6073CF3E
+P 4200 2900
+F 0 "C?" V 4350 2900 50  0000 C CNN
+F 1 "100nF" V 4450 2900 50  0000 C CNN
+F 2 "" H 4238 2750 50  0001 C CNN
+F 3 "~" H 4200 2900 50  0001 C CNN
+	1    4200 2900
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	4350 2900 4500 2900
+Wire Wire Line
+	4050 2900 3900 2900
+Text GLabel 3800 2550 0    50   Input ~ 0
+NRST
+Wire Wire Line
+	3800 2550 3900 2550
+$Comp
+L power:GND #PWR?
+U 1 1 607545DD
+P 4650 2650
+F 0 "#PWR?" H 4650 2400 50  0001 C CNN
+F 1 "GND" H 4655 2477 50  0000 C CNN
+F 2 "" H 4650 2650 50  0001 C CNN
+F 3 "" H 4650 2650 50  0001 C CNN
+	1    4650 2650
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4650 2650 4650 2550
+Wire Wire Line
+	4650 2550 4500 2550
+Wire Wire Line
+	3900 2550 3900 2750
+Wire Wire Line
+	4500 2550 4500 2750
+$Comp
+L Switch:SW_Push_Dual SW?
+U 1 1 6076D631
+P 4200 2550
+F 0 "SW?" H 4200 2835 50  0000 C CNN
+F 1 "Reset" H 4200 2744 50  0000 C CNN
+F 2 "" H 4200 2750 50  0001 C CNN
+F 3 "~" H 4200 2750 50  0001 C CNN
+	1    4200 2550
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4000 2550 3900 2550
+Connection ~ 3900 2550
+Wire Wire Line
+	4000 2750 3900 2750
+Connection ~ 3900 2750
+Wire Wire Line
+	3900 2750 3900 2900
+Wire Wire Line
+	4400 2750 4500 2750
+Connection ~ 4500 2750
+Wire Wire Line
+	4500 2750 4500 2900
+Wire Wire Line
+	4400 2550 4500 2550
+Connection ~ 4500 2550
+Text GLabel 10450 4350 2    50   Input ~ 0
+Trx_Enable
+Text GLabel 10450 4450 2    50   Input ~ 0
+Trx_Rx_Enable
+Text GLabel 10450 6250 2    50   Input ~ 0
+RSSI
 $EndSCHEMATC
