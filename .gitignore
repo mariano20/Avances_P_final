@@ -30,3 +30,5 @@ fp-info-cache
 *.dsn
 *.ses
 KiCad/Proyecto_Final/*.pdf
+# No subir carpeta temporal de Google Drive
+.tmp.drivedownload
