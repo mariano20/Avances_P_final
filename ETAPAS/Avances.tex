@@ -460,6 +460,47 @@ Para este caso:
 \end{align}
 \footnotetext{Capacitancia parásita del PCB.}
 
+\chapter{Diseño del esquemático}
+Consideraciones y/o detalles a tener en cuenta:
+\begin{itemize}
+	\item \textbf{Alimentación:}
+	\begin{itemize}
+		\item Se alimenta desde los 5v del puerto USB y se los reduce a 3,3v con un regulador.
+		\item El ADC requiere 1,8v para las salidas digitales.
+	\end{itemize}
+	\item \textbf{Amplificador:}
+	\begin{itemize}
+		\item Se lo habilita por medio de switches de RF y se le controla la alimentación mediante un PMOS (high side switch).
+	\end{itemize}
+	\item \textbf{Mezclador:}
+	\begin{itemize}
+		\item Utiliza un bus serial propietario de 3-4 cables para su control y programación. Se elige el modo de 4 cables y se lo controla por SPI.
+		\item Si no se usa un resonador dedicado, la señal de clock (referencia externa) debe tener una amplitud de 0,5 a 1,5 Vpp. Se debe acondicionar (3,3v $\rightarrow$ 1,5v).
+	\end{itemize}	
+	\item \textbf{ADC:}	 
+	\begin{itemize}
+		\item 2 canales (A y B), se usarán para muestras I y Q respectivamente. Entrega los datos de forma paralela y con el pin de A/\={B} se le indica al MCU que canal está presente.
+		\item Tasa de muestreo hasta los 45 Msps, por lo que se puede reducir disminuyendo la frecuencia del clock.
+	\end{itemize}
+	\item \textbf{Transceptor:}
+	\begin{itemize}
+		\item Sólo se utilizará para recepción. No se encontró otro IC que fuese solo receptor y cumpliese con los requisitos.
+	\end{itemize}
+	\item \textbf{Microcontrolador:}
+	\begin{itemize}
+		\item Se utilizará la conectividad USB HS para asegurar la mayor velocidad de transferencia de datos hacia el host (PC).
+		\item Controla el mezclador y transceptor por SPI1.
+		\item Se deja la opción de agregarle una memoria flash externa y controlable por SPI4.
+		\item Se programa por la interfaz JTAG de ARM.
+		\item Toda señal de control para cualquier componente proviene del MCU.
+	\end{itemize}
+	\item \textbf{Generador de clock:}
+	\begin{itemize}
+		\item Idealmente se utiliza uno para proveer de señales de clock a todos los componentes que lo requieran.
+		\item Si no se consigue entonces se deberán utilizar cristales individuales.
+	\end{itemize}
+\end{itemize}
+
 \chapter*{Varios}
 
 \textbf{10/09/20 Gino}
@@ -475,6 +516,10 @@ Para este caso:
 		\includegraphics[scale=0.6]{Imagenes/sample_qorvo}
 		\caption{Solicitud de sample}
 	\end{figure}
+\end{itemize}
+\textbf{08/04/21 Gino}
+\begin{itemize}
+	\item Solicitud de muestra gratis a Renesas (generador de clock).
 \end{itemize}
 
 \bibliographystyle{IEEEtran}	

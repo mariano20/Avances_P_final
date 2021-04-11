@@ -656,7 +656,7 @@ Wire Wire Line
 Wire Wire Line
 	5100 1950 5100 2400
 Text GLabel 1650 2350 0    50   Input ~ 0
-RF_IN
+RF_IF
 $Comp
 L Transceptor-rescue:MAX1193ETI+-MAX1193 U?
 U 1 1 602D823E
@@ -1243,5 +1243,31 @@ F 2 "" H 13900 1950 50  0001 C CNN
 F 3 "" H 13900 1950 50  0001 C CNN
 	1    13900 1950
 	-1   0    0    1   
+$EndComp
+Text GLabel 3550 1150 0    50   Input ~ 0
+TXENABLE
+$Comp
+L Device:R R?
+U 1 1 6072CDC3
+P 3650 1300
+F 0 "R?" H 3720 1346 50  0000 L CNN
+F 1 "10k" H 3720 1255 50  0000 L CNN
+F 2 "" V 3580 1300 50  0001 C CNN
+F 3 "~" H 3650 1300 50  0001 C CNN
+	1    3650 1300
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3550 1150 3650 1150
+$Comp
+L power:GND #PWR?
+U 1 1 607344AB
+P 3650 1450
+F 0 "#PWR?" H 3650 1200 50  0001 C CNN
+F 1 "GND" H 3655 1277 50  0000 C CNN
+F 2 "" H 3650 1450 50  0001 C CNN
+F 3 "" H 3650 1450 50  0001 C CNN
+	1    3650 1450
+	1    0    0    -1  
 $EndComp
 $EndSCHEMATC
