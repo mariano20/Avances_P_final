@@ -31,4 +31,10 @@ K ARM Cortex-M7 STM32F7 STM32F7x2
 F http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00330506.pdf
 $ENDCMP
 #
+$CMP TCXO
+D Temperature Compensated Oscillator, GND on pins 1 and 2
+K quartz ceramic resonator oscillator
+F ~
+$ENDCMP
+#
 #End Doc Library
