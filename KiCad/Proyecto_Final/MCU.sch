@@ -1590,13 +1590,13 @@ ADC_45MHz
 Text GLabel 4750 8900 2    50   Input ~ 0
 ADC_22MHz
 Wire Wire Line
-	4750 8900 4550 8900
+	4750 8900 4650 8900
 Wire Wire Line
-	4550 9200 4750 9200
+	4550 9200 4650 9200
 Wire Wire Line
-	4550 9500 4750 9500
+	4550 9500 4650 9500
 Wire Wire Line
-	4750 9800 4550 9800
+	4750 9800 4650 9800
 Wire Wire Line
 	4550 10100 4650 10100
 Text GLabel 4650 10250 3    50   Input ~ 0
@@ -2233,4 +2233,514 @@ Text GLabel 6450 8050 0    50   Input ~ 0
 SPI4_MISO
 Text GLabel 6450 8150 0    50   Input ~ 0
 SPI4_CS
+$Comp
+L Connector_Generic:Conn_01x02 J?
+U 1 1 60799F50
+P 4200 1750
+F 0 "J?" H 4280 1742 50  0000 L CNN
+F 1 "5v" H 4280 1651 50  0000 L CNN
+F 2 "" H 4200 1750 50  0001 C CNN
+F 3 "~" H 4200 1750 50  0001 C CNN
+	1    4200 1750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6079A5C1
+P 4000 1850
+F 0 "#PWR?" H 4000 1600 50  0001 C CNN
+F 1 "GND" H 4005 1677 50  0000 C CNN
+F 2 "" H 4000 1850 50  0001 C CNN
+F 3 "" H 4000 1850 50  0001 C CNN
+	1    4000 1850
+	1    0    0    -1  
+$EndComp
+Text GLabel 4000 1750 0    50   Input ~ 0
+VBUS
+$Comp
+L Connector_Generic:Conn_01x02 J?
+U 1 1 6079AF87
+P 13300 3400
+F 0 "J?" H 13380 3392 50  0000 L CNN
+F 1 "I2C1" H 13380 3301 50  0000 L CNN
+F 2 "" H 13300 3400 50  0001 C CNN
+F 3 "~" H 13300 3400 50  0001 C CNN
+	1    13300 3400
+	1    0    0    -1  
+$EndComp
+Text GLabel 13100 3400 0    50   Input ~ 0
+I2C1_SCL
+Text GLabel 13100 3500 0    50   Input ~ 0
+I2C1_SDA
+$Comp
+L Connector:TestPoint TP?
+U 1 1 6079BAE2
+P 2750 3700
+F 0 "TP?" H 2700 3900 50  0000 L CNN
+F 1 "TestPoint" H 2808 3727 50  0001 L CNN
+F 2 "" H 2950 3700 50  0001 C CNN
+F 3 "~" H 2950 3700 50  0001 C CNN
+	1    2750 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 6079D16C
+P 2550 3700
+F 0 "TP?" H 2500 3900 50  0000 L CNN
+F 1 "TestPoint" H 2608 3727 50  0001 L CNN
+F 2 "" H 2750 3700 50  0001 C CNN
+F 3 "~" H 2750 3700 50  0001 C CNN
+	1    2550 3700
+	1    0    0    -1  
+$EndComp
+Text GLabel 2550 3700 3    50   Input ~ 0
+VBUS
+$Comp
+L power:+3.3V #PWR?
+U 1 1 6079EC4B
+P 2750 3700
+F 0 "#PWR?" H 2750 3550 50  0001 C CNN
+F 1 "+3.3V" H 2765 3873 50  0000 C CNN
+F 2 "" H 2750 3700 50  0001 C CNN
+F 3 "" H 2750 3700 50  0001 C CNN
+	1    2750 3700
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 6079F420
+P 2950 3700
+F 0 "TP?" H 2900 3900 50  0000 L CNN
+F 1 "TestPoint" H 3008 3727 50  0001 L CNN
+F 2 "" H 3150 3700 50  0001 C CNN
+F 3 "~" H 3150 3700 50  0001 C CNN
+	1    2950 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR?
+U 1 1 6079F6DA
+P 2950 3700
+F 0 "#PWR?" H 2950 3450 50  0001 C CNN
+F 1 "GND" H 2955 3527 50  0000 C CNN
+F 2 "" H 2950 3700 50  0001 C CNN
+F 3 "" H 2950 3700 50  0001 C CNN
+	1    2950 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 6079FA5F
+P 3150 3700
+F 0 "TP?" H 3100 3900 50  0000 L CNN
+F 1 "TestPoint" H 3208 3727 50  0001 L CNN
+F 2 "" H 3350 3700 50  0001 C CNN
+F 3 "~" H 3350 3700 50  0001 C CNN
+	1    3150 3700
+	1    0    0    -1  
+$EndComp
+Text GLabel 3150 3700 3    50   Input ~ 0
+NRST
+Text GLabel 3550 3700 3    50   Input ~ 0
+SWDIO
+Text GLabel 3750 3700 3    50   Input ~ 0
+SWCLK
+Text GLabel 3350 3700 3    50   Input ~ 0
+SWO
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607BDC17
+P 3350 3700
+F 0 "TP?" H 3300 3900 50  0000 L CNN
+F 1 "TestPoint" H 3408 3727 50  0001 L CNN
+F 2 "" H 3550 3700 50  0001 C CNN
+F 3 "~" H 3550 3700 50  0001 C CNN
+	1    3350 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607BDF9A
+P 3550 3700
+F 0 "TP?" H 3500 3900 50  0000 L CNN
+F 1 "TestPoint" H 3608 3727 50  0001 L CNN
+F 2 "" H 3750 3700 50  0001 C CNN
+F 3 "~" H 3750 3700 50  0001 C CNN
+	1    3550 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607BE1A9
+P 3750 3700
+F 0 "TP?" H 3700 3900 50  0000 L CNN
+F 1 "TestPoint" H 3808 3727 50  0001 L CNN
+F 2 "" H 3950 3700 50  0001 C CNN
+F 3 "~" H 3950 3700 50  0001 C CNN
+	1    3750 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607BFB0B
+P 2350 3700
+F 0 "TP?" H 2300 3900 50  0000 L CNN
+F 1 "TestPoint" H 2408 3727 50  0001 L CNN
+F 2 "" H 2550 3700 50  0001 C CNN
+F 3 "~" H 2550 3700 50  0001 C CNN
+	1    2350 3700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR?
+U 1 1 607CF205
+P 2350 3700
+F 0 "#PWR?" H 2350 3550 50  0001 C CNN
+F 1 "+3.3VA" H 2365 3873 50  0000 C CNN
+F 2 "" H 2350 3700 50  0001 C CNN
+F 3 "" H 2350 3700 50  0001 C CNN
+	1    2350 3700
+	-1   0    0    1   
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607CF8A2
+P 4650 8900
+F 0 "TP?" H 4600 9100 50  0000 L CNN
+F 1 "TestPoint" H 4708 8927 50  0001 L CNN
+F 2 "" H 4850 8900 50  0001 C CNN
+F 3 "~" H 4850 8900 50  0001 C CNN
+	1    4650 8900
+	1    0    0    -1  
+$EndComp
+Connection ~ 4650 8900
+Wire Wire Line
+	4650 8900 4550 8900
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607D02FA
+P 4650 9200
+F 0 "TP?" H 4600 9400 50  0000 L CNN
+F 1 "TestPoint" H 4708 9227 50  0001 L CNN
+F 2 "" H 4850 9200 50  0001 C CNN
+F 3 "~" H 4850 9200 50  0001 C CNN
+	1    4650 9200
+	1    0    0    -1  
+$EndComp
+Connection ~ 4650 9200
+Wire Wire Line
+	4650 9200 4750 9200
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607D05B3
+P 4650 9500
+F 0 "TP?" H 4600 9700 50  0000 L CNN
+F 1 "TestPoint" H 4708 9527 50  0001 L CNN
+F 2 "" H 4850 9500 50  0001 C CNN
+F 3 "~" H 4850 9500 50  0001 C CNN
+	1    4650 9500
+	1    0    0    -1  
+$EndComp
+Connection ~ 4650 9500
+Wire Wire Line
+	4650 9500 4750 9500
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607D0AC7
+P 4650 9800
+F 0 "TP?" H 4600 10000 50  0000 L CNN
+F 1 "TestPoint" H 4708 9827 50  0001 L CNN
+F 2 "" H 4850 9800 50  0001 C CNN
+F 3 "~" H 4850 9800 50  0001 C CNN
+	1    4650 9800
+	1    0    0    -1  
+$EndComp
+Connection ~ 4650 9800
+Wire Wire Line
+	4650 9800 4550 9800
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607D0EB7
+P 4650 10100
+F 0 "TP?" H 4600 10300 50  0000 L CNN
+F 1 "TestPoint" H 4708 10127 50  0001 L CNN
+F 2 "" H 4850 10100 50  0001 C CNN
+F 3 "~" H 4850 10100 50  0001 C CNN
+	1    4650 10100
+	1    0    0    -1  
+$EndComp
+Text GLabel 6000 7200 3    50   Input ~ 0
+SPI4_SCK
+Text GLabel 6200 7200 3    50   Input ~ 0
+SPI4_MOSI
+Text GLabel 6400 7200 3    50   Input ~ 0
+SPI4_MISO
+Text GLabel 6600 7200 3    50   Input ~ 0
+SPI4_CS
+$Comp
+L Connector:TestPoint TP?
+U 1 1 608112CF
+P 6000 7200
+F 0 "TP?" H 5950 7400 50  0000 L CNN
+F 1 "TestPoint" H 6058 7227 50  0001 L CNN
+F 2 "" H 6200 7200 50  0001 C CNN
+F 3 "~" H 6200 7200 50  0001 C CNN
+	1    6000 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60811688
+P 6200 7200
+F 0 "TP?" H 6150 7400 50  0000 L CNN
+F 1 "TestPoint" H 6258 7227 50  0001 L CNN
+F 2 "" H 6400 7200 50  0001 C CNN
+F 3 "~" H 6400 7200 50  0001 C CNN
+	1    6200 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 6081184D
+P 6400 7200
+F 0 "TP?" H 6350 7400 50  0000 L CNN
+F 1 "TestPoint" H 6458 7227 50  0001 L CNN
+F 2 "" H 6600 7200 50  0001 C CNN
+F 3 "~" H 6600 7200 50  0001 C CNN
+	1    6400 7200
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60811A9E
+P 6600 7200
+F 0 "TP?" H 6550 7400 50  0000 L CNN
+F 1 "TestPoint" H 6658 7227 50  0001 L CNN
+F 2 "" H 6800 7200 50  0001 C CNN
+F 3 "~" H 6800 7200 50  0001 C CNN
+	1    6600 7200
+	1    0    0    -1  
+$EndComp
+Text GLabel 13850 4500 3    50   Input ~ 0
+I2C1_SCL
+Text GLabel 14050 4500 3    50   Input ~ 0
+I2C1_SDA
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60822FAD
+P 14050 4500
+F 0 "TP?" H 14000 4700 50  0000 L CNN
+F 1 "TestPoint" H 14108 4527 50  0001 L CNN
+F 2 "" H 14250 4500 50  0001 C CNN
+F 3 "~" H 14250 4500 50  0001 C CNN
+	1    14050 4500
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60823555
+P 13850 4500
+F 0 "TP?" H 13800 4700 50  0000 L CNN
+F 1 "TestPoint" H 13908 4527 50  0001 L CNN
+F 2 "" H 14050 4500 50  0001 C CNN
+F 3 "~" H 14050 4500 50  0001 C CNN
+	1    13850 4500
+	1    0    0    -1  
+$EndComp
+Text GLabel 12200 3250 3    50   Input ~ 0
+SPI1_SCK
+Text GLabel 11800 3250 3    50   Input ~ 0
+SPI1_MISO
+Text GLabel 12000 3250 3    50   Input ~ 0
+SPI1_MOSI
+Text GLabel 11600 3250 3    50   Input ~ 0
+SPI1_CS0
+Text GLabel 11400 3250 3    50   Input ~ 0
+SPI1_CS1
+$Comp
+L Connector:TestPoint TP?
+U 1 1 608551D7
+P 11400 3250
+F 0 "TP?" H 11350 3450 50  0000 L CNN
+F 1 "TestPoint" H 11458 3277 50  0001 L CNN
+F 2 "" H 11600 3250 50  0001 C CNN
+F 3 "~" H 11600 3250 50  0001 C CNN
+	1    11400 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60855529
+P 11600 3250
+F 0 "TP?" H 11550 3450 50  0000 L CNN
+F 1 "TestPoint" H 11658 3277 50  0001 L CNN
+F 2 "" H 11800 3250 50  0001 C CNN
+F 3 "~" H 11800 3250 50  0001 C CNN
+	1    11600 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 608558A4
+P 11800 3250
+F 0 "TP?" H 11750 3450 50  0000 L CNN
+F 1 "TestPoint" H 11858 3277 50  0001 L CNN
+F 2 "" H 12000 3250 50  0001 C CNN
+F 3 "~" H 12000 3250 50  0001 C CNN
+	1    11800 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60855B5E
+P 12000 3250
+F 0 "TP?" H 11950 3450 50  0000 L CNN
+F 1 "TestPoint" H 12058 3277 50  0001 L CNN
+F 2 "" H 12200 3250 50  0001 C CNN
+F 3 "~" H 12200 3250 50  0001 C CNN
+	1    12000 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60855E26
+P 12200 3250
+F 0 "TP?" H 12150 3450 50  0000 L CNN
+F 1 "TestPoint" H 12258 3277 50  0001 L CNN
+F 2 "" H 12400 3250 50  0001 C CNN
+F 3 "~" H 12400 3250 50  0001 C CNN
+	1    12200 3250
+	1    0    0    -1  
+$EndComp
+Text GLabel 6150 10150 3    50   Input ~ 0
+Rx_Amp_Bypass
+Text GLabel 5950 10150 3    50   Input ~ 0
+RXHP
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60856786
+P 5950 10150
+F 0 "TP?" H 5900 10350 50  0000 L CNN
+F 1 "TestPoint" H 6008 10177 50  0001 L CNN
+F 2 "" H 6150 10150 50  0001 C CNN
+F 3 "~" H 6150 10150 50  0001 C CNN
+	1    5950 10150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60856E05
+P 6150 10150
+F 0 "TP?" H 6100 10350 50  0000 L CNN
+F 1 "TestPoint" H 6208 10177 50  0001 L CNN
+F 2 "" H 6350 10150 50  0001 C CNN
+F 3 "~" H 6350 10150 50  0001 C CNN
+	1    6150 10150
+	1    0    0    -1  
+$EndComp
+Text GLabel 6350 10150 3    50   Input ~ 0
+Rx_Mix
+Text GLabel 6550 10150 3    50   Input ~ 0
+Rx_Amp_Pwr
+Text GLabel 6750 10150 3    50   Input ~ 0
+Rx_Amp
+Text GLabel 6950 10150 3    50   Input ~ 0
+Filt_Bypass
+Text GLabel 7150 10150 3    50   Input ~ 0
+Filtro
+Text GLabel 7350 10150 3    50   Input ~ 0
+Rx_Mix_Bypass
+Text GLabel 7750 10150 3    50   Input ~ 0
+Trx_Enable
+Text GLabel 7550 10150 3    50   Input ~ 0
+Trx_Rx_Enable
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60866968
+P 6350 10150
+F 0 "TP?" H 6300 10350 50  0000 L CNN
+F 1 "TestPoint" H 6408 10177 50  0001 L CNN
+F 2 "" H 6550 10150 50  0001 C CNN
+F 3 "~" H 6550 10150 50  0001 C CNN
+	1    6350 10150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60866CC8
+P 6550 10150
+F 0 "TP?" H 6500 10350 50  0000 L CNN
+F 1 "TestPoint" H 6608 10177 50  0001 L CNN
+F 2 "" H 6750 10150 50  0001 C CNN
+F 3 "~" H 6750 10150 50  0001 C CNN
+	1    6550 10150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60866E2E
+P 6750 10150
+F 0 "TP?" H 6700 10350 50  0000 L CNN
+F 1 "TestPoint" H 6808 10177 50  0001 L CNN
+F 2 "" H 6950 10150 50  0001 C CNN
+F 3 "~" H 6950 10150 50  0001 C CNN
+	1    6750 10150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60866FEB
+P 6950 10150
+F 0 "TP?" H 6900 10350 50  0000 L CNN
+F 1 "TestPoint" H 7008 10177 50  0001 L CNN
+F 2 "" H 7150 10150 50  0001 C CNN
+F 3 "~" H 7150 10150 50  0001 C CNN
+	1    6950 10150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60867236
+P 7150 10150
+F 0 "TP?" H 7100 10350 50  0000 L CNN
+F 1 "TestPoint" H 7208 10177 50  0001 L CNN
+F 2 "" H 7350 10150 50  0001 C CNN
+F 3 "~" H 7350 10150 50  0001 C CNN
+	1    7150 10150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 6086755E
+P 7350 10150
+F 0 "TP?" H 7300 10350 50  0000 L CNN
+F 1 "TestPoint" H 7408 10177 50  0001 L CNN
+F 2 "" H 7550 10150 50  0001 C CNN
+F 3 "~" H 7550 10150 50  0001 C CNN
+	1    7350 10150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 6086775D
+P 7550 10150
+F 0 "TP?" H 7500 10350 50  0000 L CNN
+F 1 "TestPoint" H 7608 10177 50  0001 L CNN
+F 2 "" H 7750 10150 50  0001 C CNN
+F 3 "~" H 7750 10150 50  0001 C CNN
+	1    7550 10150
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 60867A1B
+P 7750 10150
+F 0 "TP?" H 7700 10350 50  0000 L CNN
+F 1 "TestPoint" H 7808 10177 50  0001 L CNN
+F 2 "" H 7950 10150 50  0001 C CNN
+F 3 "~" H 7950 10150 50  0001 C CNN
+	1    7750 10150
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC

@@ -1681,7 +1681,7 @@ F 3 "~" H 2050 3100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 Text GLabel 6700 5100 3    50   Input ~ 0
-MIX_CLK
+REF_IN
 $Comp
 L Device:R R?
 U 1 1 60A036F9
@@ -1787,4 +1787,62 @@ Text GLabel 9900 2500 0    50   Input ~ 0
 SWITCH
 Wire Wire Line
 	9000 2300 8250 2300
+Text GLabel 9950 4750 0    50   Input ~ 0
+MIX_CLK
+Text GLabel 10350 5200 2    50   Input ~ 0
+REF_IN
+$Comp
+L Device:C C?
+U 1 1 60793144
+P 10150 5450
+F 0 "C?" H 10265 5496 50  0000 L CNN
+F 1 "100pF" H 10265 5405 50  0000 L CNN
+F 2 "" H 10188 5300 50  0001 C CNN
+F 3 "~" H 10150 5450 50  0001 C CNN
+	1    10150 5450
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	9950 4750 10150 4750
+Wire Wire Line
+	10150 4750 10150 4800
+$Comp
+L Device:C C?
+U 1 1 60792BA4
+P 10150 4950
+F 0 "C?" H 10265 4996 50  0000 L CNN
+F 1 "33pF" H 10265 4905 50  0000 L CNN
+F 2 "" H 10188 4800 50  0001 C CNN
+F 3 "~" H 10150 4950 50  0001 C CNN
+	1    10150 4950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10150 5300 10150 5200
+$Comp
+L power:GND #PWR?
+U 1 1 607A55DE
+P 10150 5600
+F 0 "#PWR?" H 10150 5350 50  0001 C CNN
+F 1 "GND" H 10155 5427 50  0000 C CNN
+F 2 "" H 10150 5600 50  0001 C CNN
+F 3 "" H 10150 5600 50  0001 C CNN
+	1    10150 5600
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	10350 5200 10150 5200
+Connection ~ 10150 5200
+Wire Wire Line
+	10150 5200 10150 5100
+Wire Notes Line
+	9550 4650 10700 4650
+Wire Notes Line
+	10700 4650 10700 5900
+Wire Notes Line
+	10700 5900 9550 5900
+Wire Notes Line
+	9550 5900 9550 4650
+Text Notes 9550 4600 0    50   ~ 0
+Divisor capacitivo, 3.3Vpp -> 0.8Vpp
 $EndSCHEMATC

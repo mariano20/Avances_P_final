@@ -566,14 +566,6 @@ Text GLabel 6950 3150 2    50   Input ~ 0
 INB+
 Text GLabel 6950 3250 2    50   Input ~ 0
 INB-
-Text GLabel 12300 1950 0    50   Input ~ 0
-INA-
-Text GLabel 12300 2050 0    50   Input ~ 0
-INA+
-Text GLabel 12300 2550 0    50   Input ~ 0
-INB-
-Text GLabel 12300 2450 0    50   Input ~ 0
-INB+
 Wire Wire Line
 	10950 1950 10950 2050
 Wire Wire Line
@@ -1286,4 +1278,225 @@ Wire Wire Line
 	13050 4750 13200 4750
 Wire Wire Line
 	13050 4850 13200 4850
+$Comp
+L Device:R R?
+U 1 1 60791BA0
+P 8650 1700
+F 0 "R?" V 8443 1700 50  0000 C CNN
+F 1 "0" V 8534 1700 50  0000 C CNN
+F 2 "" V 8580 1700 50  0001 C CNN
+F 3 "~" H 8650 1700 50  0001 C CNN
+	1    8650 1700
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 60798900
+P 8650 2050
+F 0 "R?" V 8443 2050 50  0000 C CNN
+F 1 "0" V 8534 2050 50  0000 C CNN
+F 2 "" V 8580 2050 50  0001 C CNN
+F 3 "~" H 8650 2050 50  0001 C CNN
+	1    8650 2050
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 60798B8E
+P 8650 2400
+F 0 "R?" V 8443 2400 50  0000 C CNN
+F 1 "0" V 8534 2400 50  0000 C CNN
+F 2 "" V 8580 2400 50  0001 C CNN
+F 3 "~" H 8650 2400 50  0001 C CNN
+	1    8650 2400
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:R R?
+U 1 1 60798F18
+P 8650 2750
+F 0 "R?" V 8443 2750 50  0000 C CNN
+F 1 "0" V 8534 2750 50  0000 C CNN
+F 2 "" V 8580 2750 50  0001 C CNN
+F 3 "~" H 8650 2750 50  0001 C CNN
+	1    8650 2750
+	0    1    1    0   
+$EndComp
+Text GLabel 8500 1700 0    50   Input ~ 0
+INA+
+Text GLabel 8500 2050 0    50   Input ~ 0
+INA-
+Text GLabel 8500 2400 0    50   Input ~ 0
+INB+
+Text GLabel 8500 2750 0    50   Input ~ 0
+INB-
+Text GLabel 8800 1700 2    50   Input ~ 0
+_INA+
+Text GLabel 8800 2050 2    50   Input ~ 0
+_INA-
+Text GLabel 8800 2400 2    50   Input ~ 0
+_INB+
+Text GLabel 8800 2750 2    50   Input ~ 0
+_INB-
+Text GLabel 12300 2050 0    50   Input ~ 0
+_INA+
+Text GLabel 12300 1950 0    50   Input ~ 0
+_INA-
+Text GLabel 12300 2450 0    50   Input ~ 0
+_INB+
+Text GLabel 12300 2550 0    50   Input ~ 0
+_INB-
+Wire Notes Line
+	8200 1400 8200 2850
+Wire Notes Line
+	8200 2850 9150 2850
+Wire Notes Line
+	9150 2850 9150 1400
+Wire Notes Line
+	9150 1400 8200 1400
+Text Notes 8200 1350 0    50   ~ 0
+Separadores para medición
+Text GLabel 14550 4250 3    50   Input ~ 0
+D5
+Text GLabel 14700 4250 3    50   Input ~ 0
+D4
+Text GLabel 15750 4250 3    50   Input ~ 0
+A_B
+Text GLabel 14850 4250 3    50   Input ~ 0
+D3
+Text GLabel 15000 4250 3    50   Input ~ 0
+D2
+Text GLabel 15150 4250 3    50   Input ~ 0
+D1
+Text GLabel 15300 4250 3    50   Input ~ 0
+D0
+Text GLabel 15450 4250 3    50   Input ~ 0
+PD1
+Text GLabel 15600 4250 3    50   Input ~ 0
+PD0
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607AE5A5
+P 14550 4250
+F 0 "TP?" H 14500 4450 50  0000 L CNN
+F 1 "TestPoint" H 14350 4600 50  0001 L CNN
+F 2 "" H 14750 4250 50  0001 C CNN
+F 3 "~" H 14750 4250 50  0001 C CNN
+	1    14550 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607C1A8B
+P 14700 4250
+F 0 "TP?" H 14650 4450 50  0000 L CNN
+F 1 "TestPoint" H 14500 4600 50  0001 L CNN
+F 2 "" H 14900 4250 50  0001 C CNN
+F 3 "~" H 14900 4250 50  0001 C CNN
+	1    14700 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607DFB6E
+P 15750 4250
+F 0 "TP?" H 15700 4450 50  0000 L CNN
+F 1 "TestPoint" H 15550 4600 50  0001 L CNN
+F 2 "" H 15950 4250 50  0001 C CNN
+F 3 "~" H 15950 4250 50  0001 C CNN
+	1    15750 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607DFE0C
+P 14850 4250
+F 0 "TP?" H 14800 4450 50  0000 L CNN
+F 1 "TestPoint" H 14650 4600 50  0001 L CNN
+F 2 "" H 15050 4250 50  0001 C CNN
+F 3 "~" H 15050 4250 50  0001 C CNN
+	1    14850 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607DFFDB
+P 15000 4250
+F 0 "TP?" H 14950 4450 50  0000 L CNN
+F 1 "TestPoint" H 14800 4600 50  0001 L CNN
+F 2 "" H 15200 4250 50  0001 C CNN
+F 3 "~" H 15200 4250 50  0001 C CNN
+	1    15000 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607E00F5
+P 15150 4250
+F 0 "TP?" H 15100 4450 50  0000 L CNN
+F 1 "TestPoint" H 14950 4600 50  0001 L CNN
+F 2 "" H 15350 4250 50  0001 C CNN
+F 3 "~" H 15350 4250 50  0001 C CNN
+	1    15150 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607E0392
+P 15300 4250
+F 0 "TP?" H 15250 4450 50  0000 L CNN
+F 1 "TestPoint" H 15100 4600 50  0001 L CNN
+F 2 "" H 15500 4250 50  0001 C CNN
+F 3 "~" H 15500 4250 50  0001 C CNN
+	1    15300 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607E0698
+P 15450 4250
+F 0 "TP?" H 15400 4450 50  0000 L CNN
+F 1 "TestPoint" H 15250 4600 50  0001 L CNN
+F 2 "" H 15650 4250 50  0001 C CNN
+F 3 "~" H 15650 4250 50  0001 C CNN
+	1    15450 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607E08DA
+P 15600 4250
+F 0 "TP?" H 15550 4450 50  0000 L CNN
+F 1 "TestPoint" H 15400 4600 50  0001 L CNN
+F 2 "" H 15800 4250 50  0001 C CNN
+F 3 "~" H 15800 4250 50  0001 C CNN
+	1    15600 4250
+	1    0    0    -1  
+$EndComp
+Text GLabel 14250 4250 3    50   Input ~ 0
+D7
+Text GLabel 14400 4250 3    50   Input ~ 0
+D6
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607E6856
+P 14400 4250
+F 0 "TP?" H 14350 4450 50  0000 L CNN
+F 1 "TestPoint" H 14200 4600 50  0001 L CNN
+F 2 "" H 14600 4250 50  0001 C CNN
+F 3 "~" H 14600 4250 50  0001 C CNN
+	1    14400 4250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector:TestPoint TP?
+U 1 1 607E6ACC
+P 14250 4250
+F 0 "TP?" H 14200 4450 50  0000 L CNN
+F 1 "TestPoint" H 14050 4600 50  0001 L CNN
+F 2 "" H 14450 4250 50  0001 C CNN
+F 3 "~" H 14450 4250 50  0001 C CNN
+	1    14250 4250
+	1    0    0    -1  
+$EndComp
 $EndSCHEMATC
