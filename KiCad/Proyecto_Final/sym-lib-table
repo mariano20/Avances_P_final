@@ -8,4 +8,5 @@
   (lib (name TPD4S012DRYR)(type Legacy)(uri ${KIPRJMOD}/Librerias/TPD4S012DRYR.lib)(options "")(descr ""))
   (lib (name STM32F723ZCT6)(type Legacy)(uri ${KIPRJMOD}/Librerias/STM32F723ZCT6.lib)(options "")(descr ""))
   (lib (name MCU-rescue)(type Legacy)(uri ${KIPRJMOD}/MCU-rescue.lib)(options "")(descr ""))
+  (lib (name CON-SMA-EDGE-S)(type Legacy)(uri ${KIPRJMOD}/Librerias/CON-SMA-EDGE-S.lib)(options "")(descr ""))
 )
