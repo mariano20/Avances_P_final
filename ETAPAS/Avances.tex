@@ -522,6 +522,106 @@ Consideraciones y/o detalles a tener en cuenta:
 	\item Solicitud de muestra gratis a Renesas (generador de clock).
 \end{itemize}
 
+
+\chapter{Reglas PCB}
+\textbf{19/04/21 Mariano}
+
+\section{Longitud critica $L_c$}
+
+Se debe tener especial cuidado cuando la longitud de la pista supera una fracción de la longitud de onda de la señal que viaja por dicha pista. Esta fracción viene determinada por dos ecuación según no refiramos a Microstrip o Stripline:
+
+
+\textbf{Stripline (trazo interno)}
+\begin{equation}
+L_c = \frac{c}{f} \cdot \frac{1}{\sqrt{\epsilon_r}} \cdot \frac{1}{12}
+\end{equation}
+
+Donde $\epsilon_r$ es la constante dieléctrica (o también llamada permitividad relativa del dieléctrico). $c$ se corresponde con la velocidad de la luz y $f$ es la frecuencia de interés.
+
+\textbf{Microstrip (trazo externo)}
+\begin{equation}
+L_c = \frac{c}{f} \cdot \frac{1}{\sqrt{\epsilon_{ff}}} \cdot \frac{1}{12}
+\end{equation}
+
+$\epsilon_{ff}$ es la constante dielectrica efectiva. Usualmente este valor es menor que $\epsilon_r$ y la diferencia radica en que por encima de un trazo externo se encuentra el aire, entonces la constante es una resultante de dos medios dieléctricos.
+Hay herramientas en la web que facilitan este calculo. Como ejemplo tenemos la siguiente herramienta: 
+
+\url{https://www.pasternack.com/t-calculator-microstrip.aspx}
+
+Cuyos datos los extraemos de: \url{https://jlcpcb.com/quote/pcbOrderFaq/PCB\%20Stackup} quien posiblemente sea nuestro proveedor. 
+
+
+Para nuestro caso entonces este calculo nos arroja el siguiente resultado: 
+
+$\epsilon_{ff} = 3,394$
+
+Por lo tanto la longitud critica considerando una frecuencia máxima de 2700 Mhz: 
+
+\begin{equation}
+L_c = \frac{c}{f} \cdot \frac{1}{\sqrt{\epsilon_{ff}}} \cdot \frac{1}{12} = 0.5026 [cm]
+\end{equation}
+
+
+Es decir que la longitud de la pista por la cual circula una señal de 2700 Mhz como máximo, no puede superar los 5 mm.
+
+
+\section{Consideraciónes para el uso efectivo de las 4 capas}
+
+Típicamete las dos capas interiores se usan como plano de tierra (GND) y Alimentación (PWR). Entonces el ruteo se hará con "microstrip lines". Es decir quedaría, de manera muy general, algo así: 
+
+\begin{enumerate}
+	\item Trazado de pistas
+	\item GND
+	\item Trazado pistas PWR
+	\item Trazado de pistas
+\end{enumerate}
+
+\section{Control de Impedancia de las pistas}
+
+\url{https://cart.jlcpcb.com/impedance}
+
+Del link anterior extraemos los datos para utilizaarlos en la calculadora que el programa de diseño (KiCad) nos proporciona.
+
+Es menester aclarar que se concidera para el calculo la utilización de Microstrip.
+
+KiCad nos arroja el siguiente resultado: 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Imagenes/PCB/impedancia_kicad}
+	\caption{Ancho de pista para una impedancia de 50 ohm}
+	\label{impedancia1}
+\end{figure}
+
+Pero el fabricante JLCPCB tiene su propia calculadora, esta herramienta arroja los siguientes resutados: 
+
+\begin{figure}[H]
+	\centering
+	\subfigure[50 ohm Terminación unica ]{\includegraphics[scale=0.4]{Imagenes/PCB/jlc_unica} \label{jlc1}}
+	\subfigure[Señal 50 ohm Diferencial]{\includegraphics[scale=0.4]{Imagenes/PCB/jlc_dif}\label{jlc2}}
+	\caption{Ancho de pista según calculadora de JLCPCB}
+\end{figure}
+
+
+Entonces según el fabricante, el ancho debe ser:
+
+\textbf{Terminación unica:} 0.29337 [mm]
+
+Como se ve en la captura, si la traza es diferencial, la impedancia recomendad va desde los 70 a los 114 ohm. 
+
+
+\section{Discontinuidades de impedancia}
+
+Cuando algún trazo/pista culmina en un pad o algo que hace variar el ancho de la pista, se produce un cambio en la impedancia. Varios articulos leidos y experiencias de personas que diseñaron placas cuyas señales involucradas eran de alta frecuencia indican que esos cambios si bien son innegables, no afectan al desempeño, por lo cual no son tomados en cuenta. Solo en algunos casos particulares se intenta hacer un cambio progresivo del trazo para que no sea abrupto, nada más. 
+
+\section{Clearance}
+
+De manera general, en todos los casos se recomienda que las secciones de RF, antenna, alimentación y sección digital se mantengan separadas, especialmente la sección digital de la de RF. Para evitar que estas secciones interfieran entre ellas.
+
+\section{Antennas and Bias Tee}
+
+No lo tenemos implementado en nuestra placa.
+
 \bibliographystyle{IEEEtran}	
 \bibliography{bibliografia}
 \nocite{*}
