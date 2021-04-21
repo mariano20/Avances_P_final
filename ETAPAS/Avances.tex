@@ -46,7 +46,7 @@
 \cfoot{\thepage}
 
 %-----------------------------------|CAMBIO NOMBRE "CAPITULO" POR "UNIDAD"|-----------------------------------
-\addto\captionsspanish{\renewcommand{\chaptername}{Tarea}} 
+%\addto\captionsspanish{\renewcommand{\chaptername}{Tarea}} 
 
 \begin{document}
 	
@@ -249,6 +249,40 @@ The R\&S® FSH is a handheld spectrum analyzer and – depending on the model an
 \large{\textbf{Precio (desde): U\$D 10300}}
 
 \chapter{Diseño de Arquitectura}
+
+\section{Receptores - SDR} 
+
+\textbf{21/04/21}
+
+La radio definida por software (SDR)  hace uso de arquitecturas de hardware para DSP, microprocesadores, IC digitales especializados y software para producir señales moduladas para su transmisión y para su demodulación en el receptor. El receptor por software ideal muestreará y ditalizara las señales recibidas en la antena mediante un ADC y procesará la señal mediante el hardware de precesamiento elegido. En nuestro caso un microcontrolador de ST Electronics.
+
+La mayoria de los receptores emplean la técnica de los receptores superheterodino: 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{Imagenes/Arquitectura/superhetero}
+	\caption{Arquietecura de un receptor Superheterodino}
+	\label{super}
+\end{figure}
+
+El tipo de demodulador o detector utilizado depende de la aplicación. En la mayoria de las arquitecturas de las radios definidas por software se utilizan los detectores en fase y cuadratura (I/Q) como el siguiente: 
+
+\begin{figure}
+	\centering
+	\includegraphics[scale=0.6]{Imagenes/Arquitectura/iq}
+	\caption{Detector de IQ}
+	\label{iq}
+\end{figure}
+
+Ahora bien, ¿que sucedería si la frecuencia del oscilador local de un receptor Superheterodino se ajusta de tal manera que se iguale a la frecuencia de la portadora ($f_{LO} = f_c$)?. Pues en este caso la frecuencia intermedia sería cero, o idealmente cero ($f_{IF} = 0$), y esto es lo que se denomina como un receptor de IF en cero o en ingles Zero-IF Receiver. En este caso el filtro de frecuencia intermedia (que se ven en la figura \ref{super}) se convierte en un filtro pasabajos (LPF). La combinación de un mezclador con un LPF funciona como detector de producto, por lo que no haría falta una etapa que proporcione un detector (como se ve en la figura \ref{super}); pero como nuestra necesidad es obtener las señales I/Q, se agrega un detector como el mostrado anteriormente (figura \ref{iq})
+
+Los receptores de IF en cero poseen varias ventajas. No tienen respuesta de imagen. El mismo hardware para el receptor de IF en cero puede utilizarse en muchas aplicaciones distintas para una manufactura económica. Debido a que se utiliza hardware de DSP, las características pasabanda de RF efectivas y las del detector se determinan mediante software para DSP. El software puede cambiarse fácilmente para satisfacer la aplicación deseada. El mismo hardware de IF con cero puede emplearse en receptores a diferentes bandas de VHF y UHF si se se selecciona la frecuencia del LO adecuada ($f_{LO} = f_c$) y si se sintoniza el filtro inicial, generalmente un circuito sintonizado a una sola frecuencia, a $f_c$.
+
+El receptor de IF en cero posee la desventaja de una posible fuga de radiación del LO a través del puerto de entrada de antena debido a la vía de paso del mezclador. A su vez existirá un desplazamiento de DC en la salida del mezclador si existe una fuga en el LO a la entrada de antena, ya que una onda senoidal (señal del LO) multiplicada por sí misma produce un término de DC, además de una segunda armónica fuera de banda. Estos problemas se minimizarán con un mezclador balanceado de alta calidad y un blindaje en el LO. El receptor puede también poseer una figura pobre de ruido, ya que la circuitería de entrada generalmente no es una etapa de alta ganancia con bajo ruido. Como en cualquier otro receptor, el hardware debe diseñarse cuidadosamente para que exista un rango dinámico suficiente y prevenir que señales fuertes sobrecarguen al receptor, lo cual produce señales parásitas debido a las características no lineales, y que al mismo tiempo tenga una ganancia suficiente para la detección de señales débiles.
+
+
+
+
 
 \textbf{29/07/2020 - Gino}
 
@@ -523,7 +557,7 @@ Consideraciones y/o detalles a tener en cuenta:
 \end{itemize}
 
 
-\chapter{Reglas PCB}
+\chapter{Elaboración del PCB}
 \textbf{19/04/21 Mariano}
 
 \section{Longitud critica $L_c$}
