@@ -23,7 +23,7 @@
 %\usepackage{soul} %Para resaltar
 %\usepackage{color} %Para resaltar
 \usepackage{hyperref}
-
+\usepackage{multicol}
 %------------------------------|CONFIGURACION DE PAGINA Y MARGENES|-------------------------
 
 %\pagestyle{fancy}
@@ -535,27 +535,6 @@ Consideraciones y/o detalles a tener en cuenta:
 	\end{itemize}
 \end{itemize}
 
-\chapter*{Varios}
-
-\textbf{10/09/20 Gino}
-\begin{itemize}
-	\item Reunión con Ing. Riva y Zerbini para definición de arquitectura.
-	\item Solicitud de muestras gratis a Maxim (MAX2837, MAX5864).
-\end{itemize}
-\textbf{17/09/20 Gino}
-\begin{itemize}
-	\item Solicitud de muestra gratis a Qorvo (RFFC5071).
-	\begin{figure}[H]
-		\centering
-		\includegraphics[scale=0.6]{Imagenes/sample_qorvo}
-		\caption{Solicitud de sample}
-	\end{figure}
-\end{itemize}
-\textbf{08/04/21 Gino}
-\begin{itemize}
-	\item Solicitud de muestra gratis a Renesas (generador de clock).
-\end{itemize}
-
 
 \chapter{Elaboración del PCB}
 \textbf{19/04/21 Mariano}
@@ -614,7 +593,7 @@ Típicamete las dos capas interiores se usan como plano de tierra (GND) y Alimen
 
 \url{https://cart.jlcpcb.com/impedance}
 
-Del link anterior extraemos los datos para utilizaarlos en la calculadora que el programa de diseño (KiCad) nos proporciona.
+Del link anterior extraemos los datos para utilizarlos en la calculadora que el programa de diseño (KiCad) nos proporciona.
 
 Es menester aclarar que se concidera para el calculo la utilización de Microstrip.
 
@@ -627,21 +606,39 @@ KiCad nos arroja el siguiente resultado:
 	\label{impedancia1}
 \end{figure}
 
-Pero el fabricante JLCPCB tiene su propia calculadora, esta herramienta arroja los siguientes resutados: 
+Pero el fabricante JLCPCB tiene su propia calculadora, esta herramienta arroja los siguientes resutados para los distintos valoes de impedancia y configuraciones (terminación única o diferencial): 
 
-\begin{figure}[H]
-	\centering
-	\subfigure[50 ohm Terminación unica ]{\includegraphics[scale=0.4]{Imagenes/PCB/jlc_unica} \label{jlc1}}
-	\subfigure[Señal 50 ohm Diferencial]{\includegraphics[scale=0.4]{Imagenes/PCB/jlc_dif}\label{jlc2}}
-	\caption{Ancho de pista según calculadora de JLCPCB}
-\end{figure}
+\begin{table} [H]
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|}
+			\hline
+			\multicolumn{5}{|c|}{Longitudes en [mill] para distintos valores de impedancia} \\ \hline
+			Impedancia		& 45 	& 90 	& 50 	& 100 \\ \hline
+			T única			& 14,04	& X		& 11,55	& X \\ \hline
+			T Diferencial	& X		& 10,28 & X		& 8,08 \\ \hline
+		\end{tabular}
+	\caption{Anchos de pistas (valores en [mill])}
+	\label{impedancias}
+	\end{center}
+\end{table}
 
+Los parametros del material son: 
 
-Entonces según el fabricante, el ancho debe ser:
-
-\textbf{Terminación unica:} 0.29337 [mm]
-
-Como se ve en la captura, si la traza es diferencial, la impedancia recomendad va desde los 70 a los 114 ohm. 
+\begin{table} [H]
+	\begin{center}
+		\begin{tabular}{|c||c|}
+			\hline
+%			\multicolumn{5}{|c|}{Longitudes en [mill] para distintos valores de impedancia} \\ \hline
+			Producto		& JLC7628  \\ \hline
+			N° de capas			& 4	 \\ \hline
+			Grosor	& 1,6 [mm]		\\ \hline
+			Tipo de pista & Microstrip (pistas externas) \\ \hline
+			Separación entre pistas T Diferencial & 8 [mills] \\ \hline
+		\end{tabular}
+		\caption{Parametros del producto}
+		\label{placa}
+	\end{center}
+\end{table}
 
 
 \section{Discontinuidades de impedancia}
@@ -653,6 +650,43 @@ Cuando algún trazo/pista culmina en un pad o algo que hace variar el ancho de l
 De manera general, en todos los casos se recomienda que las secciones de RF, antenna, alimentación y sección digital se mantengan separadas, especialmente la sección digital de la de RF. Para evitar que estas secciones interfieran entre ellas.
 
 \section{Antennas and Bias Tee}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+\chapter*{Varios}
+
+\textbf{10/09/20 Gino}
+\begin{itemize}
+	\item Reunión con Ing. Riva y Zerbini para definición de arquitectura.
+	\item Solicitud de muestras gratis a Maxim (MAX2837, MAX5864).
+\end{itemize}
+\textbf{17/09/20 Gino}
+\begin{itemize}
+	\item Solicitud de muestra gratis a Qorvo (RFFC5071).
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.6]{Imagenes/sample_qorvo}
+		\caption{Solicitud de sample}
+	\end{figure}
+\end{itemize}
+\textbf{08/04/21 Gino}
+\begin{itemize}
+	\item Solicitud de muestra gratis a Renesas (generador de clock).
+\end{itemize}
+
+
+
 
 No lo tenemos implementado en nuestra placa.
 
