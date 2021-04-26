@@ -45,8 +45,13 @@
 %\rfoot[]{\thepage}
 \cfoot{\thepage}
 
-%-----------------------------------|CAMBIO NOMBRE "CAPITULO" POR "UNIDAD"|-----------------------------------
+%----------------|CAMBIO NOMBRE "CAPITULO" POR "UNIDAD"|-------------------
 %\addto\captionsspanish{\renewcommand{\chaptername}{Tarea}} 
+
+%----------------|CAMBIO NOMBRE "CUADRO" POR "TABLA"|-------------------
+\addto\captionsspanish{\renewcommand{\listtablename}{Índice de tablas}}
+\addto\captionsspanish{\renewcommand{\tablename}{Tabla}}
+
 
 \begin{document}
 	
@@ -265,20 +270,128 @@ La mayoria de los receptores emplean la técnica de los receptores superheterodi
 	\label{super}
 \end{figure}
 
+%-----> EXPLICAR MEZCLADORES ACA
+
+El mezclador como sabemos es un circuito electrónico que hace uso de componentes no lineales para generar señales con frecuencias distintas a las de las señales de entrada. El objetivo de este bloque es desplazar en frecuencia una señal de interés para facilitar su manipulación. La nueva frecuencia a la que se lleva la señal en el receptor de la figura \ref{super} es la denominada Frecuencia Intermedia. Esto es de suma utilidad puesto que la electrónica de las etapas posteriores a esta se simplifica gracias a estar trabajando en esa frecuencia fija y ademas disponemos de dispositivos que a esa frecuencia intermedia tienen mas eficiencia, mas ganancia, Filtros mas selectivos, etc.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.15]{Imagenes/Arquitectura/mixer}
+	\caption{Mezclador}
+	\label{mixer}
+\end{figure}
+
+Clasicamente encontramos 3 topologias:
+
+\textbf{Mezclador desbalanceado:} Ademas de proporcinar el producto de las señales de entrada, deja que estas pasen y sean parte de la salida.
+
+\textbf{Mezclador balanceado simple:} Una de las entradas es aplicada a un circuito con entrada diferencial lo que produce la supresión de esa señal a la salida, puede ser la del oscilador local o la señal de RF.
+
+\textbf{Mezclador balanceado doble:} Anologo al anterior pero con sus dos entradas aplicadas a circuitos diferenciales, es decir que ninunga de las entradas es componente de la salida. Solo se tiene como salida al producto.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{Imagenes/Arquitectura/mixer-tipos}
+	\caption{Topologias de mezcladores}
+	\label{mixer-tipos}
+\end{figure}  
+
+% FIN EXPLCACIÓN MEZCLADORES
+
 El tipo de demodulador o detector utilizado depende de la aplicación. En la mayoria de las arquitecturas de las radios definidas por software se utilizan los detectores en fase y cuadratura (I/Q) como el siguiente: 
 
-\begin{figure}
+\begin{figure}[H]
 	\centering
 	\includegraphics[scale=0.6]{Imagenes/Arquitectura/iq}
 	\caption{Detector de IQ}
 	\label{iq}
 \end{figure}
 
+%-----> EXPLICAR SEÑALES I/Q ACA
+
+Para entender la modulación y demodulación por cuadratrura hay que saber, en primera instancia, que significa que dos señales estén en cuadratura.
+
+Entonces, decimos que dos señales se encuentran en cuadratura cuando entre ellas existe una diferencia de fase de 90°, tal como se muestra aquí: 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.8]{Imagenes/Arquitectura/cuadratura}
+	\caption{Señales en cuadratura}
+	\label{cuad}
+\end{figure}
+
+Entonces disponemos de una señal ``en fase'' (Cos) y la otra ``en cuadratura'' (Sen). Se denomina ``I'' a la amplitud de la primera y ``Q'' a la amplitud de la segunda. De esta manera se puede expresar: 
+
+\begin{center}
+	$I\cdot\cos(2\cdot\pi\cdot f\cdot t)$
+	
+	$Q\cdot\sin(2\cdot\pi\cdot f\cdot t)$
+\end{center}
+
+Si sumamos estas señales obtendremos una señal que tiene propiedades interesantes: 
+
+\begin{itemize}
+	\item Si I y Q varian de igual manera, la amplitud de la señal resultante variará de manera proporcional.
+	\item Si I y Q varian de manera diferente, se producirá desplazamientos de fase en la señal resultante luego de la suma.
+\end{itemize}
+
+Es decir que modificando los parámetros básicos de las señales en cuadratura podemos generar cualquier tipo de señal modulada, puesto que podemos modificar Amplitud, fase y frecuencia de la señal que resulta de la suma de las anteriores.
+
+Una forma de ver esto de manera clara es con un \textbf{diagrama de fasores} como el de la figura \ref{fasores}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Imagenes/Arquitectura/fasores}
+	\caption{Graficos ilustrativos señales I/Q}
+	\label{fasores}
+\end{figure}
+
+Entonces supongamos que queremos realizar una modulación digital QPSK. Lo hariamos como muestra el diagrama en bloques de la figura \ref{QPSK} y las señales se comportarian como se ve en la figura \ref{señalesqpsk}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Imagenes/Arquitectura/QPSK}
+	\caption{Diagrama en bloques para efectuar una modulación QPSK }
+	\label{QPSK}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.6]{Imagenes/Arquitectura/qpsk-señales}
+	\caption{Modulación QPSK }
+	\label{señalesqpsk}
+\end{figure}
+
+Cuyo diagrama fasorial es el siguiente: 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{Imagenes/Arquitectura/qpsk-fasores}
+	\caption{QPSK en el dominio I-Q}
+	\label{fasoresqpsk}
+\end{figure}
+
+Así, cualquier modulación tiene su representación en el dominio I-Q. Las señales $I(t)$ y $Q(t)$ en este caso son digitales pero pueden ser analógicas y efectuar otro tipo de modulación.
+
+En cuanto a la demodulación, lo anterior resulta muy útil, vease la figura \ref{iqdemo}. \textbf{Las señales $I(t)$ y $Q(t)$ poseen la información suficiente para demodular cualquier tipo de modulación previa. Es por este motivo que resulta tan conveniente el uso en Radios Definidas por Software (SDR)}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.7]{Imagenes/Arquitectura/iqdemo}
+	\caption{Demodulador I/Q}
+	\label{iqdemo}
+\end{figure}
+
+
+%------- FIN EXPLICACIÓN IQ
+
 Ahora bien, ¿que sucedería si la frecuencia del oscilador local de un receptor Superheterodino se ajusta de tal manera que se iguale a la frecuencia de la portadora ($f_{LO} = f_c$)?. Pues en este caso la frecuencia intermedia sería cero, o idealmente cero ($f_{IF} = 0$), y esto es lo que se denomina como un receptor de IF en cero o en ingles Zero-IF Receiver. En este caso el filtro de frecuencia intermedia (que se ven en la figura \ref{super}) se convierte en un filtro pasabajos (LPF). La combinación de un mezclador con un LPF funciona como detector de producto, por lo que no haría falta una etapa que proporcione un detector (como se ve en la figura \ref{super}); pero como nuestra necesidad es obtener las señales I/Q, se agrega un detector como el mostrado anteriormente (figura \ref{iq})
 
-Los receptores de IF en cero poseen varias ventajas. No tienen respuesta de imagen. El mismo hardware para el receptor de IF en cero puede utilizarse en muchas aplicaciones distintas para una manufactura económica. Debido a que se utiliza hardware de DSP, las características pasabanda de RF efectivas y las del detector se determinan mediante software para DSP. El software puede cambiarse fácilmente para satisfacer la aplicación deseada. El mismo hardware de IF con cero puede emplearse en receptores a diferentes bandas de VHF y UHF si se se selecciona la frecuencia del LO adecuada ($f_{LO} = f_c$) y si se sintoniza el filtro inicial, generalmente un circuito sintonizado a una sola frecuencia, a $f_c$.
+Los receptores de IF en cero poseen varias ventajas. El mismo hardware para el receptor de IF en cero puede utilizarse en muchas aplicaciones distintas para una manufactura económica. Debido a que se utiliza hardware de DSP, las características pasabanda de RF efectivas y las del detector se determinan mediante software para DSP. El software puede cambiarse fácilmente para satisfacer la aplicación deseada. El mismo hardware de IF en cero puede emplearse en receptores a diferentes bandas de VHF y UHF si se se selecciona la frecuencia del LO adecuada ($f_{LO} = f_c$) y si se sintoniza el filtro inicial, generalmente un circuito sintonizado a una sola frecuencia, a $f_c$.
 
 El receptor de IF en cero posee la desventaja de una posible fuga de radiación del LO a través del puerto de entrada de antena debido a la vía de paso del mezclador. A su vez existirá un desplazamiento de DC en la salida del mezclador si existe una fuga en el LO a la entrada de antena, ya que una onda senoidal (señal del LO) multiplicada por sí misma produce un término de DC, además de una segunda armónica fuera de banda. Estos problemas se minimizarán con un mezclador balanceado de alta calidad y un blindaje en el LO. El receptor puede también poseer una figura pobre de ruido, ya que la circuitería de entrada generalmente no es una etapa de alta ganancia con bajo ruido. Como en cualquier otro receptor, el hardware debe diseñarse cuidadosamente para que exista un rango dinámico suficiente y prevenir que señales fuertes sobrecarguen al receptor, lo cual produce señales parásitas debido a las características no lineales, y que al mismo tiempo tenga una ganancia suficiente para la detección de señales débiles.
+
+
 
 
 
@@ -621,6 +734,14 @@ Pero el fabricante JLCPCB tiene su propia calculadora, esta herramienta arroja l
 	\label{impedancias}
 	\end{center}
 \end{table}
+
+
+La ecuación \ref{ancho} es la que se utiliza para el calculo de los valores mostrados en la tabla \ref{impedancias}
+
+\begin{equation}
+w = h \cdot [\frac{1}{Z_0 \cdot C \cdot \epsilon_0 \cdot \epsilon_r} -2]
+\label{ancho}
+\end{equation}
 
 Los parametros del material son: 
 
