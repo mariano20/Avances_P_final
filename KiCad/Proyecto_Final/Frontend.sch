@@ -483,9 +483,9 @@ Wire Wire Line
 Wire Wire Line
 	4700 8450 4550 8450
 Text GLabel 4900 7450 2    50   Input ~ 0
-Rx_Amp
-Text GLabel 4650 8800 2    50   Input ~ 0
 Rx_Amp_Bypass
+Text GLabel 4650 8800 2    50   Input ~ 0
+Rx_Amp
 $Comp
 L Device:C C33
 U 1 1 601F446A
@@ -497,25 +497,6 @@ F 3 "~" H 5950 8150 50  0001 C CNN
 	1    5950 8150
 	0    1    1    0   
 $EndComp
-$Comp
-L Device:C C39
-U 1 1 601F4A10
-P 5950 8550
-F 0 "C39" V 5698 8550 50  0000 C CNN
-F 1 "100pF" V 5789 8550 50  0000 C CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 5988 8400 50  0001 C CNN
-F 3 "~" H 5950 8550 50  0001 C CNN
-	1    5950 8550
-	0    1    1    0   
-$EndComp
-Wire Wire Line
-	5600 8250 5600 8150
-Wire Wire Line
-	5600 8150 5800 8150
-Wire Wire Line
-	5600 8450 5600 8550
-Wire Wire Line
-	5600 8550 5800 8550
 $Comp
 L power:GND #PWR040
 U 1 1 601FAAAB
@@ -547,10 +528,10 @@ F 3 "~" H 4650 7600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C C46
+L Device:C C45
 U 1 1 602084F0
 P 4550 8950
-F 0 "C46" H 4665 8996 50  0000 L CNN
+F 0 "C45" H 4665 8996 50  0000 L CNN
 F 1 "33pF" H 4665 8905 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 4588 8800 50  0001 C CNN
 F 3 "~" H 4550 8950 50  0001 C CNN
@@ -626,10 +607,10 @@ F 3 "~" H 8300 8150 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:C C40
+L Device:C C39
 U 1 1 60236629
 P 8300 8550
-F 0 "C40" V 8048 8550 50  0000 C CNN
+F 0 "C39" V 8048 8550 50  0000 C CNN
 F 1 "100pF" V 8139 8550 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 8338 8400 50  0001 C CNN
 F 3 "~" H 8300 8550 50  0001 C CNN
@@ -644,8 +625,6 @@ Wire Wire Line
 	8650 8450 8650 8550
 Wire Wire Line
 	8650 8550 8450 8550
-Wire Wire Line
-	6100 8550 6100 8850
 Wire Wire Line
 	6100 8850 8150 8850
 Wire Wire Line
@@ -697,10 +676,10 @@ Wire Wire Line
 Text GLabel 9450 8750 0    50   Input ~ 0
 Rx_Amp_Bypass
 $Comp
-L Device:C C44
+L Device:C C43
 U 1 1 6024FE9E
 P 9550 8900
-F 0 "C44" H 9665 8946 50  0000 L CNN
+F 0 "C43" H 9665 8946 50  0000 L CNN
 F 1 "33pF" H 9665 8855 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 9588 8750 50  0001 C CNN
 F 3 "~" H 9550 8900 50  0001 C CNN
@@ -776,10 +755,10 @@ $EndComp
 Text GLabel 10250 8750 0    50   Input ~ 0
 Rx_Mix
 $Comp
-L Device:C C45
+L Device:C C44
 U 1 1 602653F5
 P 10300 8900
-F 0 "C45" H 10415 8946 50  0000 L CNN
+F 0 "C44" H 10415 8946 50  0000 L CNN
 F 1 "33pF" H 10415 8855 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 10338 8750 50  0001 C CNN
 F 3 "~" H 10300 8900 50  0001 C CNN
@@ -820,10 +799,10 @@ F 3 "~" H 11900 8150 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:C C41
+L Device:C C40
 U 1 1 6026BB01
 P 11900 8600
-F 0 "C41" V 11648 8600 50  0000 C CNN
+F 0 "C40" V 11648 8600 50  0000 C CNN
 F 1 "100pF" V 11739 8600 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 11938 8450 50  0001 C CNN
 F 3 "~" H 11900 8600 50  0001 C CNN
@@ -920,10 +899,10 @@ F 3 "" H 8250 2450 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C C10
+L Device:C C11
 U 1 1 602F6979
 P 9150 2500
-F 0 "C10" V 8898 2500 50  0000 C CNN
+F 0 "C11" V 8898 2500 50  0000 C CNN
 F 1 "100pF" V 8989 2500 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 9188 2350 50  0001 C CNN
 F 3 "~" H 9150 2500 50  0001 C CNN
@@ -958,7 +937,7 @@ Wire Wire Line
 	11350 8350 11450 8350
 Wire Wire Line
 	11450 8350 11450 8750
-Text GLabel 11250 1250 2    50   Input ~ 0
+Text GLabel 11250 2650 2    50   Input ~ 0
 Rx_Mix
 $Comp
 L Device:C C5
@@ -989,7 +968,7 @@ F 3 "" H 11100 1550 50  0001 C CNN
 	1    11100 1550
 	1    0    0    -1  
 $EndComp
-Text GLabel 11250 2650 2    50   Input ~ 0
+Text GLabel 11250 1250 2    50   Input ~ 0
 Rx_Mix_Bypass
 Wire Wire Line
 	10800 2400 11050 2400
@@ -1025,10 +1004,10 @@ $EndComp
 Text Notes 13300 2600 2    100  ~ 0
 Al MAX2837
 $Comp
-L Device:C C11
+L Device:C C10
 U 1 1 6032B57F
 P 11200 2400
-F 0 "C11" V 10948 2400 50  0000 C CNN
+F 0 "C10" V 10948 2400 50  0000 C CNN
 F 1 "100pF" V 11039 2400 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 11238 2250 50  0001 C CNN
 F 3 "~" H 11200 2400 50  0001 C CNN
@@ -1219,10 +1198,10 @@ F 3 "" H 3400 8350 60  0000 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C C48
+L Device:C C47
 U 1 1 605E6132
 P 3450 9850
-F 0 "C48" V 3198 9850 50  0000 C CNN
+F 0 "C47" V 3198 9850 50  0000 C CNN
 F 1 "100pF" V 3289 9850 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 3488 9700 50  0001 C CNN
 F 3 "~" H 3450 9850 50  0001 C CNN
@@ -1230,10 +1209,10 @@ F 3 "~" H 3450 9850 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L Device:C C47
+L Device:C C46
 U 1 1 605E65E1
 P 1450 9600
-F 0 "C47" V 1198 9600 50  0000 C CNN
+F 0 "C46" V 1198 9600 50  0000 C CNN
 F 1 "100pF" V 1289 9600 50  0000 C CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 1488 9450 50  0001 C CNN
 F 3 "~" H 1450 9600 50  0001 C CNN
@@ -1252,8 +1231,6 @@ Wire Wire Line
 	1450 9850 1600 9850
 Wire Wire Line
 	1450 9450 1450 9150
-Wire Wire Line
-	2450 9150 2450 8450
 $Comp
 L Device:C C36
 U 1 1 6061BD95
@@ -1265,8 +1242,6 @@ F 3 "~" H 2700 8250 50  0001 C CNN
 	1    2700 8250
 	0    1    1    0   
 $EndComp
-Wire Wire Line
-	2550 8250 2450 8250
 Wire Wire Line
 	2850 8250 2950 8250
 $Comp
@@ -1285,10 +1260,10 @@ Wire Wire Line
 Text GLabel 4100 8550 2    50   Input ~ 0
 Filtro
 $Comp
-L Device:C C43
+L Device:C C42
 U 1 1 6063DA2E
 P 3950 8700
-F 0 "C43" H 4065 8746 50  0000 L CNN
+F 0 "C42" H 4065 8746 50  0000 L CNN
 F 1 "33pF" H 4065 8655 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 3988 8550 50  0001 C CNN
 F 3 "~" H 3950 8700 50  0001 C CNN
@@ -1352,7 +1327,7 @@ Wire Wire Line
 Connection ~ 2700 8350
 Text GLabel 3400 7450 0    50   Input ~ 0
 Filt_Bypass
-Text GLabel 1850 7650 2    50   Input ~ 0
+Text GLabel 1150 8450 0    50   Input ~ 0
 Filt_Bypass
 Wire Wire Line
 	12250 8150 12050 8150
@@ -1360,8 +1335,6 @@ Wire Wire Line
 	12500 8600 12050 8600
 Wire Wire Line
 	3600 9150 2950 9150
-Wire Wire Line
-	1450 9150 2450 9150
 $Comp
 L Device:C C32
 U 1 1 60767DBB
@@ -1406,17 +1379,17 @@ Wire Wire Line
 	4550 8800 4650 8800
 Connection ~ 4550 8800
 $Comp
-L Device:C C42
+L Device:C C41
 U 1 1 607E4817
 P 1300 8650
-F 0 "C42" H 1415 8696 50  0000 L CNN
+F 0 "C41" H 1415 8696 50  0000 L CNN
 F 1 "33pF" H 1415 8605 50  0000 L CNN
 F 2 "Capacitor_SMD:C_0402_1005Metric" H 1338 8500 50  0001 C CNN
 F 3 "~" H 1300 8650 50  0001 C CNN
 	1    1300 8650
 	-1   0    0    -1  
 $EndComp
-Text GLabel 1150 8450 0    50   Input ~ 0
+Text GLabel 1850 7650 2    50   Input ~ 0
 Filtro
 $Comp
 L power:GND #PWR044
@@ -1449,14 +1422,10 @@ Wire Wire Line
 	3850 7450 3850 8250
 Connection ~ 3650 7450
 Wire Notes Line
-	4100 7350 800  7350
-Wire Notes Line
-	4100 10700 800  10700
-Wire Notes Line
-	800  7350 800  10700
+	650  7350 650  10700
 Wire Notes Line
 	4100 7350 4100 10700
-Text Notes 850  10650 0    50   ~ 0
+Text Notes 700  10650 0    50   ~ 0
 Filtro pasa banda (699-2690MHz)
 Wire Wire Line
 	1350 6900 1350 7050
@@ -1882,4 +1851,26 @@ Text Label 7000 2750 1    50   ~ 0
 MIX_OPP
 Text Label 7100 2750 1    50   ~ 0
 MIX_OPN
+Wire Wire Line
+	5800 8150 5800 8450
+Wire Wire Line
+	5800 8450 5600 8450
+Wire Wire Line
+	5600 8250 6100 8250
+Wire Wire Line
+	6100 8250 6100 8850
+Wire Wire Line
+	2550 8250 2550 8450
+Wire Wire Line
+	2550 8450 2450 8450
+Wire Wire Line
+	2450 8250 2500 8250
+Wire Wire Line
+	2500 8250 2500 9150
+Wire Wire Line
+	1450 9150 2500 9150
+Wire Notes Line
+	650  7350 4100 7350
+Wire Notes Line
+	650  10700 4100 10700
 $EndSCHEMATC
