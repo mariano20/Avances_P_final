@@ -1,4 +1,4 @@
-update=26/04/2021 17:10:59
+update=27/04/2021 16:37:53
 version=1
 last_client=kicad
 [general]
@@ -48,7 +48,7 @@ ViaDrill2=0.3
 ViaDiameter3=0.8
 ViaDrill3=0.4
 dPairWidth1=0.2
-dPairGap1=0.25
+dPairGap1=0.2
 dPairViaGap1=0.25
 SilkLineWidth=0.12
 SilkTextSizeV=1
@@ -250,7 +250,7 @@ ViaDrill=0.3
 uViaDiameter=0.3
 uViaDrill=0.1
 dPairWidth=0.2
-dPairGap=0.25
+dPairGap=0.2
 dPairViaGap=0.25
 [pcbnew/Netclasses/1]
 Name=100 Ohms Diferencial
