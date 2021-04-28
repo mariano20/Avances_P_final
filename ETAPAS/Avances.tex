@@ -24,6 +24,8 @@
 %\usepackage{color} %Para resaltar
 \usepackage{hyperref}
 \usepackage{multicol}
+
+
 %------------------------------|CONFIGURACION DE PAGINA Y MARGENES|-------------------------
 
 %\pagestyle{fancy}
@@ -772,10 +774,66 @@ De manera general, en todos los casos se recomienda que las secciones de RF, ant
 
 \section{Antennas and Bias Tee}
 
+No lo tenemos implementado en nuestra placa.
+
+
+\chapter{Programación del Microcontrolador}
+
+
+\textbf{Enlaces de utilidad:}
+
+\url{https://www.youtube.com/watch?v=GZqwrcGNHO0&list=PLvHxU_pY8Jf9NYhzMauKIc2iBP5HGPYSM}
+
+\url{https://www.youtube.com/watch?v=E8JpLtMlokw&list=PL1Hs_F1k2mdTwlGSv7lglkF_LtY0125OB&index=1}
+
+\section{Arquitectura ARM}
+
+\subsection{Introducción - generalidades}
+
+Incluir aquí: 
+
+Definición arquitectura ARM
+
+Objetivo de los Cortex-M sistemas embebidos
+
+
+\subsection{CISC-RISC}
+
+La siguiente tabla resume las principales diferencias de cada una de las arquitecturas. Claramente en la bibliografia dedicada a este tema se puede encontrar mucha mas información si se desea, pero aquí se resalta las diferencias mas predominantes.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.45]{Imagenes/stm/risc-cisc}
+	\caption{RISC vs CISC}
+	\label{cr}
+\end{figure}
+
+
+\subsection{Distribución de la memoria}
+
+La distribución de la memoria no es universal y cambia según estemos usando un Microcontrolador que haga uso de un Cortex-M, Cortex-R o algún otro. Se muestra a continuación la organización de la memoria de los microcontroladores cuyo procesador sea un Cortex-M:
 
 
 
+\begin{figure}[H]
+	\centering
+	\subfigure[Estructura general]{\includegraphics[scale=0.35]{Imagenes/stm/memoria1} \label{memo1}}
+	\subfigure[Estructura de memoria del area de código]{\includegraphics[scale=0.35]{Imagenes/stm/memoria2}\label{memo2}}
+	\caption{Estructura de Memoria microcontroladores con Cortex M}
+	\label{memoria}
+\end{figure}
 
+El espacio asignado como \textbf{Code Area} es aquel en el que se guardará el software que el programador escriba. Específicamente en la \textbf{Memoria Flash}. El bloque que lleva por nombre \textbf{System Memory} contiene el Boot Loader, el cual es una pieza de software que permite leer y escribir en la memoria flash sin necesidad de un interpretador (comúnmente llamado programador) como el St-Link V2 (Figura \ref{stlink}). El bloque superior llamado \textbf{Option Bytes} tiene particular interés puesto que gracias a estos bits podemos deshabilitar el acceso al software (guardado en la memoria flash) y así evitar una copia ilegal de nuestro software.
+
+En el bloque \textbf{SRAM} es en donde se almacenan las variables. Los registros de configuración de perifericos se almacenan en \textbf{Perioheral} y los bloques \textbf{External Ram} y \textbf{External Device} nos dan la posibilidad de aumentar las capacidades del Microcontrolador en caso de ser necesario. Los tres bloque en la parte superior (figura \ref{memo1}) son bloque pertenecientes específicamente al microprocesador.
+
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{Imagenes/stm/stlink}
+	\caption{Interpretador (Programador)}
+	\label{stlink}
+\end{figure}
 
 
 
@@ -809,7 +867,7 @@ De manera general, en todos los casos se recomienda que las secciones de RF, ant
 
 
 
-No lo tenemos implementado en nuestra placa.
+
 
 \bibliographystyle{IEEEtran}	
 \bibliography{bibliografia}
