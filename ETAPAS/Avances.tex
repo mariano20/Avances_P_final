@@ -835,7 +835,30 @@ En el bloque \textbf{SRAM} es en donde se almacenan las variables. Los registros
 	\label{stlink}
 \end{figure}
 
+\section{Bit Masking - Bit Bandig}
 
+\textbf{Bit Masking} tiene como propósito optimizar el uso de las variables. Y el \textbf{Bit Banding} en cambio, hace un uso poco eficiente de la memoria (es decir, desperdicia memoria) con el objetivo de optimizar las tareas del micro y el código en general.
+
+De manera muy general, el bit banding es el proceso mediante el cual guardamos el valor de un bit en un registro y cuando saltamos a una interrupción y modificamos ese valor, lo que en realidad hacemos es operar con la dirección del registro donde guardamos el dato, motivo por el cual cuando regresamos de la interrupción ya tenemos el dato con los cambios hechos en la interrupción y podemos seguir operando.
+
+Es decir que para cada bit que queramos resguardar usaremos un registro. Por este motivo se mencionó que es una técnica que desperdicia memoria.
+
+Los registros que tienen esta finalidad los observamos en la siguiente imagen: 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Imagenes/stm/reg_banding}
+	\caption{Registros dedicados a Bit Banding}
+	\ref{banding}
+\end{figure}
+
+Pero hay que resaltar algo importante. Supongamos que en la interrupción el bit que quiero resguardar usando bit-banding pasa de ser un 1 a ser un 0. Cuando vuelvo de la interrupción puedo ejecutar una instrucción que sin que sea mi intención cambie el estado de ese bit, lo cual perdería sentido, se supone que el bit banding viene a solucionar estos casos. Este inconveniente se puede solucionar por software, pero los microcontroladores stm32 poseen un registro llamado \textbf{Registro de bloqueo} el cual es especial, puesto que no permite modificaciones como la antes presentada, por o cual el programador se aseguraría que el bit resguardado está protegido contra cambios accidentales.
+
+\section{Instrucciónes THUMB-2}
+
+Estas instrucciones son el resultado de la convinación de instrucción de 32 bits con instrucciones THUMB-16 (instrucciones de 16 bits). Las primeras desperdiciaba memoria y la segunda reducía la eficiencia del micro, entonces se desarrollaron las intrucciones nombradas en el título. Instrucciones que son usadas actualmente por microcontroladores cuyos procesadores sean Cortex M3, M4 o M7.
+
+Algunas instrucciones son especiales, como las denominadas \textbf{VFP} (Vector Floating Point) que permiten operar con variables de punto flotante y las instrucciones \textbf{SIMD} cuyo tamaño puede llegar a ser 128 bits, estas son instrucciones que se ejecutan por múltiples procesadores. Es decir, una misma y unica instrucción ejecutada por dos o mas procesadores. El objetivo es, claramente, reducir tiempos lo que se traduce en un aumento de la eficiencia.
 
 
 
