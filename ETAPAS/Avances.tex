@@ -776,6 +776,29 @@ De manera general, en todos los casos se recomienda que las secciones de RF, ant
 
 No lo tenemos implementado en nuestra placa.
 
+\section{Thermal Vias}
+
+Siguiendo la nota de aplicación AN1151\cite{thvias} de Diodes Incorporated sobre diseño de vias termales para encapsulados TQFN se obtuvieron los siguientes valores.
+
+RFFC5072:
+\begin{equation}
+	N_{vias} = \left(\frac{3.71mm}{1.2mm}\right)^2 \approxeq 9
+\end{equation}
+
+MAX2837:
+\begin{equation}
+	N_{vias} = \left(\frac{4.57mm}{1mm}\right)^2 = 20.88 \rightarrow 16
+\end{equation}
+
+MAX1193:
+\begin{equation}
+	N_{vias} = \left(\frac{3.35mm}{1.1mm}\right)^2 \approxeq 9
+\end{equation}
+
+5P49V5929:
+\begin{equation}
+	N_{vias} = \left(\frac{2.8mm}{1.25mm}\right)^2 = 5.01 \rightarrow 4
+\end{equation}
 
 \chapter{Programación del Microcontrolador}
 
