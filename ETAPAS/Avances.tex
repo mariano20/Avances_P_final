@@ -883,7 +883,56 @@ Estas instrucciones son el resultado de la convinación de instrucción de 32 bi
 
 Algunas instrucciones son especiales, como las denominadas \textbf{VFP} (Vector Floating Point) que permiten operar con variables de punto flotante y las instrucciones \textbf{SIMD} cuyo tamaño puede llegar a ser 128 bits, estas son instrucciones que se ejecutan por múltiples procesadores. Es decir, una misma y unica instrucción ejecutada por dos o mas procesadores. El objetivo es, claramente, reducir tiempos lo que se traduce en un aumento de la eficiencia.
 
+\section{Acceso no alineado y pipeline}
 
+Acceso alineado y no alineado: 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.45]{Imagenes/stm/alignednotaligned}
+	\caption{Acceso alineado y no alineado}
+	\ref{memoacceso}
+\end{figure}
+
+Esto es una capacidad del procesador, no de la memoria.
+
+ \subsection{Procesamiento de instrucciones}
+ 
+ Al escribir un comando, el procesador deberá realizar una serie de \textbf{Instrucciones} para que la ejecución del comando sea efectiva. En general debe: Ubicar la instrucción $\rightarrow$ Decodificarla $\rightarrow$ Ejecutarla. Esto lleva su tiempo.
+ 
+ \subsection{Pipeline}
+ 
+Ejecución simultanea de instrucciones: 
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.4]{Imagenes/stm/pipeline1}
+	\caption{Ilustración de la técnica de Pipeline}
+	\ref{pipe1}
+\end{figure}
+
+
+\section{Interrupciones y excepciones}
+
+Las interrupciones y excepciones son rutinas (código) que se ejecutan cuando determinadas señales se presentan en el transcurso normal del código principal, de ahí el nombre interrupción y/o excepción.
+
+La diferencia entre ellas es que a las interrupciones las activa un Hardware externo al micro y las excepciones son interrupciones propias del procesador.
+
+Existe un periférico interno que se encarga de gestionar estas interrupciones, el ``Nested Vector Interrupt Controller'' (\textbf{NVIC}).
+
+El código perteneciente a una interrupción se denomina ``Rutina de interrupción'' (\textbf{ISR}).
+
+Las excepeciones tienen distintas prioridades, prioridad que se representa con un numero, el cual mientras mas chico sea, mas prioridad tiene esa excepción. Por ejemplo, el ``Reset'' es una excepción con jerarquía -3, no hay otra que tenga mas jerarquía, pues nada puede frenar un reset, no tendria sentido que queramos resetear el micro y algo nos lo impida.
+ 
+El modulo ``NVIC'' tiene algunas caracteristicas importantes de resaltar: 
+
+\begin{itemize}
+	\item No puede deshabilitar algunas excepciones como el Reset y el NMI.
+	\item Es el periférico mediante el cual modificamos prioridades.
+	\item Se encarga de ubicar el codigo de las interrupciones en la memoria flash.
+	\item Permite el uso de memorias flash externa para guardar el codigo.
+	\item Permite enmascarar fuentes de interrupciones, es decir, ocultar señales que disparan una interrupción.
+\end{itemize}
 
 
 
