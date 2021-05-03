@@ -840,7 +840,7 @@ Text GLabel 10450 3250 2    50   Input ~ 0
 SPI1_MISO
 Text GLabel 10450 3350 2    50   Input ~ 0
 SPI1_MOSI
-Text GLabel 10450 6450 2    50   Input ~ 0
+Text GLabel 10450 2950 2    50   Input ~ 0
 SPI1_CS0
 Text GLabel 10450 6550 2    50   Input ~ 0
 SPI1_CS1
@@ -878,19 +878,19 @@ Text GLabel 10450 4950 2    50   Input ~ 0
 I2C1_SCL
 Text GLabel 10450 5050 2    50   Input ~ 0
 I2C1_SDA
-Text GLabel 7850 6550 0    50   Input ~ 0
+Text GLabel 10450 5450 2    50   Input ~ 0
 Filtro
-Text GLabel 7850 6450 0    50   Input ~ 0
+Text GLabel 10450 5350 2    50   Input ~ 0
 Filt_Bypass
-Text GLabel 7850 6350 0    50   Input ~ 0
+Text GLabel 7850 9150 0    50   Input ~ 0
 Rx_Amp
-Text GLabel 7850 6250 0    50   Input ~ 0
+Text GLabel 7850 9050 0    50   Input ~ 0
 Rx_Amp_Bypass
-Text GLabel 7850 6150 0    50   Input ~ 0
+Text GLabel 7850 9250 0    50   Input ~ 0
 Rx_Amp_Pwr
-Text GLabel 7850 6050 0    50   Input ~ 0
+Text GLabel 7850 8950 0    50   Input ~ 0
 Rx_Mix
-Text GLabel 10450 7350 2    50   Input ~ 0
+Text GLabel 7850 8850 0    50   Input ~ 0
 Rx_Mix_Bypass
 $Comp
 L Device:C C99
@@ -957,27 +957,27 @@ Wire Wire Line
 Wire Wire Line
 	5800 3900 5900 3900
 Connection ~ 5900 3900
-Text GLabel 10450 4350 2    50   Input ~ 0
-Trx_Enable
 Text GLabel 10450 4450 2    50   Input ~ 0
+Trx_Enable
+Text GLabel 10450 4350 2    50   Input ~ 0
 Trx_Rx_Enable
 Text GLabel 10450 6250 2    50   Input ~ 0
 RSSI
 Text GLabel 7850 7750 0    50   Input ~ 0
 RXHP
-Text GLabel 7850 5750 0    50   Input ~ 0
+Text GLabel 10450 8450 2    50   Input ~ 0
 B1
-Text GLabel 7850 5650 0    50   Input ~ 0
+Text GLabel 7850 5250 0    50   Input ~ 0
 B2
-Text GLabel 7850 5550 0    50   Input ~ 0
+Text GLabel 7850 5350 0    50   Input ~ 0
 B3
 Text GLabel 7850 5450 0    50   Input ~ 0
 B4
-Text GLabel 7850 5350 0    50   Input ~ 0
+Text GLabel 7850 5550 0    50   Input ~ 0
 B5
-Text GLabel 7850 5250 0    50   Input ~ 0
+Text GLabel 7850 5750 0    50   Input ~ 0
 B6
-Text GLabel 10450 8450 2    50   Input ~ 0
+Text GLabel 7850 5650 0    50   Input ~ 0
 B7
 $Comp
 L Device:C C92
@@ -1670,16 +1670,16 @@ Text GLabel 7850 8050 0    50   Input ~ 0
 PE3
 Text GLabel 7850 8750 0    50   Input ~ 0
 PE10
-Text GLabel 7850 8850 0    50   Input ~ 0
-PE11
-Text GLabel 7850 8950 0    50   Input ~ 0
-PE12
-Text GLabel 7850 9050 0    50   Input ~ 0
-PE13
-Text GLabel 7850 9150 0    50   Input ~ 0
-PE14
-Text GLabel 7850 9250 0    50   Input ~ 0
-PE15
+Text GLabel 10450 7350 2    50   Input ~ 0
+PC13
+Text GLabel 7850 6050 0    50   Input ~ 0
+PF0
+Text GLabel 7850 6250 0    50   Input ~ 0
+PF2
+Text GLabel 7850 6350 0    50   Input ~ 0
+PF3
+Text GLabel 7850 6150 0    50   Input ~ 0
+PF1
 Text GLabel 12950 6850 0    50   Input ~ 0
 PE1
 Text GLabel 12950 6950 0    50   Input ~ 0
@@ -1846,10 +1846,10 @@ Text GLabel 10450 5150 2    50   Input ~ 0
 PB8
 Text GLabel 10450 5250 2    50   Input ~ 0
 PB9
-Text GLabel 10450 5350 2    50   Input ~ 0
-PB10
-Text GLabel 10450 5450 2    50   Input ~ 0
-PB11
+Text GLabel 7850 6450 0    50   Input ~ 0
+PF4
+Text GLabel 7850 6550 0    50   Input ~ 0
+PF5
 Text GLabel 10450 5550 2    50   Input ~ 0
 PB12
 Text GLabel 10450 5650 2    50   Input ~ 0
@@ -1895,8 +1895,8 @@ Text GLabel 10450 3450 2    50   Input ~ 0
 PA8
 Text GLabel 10450 3050 2    50   Input ~ 0
 PA4
-Text GLabel 10450 2950 2    50   Input ~ 0
-PA3
+Text GLabel 10450 6450 2    50   Input ~ 0
+PC4
 Text GLabel 10450 2850 2    50   Input ~ 0
 PA2
 Text GLabel 10450 2750 2    50   Input ~ 0
@@ -1917,8 +1917,6 @@ Text GLabel 14350 7850 0    50   Input ~ 0
 PA8
 Text GLabel 14350 7750 0    50   Input ~ 0
 PA4
-Text GLabel 14350 7650 0    50   Input ~ 0
-PA3
 Text GLabel 14350 7550 0    50   Input ~ 0
 PA2
 Text GLabel 14350 7450 0    50   Input ~ 0
@@ -2870,4 +2868,6 @@ F 3 "http://cdn-reichelt.de/documents/datenblatt/A400/SMD1N400%23DIO.pdf" H 2050
 	1    2050 900 
 	1    0    0    -1  
 $EndComp
+Text GLabel 14350 7650 0    50   Input ~ 0
+PC4
 $EndSCHEMATC
