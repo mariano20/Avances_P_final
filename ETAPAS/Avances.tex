@@ -920,7 +920,13 @@ La diferencia entre ellas es que a las interrupciones las activa un Hardware ext
 
 Existe un periférico interno que se encarga de gestionar estas interrupciones, el ``Nested Vector Interrupt Controller'' (\textbf{NVIC}).
 
-El código perteneciente a una interrupción se denomina ``Rutina de interrupción'' (\textbf{ISR}).
+El código perteneciente a una interrupción se guarda en un espacio de memoria denominado ``Rutina de interrupción'' (\textbf{ISR}).
+
+El código perteneciente a una Excepción se guarda en un espacio de memoria denominado ``Gestor de excepciones''.
+
+Se las diferencia porque las primeras provienen del exterior del procesador y las excepciones en cambio provienen del mismo procesador. 
+
+El procesador sabe donde buscar estos codigos (ya sean que pertenecen a una interrupción o a una excepción) gracias al \textbf{Vector Table}
 
 Las excepeciones tienen distintas prioridades, prioridad que se representa con un numero, el cual mientras mas chico sea, mas prioridad tiene esa excepción. Por ejemplo, el ``Reset'' es una excepción con jerarquía -3, no hay otra que tenga mas jerarquía, pues nada puede frenar un reset, no tendria sentido que queramos resetear el micro y algo nos lo impida.
  
@@ -934,8 +940,31 @@ El modulo ``NVIC'' tiene algunas caracteristicas importantes de resaltar:
 	\item Permite enmascarar fuentes de interrupciones, es decir, ocultar señales que disparan una interrupción.
 \end{itemize}
 
+Cuando las señales disparadoras de interrupciones vienen del exterior, son gestionadas por un periférico que se llama \textbf{External Interrupt Controller}, lo vemos en la figura \ref{bloques}. Cada Puerto del microcontrolador puede tener hasta 16 pines (por ejemplo PA0 a PA15, PB0 a PB15, etc), y cualquier pin puede ser usado como entrada de una señal de interrupción, pero al seleccionar uno de ellos, a los demas se los inhabilita para funcionar como entrada de una señal disparadora de interrupción. Es decir que si elijo por ejemplo el PA0, los demas PX0 no podran ser pines por donde ingrese una señal de interrupción. Se ve graficamente en la figura \ref{NVIC}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Imagenes/stm/bloquesstm32}
+	\caption{Diagrama microcontrolador}
+	\label{bloques}
+\end{figure}
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Imagenes/stm/NVIC_interrup}
+	\caption{Pines de interrupción}
+	\label{NVIC}
+\end{figure}
+
+El código perteneciente a las interrupciones/Excepciones se encuentra en la memoria flash pero no con el código principal, tienen una ubicación especifica. Por este motivo existe algo que se denomina \textbf{Vector Table} el cual proporciona la información necesaria para que del código principal e procesador pueda ir a leer el código perteneciente a la interrupción que le corresponde hacer.
+
+Un concepto muy importante en este tema es el \textbf{Pending Bit}. El cual es un bit que le avisa al NVIC que tiene una interrupción que atender. Por este motivo es muy importante que el programador lo desactive (mediante código) al salir de la interrupción (y lo activo al entrar) porque sino el NVIC interpretará que debe seguir ejecutando el código de la interrupción y nunca se detendrá.
+
+\section{Systick Timer}
 
 
+Timer especifico ubicado dentro del procesador. Su función es en relación a si usamos un RTOS o no. En el primer caso su trabajo es asignar una base periódica para las funciones. En el segundo caso asignará tiempos de ejecución, pues en el caso de no usarse RTOS las funciones se ejecutan hasta terminar y recién ahí se pasa a la siguiente.
+ 
 
 
 \chapter*{Varios}
