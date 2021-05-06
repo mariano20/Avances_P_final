@@ -964,8 +964,29 @@ Un concepto muy importante en este tema es el \textbf{Pending Bit}. El cual es u
 
 
 Timer especifico ubicado dentro del procesador. Su función es en relación a si usamos un RTOS o no. En el primer caso su trabajo es asignar una base periódica para las funciones. En el segundo caso asignará tiempos de ejecución, pues en el caso de no usarse RTOS las funciones se ejecutan hasta terminar y recién ahí se pasa a la siguiente.
- 
 
+\section{Pasos para programar una interrupción}
+
+\begin{enumerate}
+	\item Configurar el pin como pin de interrupción y sus configuraciones electrónicas, (Niveles, Modos, etc).
+	\item Activar el NVIC.
+	\item Generar el código.
+	\item En el \textbf{main.c} Abrir la función que configura los GPIO (\textbf{static void MX\_GPIO\_Init(void);}). Aquí verificamos solamente que las configuraciónes estén bien.
+	\item Ir a Core $\rightarrow$ Inc $\rightarrow$ stm32f1xx\_it.h (o equivalente). Bajando vamos a encontrar los proptotipos de las funciones encargadas de gestionar la excepciones o interrupciones. Un ejemplo sacado del programa que prendia y apagaba el led segun puenteaba a masa un pin o no es: void EXTI9\_5\_IRQHandler(void);
+	\item Abrir la función anterior. Dentro de esta función abrá otra del estilo: HAL\_GPIO\_EXTI\_IRQHandler(GPIO\_PIN\_9);
+	\item Abrir esa función y ahí encontramos la función buscada: \textbf{Callback}.
+	\item Copiamos la estructura (sin el \_weak) y la pegamos en el main.c, donde podremos programar dentro de ella la rutina que se ejecute cuando la interrupción se dispare.
+\end{enumerate}
+ 
+Si usamos varias interrupciones, el codigo irá dentro de la función \textbf{Callback}, pero tenemos que asegurarnos que se discriminen esas señales de interrupción. Como vemos en la figura \ref{interrupt}.
+
+\begin{figure}[H]
+	\centering
+	\subfigure[Un solo pin de interrupción]{\includegraphics[scale=0.6]{Imagenes/stm/1interrupt} \label{I1}}
+	\subfigure[2 Pines de interrupción]{\includegraphics[scale=0.6]{Imagenes/stm/2interrupt}\label{I2}}
+	\caption{Interrupciones}
+	\label{interrupt}
+\end{figure}
 
 \chapter*{Varios}
 
