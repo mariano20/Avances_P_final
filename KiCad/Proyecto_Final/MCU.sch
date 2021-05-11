@@ -2351,7 +2351,6 @@ F 3 "" H 3100 5700 50  0001 C CNN
 	1    3100 5700
 	1    0    0    -1  
 $EndComp
-NoConn ~ 850  5550
 NoConn ~ 1250 5350
 Text GLabel 3500 5200 2    50   Input ~ 0
 USB_D+
@@ -2764,4 +2763,7 @@ Wire Wire Line
 	5500 5600 5750 5600
 Wire Wire Line
 	2450 9400 2650 9400
+Wire Wire Line
+	850  5550 950  5550
+Connection ~ 950  5550
 $EndSCHEMATC
