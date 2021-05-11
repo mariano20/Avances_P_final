@@ -189,8 +189,6 @@ F 3 "" H 5650 5950 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5650 5950 5650 5800
-Text GLabel 5750 5450 2    50   Input ~ 0
-VDD
 Connection ~ 5650 5450
 Wire Wire Line
 	5650 5450 5650 5500
@@ -216,8 +214,6 @@ F 3 "" H 6050 5950 50  0001 C CNN
 	1    6050 5950
 	1    0    0    -1  
 $EndComp
-Text GLabel 6250 5450 2    50   Input ~ 0
-VDD
 Wire Wire Line
 	6050 5800 6050 5950
 Wire Wire Line
@@ -244,8 +240,6 @@ F 3 "~" H 6800 5650 50  0001 C CNN
 	1    6800 5650
 	-1   0    0    1   
 $EndComp
-Text GLabel 6950 5450 2    50   Input ~ 0
-VDD
 Wire Wire Line
 	5900 5300 6800 5300
 Wire Wire Line
@@ -426,8 +420,6 @@ F 3 "" H 7750 4250 50  0001 C CNN
 	1    7750 4250
 	1    0    0    -1  
 $EndComp
-Text GLabel 8300 3950 2    50   Input ~ 0
-VDD
 Text GLabel 6950 3850 2    50   Input ~ 0
 SPI1_MISO
 Text GLabel 6950 3750 2    50   Input ~ 0
@@ -462,13 +454,9 @@ Wire Wire Line
 	6450 2000 6450 1950
 Wire Wire Line
 	6000 2400 6000 1650
-Text GLabel 6650 1650 2    50   Input ~ 0
-VDD
 Wire Wire Line
 	6650 1650 6450 1650
 Connection ~ 6450 1650
-Text GLabel 6550 900  2    50   Input ~ 0
-VDD
 $Comp
 L Device:C C1
 U 1 1 603F8A2A
@@ -524,8 +512,6 @@ F 3 "" H 5450 1500 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	5450 1500 5450 1400
-Text GLabel 5650 900  1    50   Input ~ 0
-VDD
 Wire Wire Line
 	5650 900  5650 1100
 Wire Wire Line
@@ -570,8 +556,6 @@ Wire Wire Line
 	10950 1950 10950 2050
 Wire Wire Line
 	10800 1950 10950 1950
-Text GLabel 10800 1950 0    50   Input ~ 0
-VDD
 Wire Wire Line
 	11150 2350 10950 2350
 Wire Wire Line
@@ -662,8 +646,6 @@ Wire Wire Line
 	11150 3100 11350 3100
 Wire Wire Line
 	10950 2800 11350 2800
-Text GLabel 10800 2700 0    50   Input ~ 0
-VDD
 Wire Wire Line
 	10800 2700 10950 2700
 Wire Wire Line
@@ -708,12 +690,8 @@ F 3 "~" H 11500 3700 50  0001 C CNN
 	1    11500 3700
 	-1   0    0    1   
 $EndComp
-Text GLabel 11400 3550 0    50   Input ~ 0
-VDD
 Wire Wire Line
 	11900 3050 12300 3050
-Text GLabel 15400 2050 2    50   Input ~ 0
-VDD
 Connection ~ 11900 3550
 $Comp
 L Device:C C17
@@ -875,10 +853,6 @@ F 3 "" H 4350 2800 50  0001 C CNN
 	1    4350 2800
 	1    0    0    -1  
 $EndComp
-Text GLabel 3000 3750 0    50   Input ~ 0
-VDD
-Text GLabel 4250 2700 1    50   Input ~ 0
-VDD
 Wire Wire Line
 	4250 2700 4250 2900
 Connection ~ 4250 2900
@@ -1038,8 +1012,6 @@ Wire Wire Line
 	5100 5000 5100 5100
 Wire Wire Line
 	5100 5100 4900 5100
-Text GLabel 4800 5100 0    50   Input ~ 0
-VDD
 Wire Wire Line
 	4800 5100 4900 5100
 Connection ~ 4900 5100
@@ -1156,8 +1128,6 @@ Text GLabel 1900 1150 0    50   Input ~ 0
 TXBBI+
 Text GLabel 1300 1150 0    50   Input ~ 0
 TXBBI-
-Text GLabel 5900 2400 1    50   Input ~ 0
-RXHP
 Wire Wire Line
 	6000 1650 6450 1650
 Wire Wire Line
@@ -1176,10 +1146,6 @@ Wire Wire Line
 Wire Wire Line
 	11900 2250 12300 2250
 NoConn ~ 13900 2450
-Text GLabel 10400 5000 0    50   Input ~ 0
-VDD
-Wire Wire Line
-	10400 5000 10500 5000
 NoConn ~ 5600 5000
 $Comp
 L Device:C C27
@@ -1420,15 +1386,159 @@ Wire Wire Line
 Connection ~ 4050 4250
 Wire Wire Line
 	4050 4250 4050 4300
+NoConn ~ 5900 2400
 $Comp
-L power:+3.3VA #PWR?
-U 1 1 60A0F8F4
-P 10500 5000
-F 0 "#PWR?" H 10500 4850 50  0001 C CNN
-F 1 "+3.3VA" H 10515 5173 50  0000 C CNN
-F 2 "" H 10500 5000 50  0001 C CNN
-F 3 "" H 10500 5000 50  0001 C CNN
-	1    10500 5000
+L power:+3.3VA #PWR0132
+U 1 1 609C56C0
+P 8300 3950
+F 0 "#PWR0132" H 8300 3800 50  0001 C CNN
+F 1 "+3.3VA" H 8315 4123 50  0000 C CNN
+F 2 "" H 8300 3950 50  0001 C CNN
+F 3 "" H 8300 3950 50  0001 C CNN
+	1    8300 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0133
+U 1 1 609C63F1
+P 6950 5450
+F 0 "#PWR0133" H 6950 5300 50  0001 C CNN
+F 1 "+3.3VA" H 6965 5623 50  0000 C CNN
+F 2 "" H 6950 5450 50  0001 C CNN
+F 3 "" H 6950 5450 50  0001 C CNN
+	1    6950 5450
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0134
+U 1 1 609C66C1
+P 6250 5450
+F 0 "#PWR0134" H 6250 5300 50  0001 C CNN
+F 1 "+3.3VA" V 6265 5578 50  0000 L CNN
+F 2 "" H 6250 5450 50  0001 C CNN
+F 3 "" H 6250 5450 50  0001 C CNN
+	1    6250 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3VA #PWR0135
+U 1 1 609C6F0F
+P 5750 5450
+F 0 "#PWR0135" H 5750 5300 50  0001 C CNN
+F 1 "+3.3VA" V 5765 5578 50  0000 L CNN
+F 2 "" H 5750 5450 50  0001 C CNN
+F 3 "" H 5750 5450 50  0001 C CNN
+	1    5750 5450
+	0    1    1    0   
+$EndComp
+$Comp
+L power:+3.3VA #PWR0136
+U 1 1 609C777F
+P 4800 5100
+F 0 "#PWR0136" H 4800 4950 50  0001 C CNN
+F 1 "+3.3VA" H 4815 5273 50  0000 C CNN
+F 2 "" H 4800 5100 50  0001 C CNN
+F 3 "" H 4800 5100 50  0001 C CNN
+	1    4800 5100
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0137
+U 1 1 609C8000
+P 3000 3750
+F 0 "#PWR0137" H 3000 3600 50  0001 C CNN
+F 1 "+3.3VA" H 3015 3923 50  0000 C CNN
+F 2 "" H 3000 3750 50  0001 C CNN
+F 3 "" H 3000 3750 50  0001 C CNN
+	1    3000 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0138
+U 1 1 609C88CB
+P 4250 2700
+F 0 "#PWR0138" H 4250 2550 50  0001 C CNN
+F 1 "+3.3VA" H 4265 2873 50  0000 C CNN
+F 2 "" H 4250 2700 50  0001 C CNN
+F 3 "" H 4250 2700 50  0001 C CNN
+	1    4250 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0139
+U 1 1 609C914C
+P 5650 900
+F 0 "#PWR0139" H 5650 750 50  0001 C CNN
+F 1 "+3.3VA" H 5665 1073 50  0000 C CNN
+F 2 "" H 5650 900 50  0001 C CNN
+F 3 "" H 5650 900 50  0001 C CNN
+	1    5650 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0140
+U 1 1 609C9988
+P 6550 900
+F 0 "#PWR0140" H 6550 750 50  0001 C CNN
+F 1 "+3.3VA" H 6565 1073 50  0000 C CNN
+F 2 "" H 6550 900 50  0001 C CNN
+F 3 "" H 6550 900 50  0001 C CNN
+	1    6550 900 
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0141
+U 1 1 609CA2CB
+P 6650 1650
+F 0 "#PWR0141" H 6650 1500 50  0001 C CNN
+F 1 "+3.3VA" H 6665 1823 50  0000 C CNN
+F 2 "" H 6650 1650 50  0001 C CNN
+F 3 "" H 6650 1650 50  0001 C CNN
+	1    6650 1650
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0142
+U 1 1 609CB87B
+P 10800 1950
+F 0 "#PWR0142" H 10800 1800 50  0001 C CNN
+F 1 "+3.3VA" H 10815 2123 50  0000 C CNN
+F 2 "" H 10800 1950 50  0001 C CNN
+F 3 "" H 10800 1950 50  0001 C CNN
+	1    10800 1950
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0143
+U 1 1 609CC15F
+P 10800 2700
+F 0 "#PWR0143" H 10800 2550 50  0001 C CNN
+F 1 "+3.3VA" H 10815 2873 50  0000 C CNN
+F 2 "" H 10800 2700 50  0001 C CNN
+F 3 "" H 10800 2700 50  0001 C CNN
+	1    10800 2700
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3VA #PWR0144
+U 1 1 609CCA9E
+P 15400 2050
+F 0 "#PWR0144" H 15400 1900 50  0001 C CNN
+F 1 "+3.3VA" H 15415 2223 50  0000 C CNN
+F 2 "" H 15400 2050 50  0001 C CNN
+F 3 "" H 15400 2050 50  0001 C CNN
+	1    15400 2050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR0145
+U 1 1 609CD9E1
+P 11400 3550
+F 0 "#PWR0145" H 11400 3400 50  0001 C CNN
+F 1 "+3.3V" H 11415 3723 50  0000 C CNN
+F 2 "" H 11400 3550 50  0001 C CNN
+F 3 "" H 11400 3550 50  0001 C CNN
+	1    11400 3550
 	1    0    0    -1  
 $EndComp
 $EndSCHEMATC

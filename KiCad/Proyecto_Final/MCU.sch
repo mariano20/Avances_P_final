@@ -935,21 +935,21 @@ Trx_Rx_Enable
 Text GLabel 10450 6250 2    50   Input ~ 0
 RSSI
 Text GLabel 7850 7750 0    50   Input ~ 0
-RXHP
+PE0
 Text GLabel 10450 8450 2    50   Input ~ 0
-B1
+PD7
 Text GLabel 7850 5250 0    50   Input ~ 0
-B2
+PG9
 Text GLabel 7850 5350 0    50   Input ~ 0
-B3
+PG10
 Text GLabel 7850 5450 0    50   Input ~ 0
-B4
+PG11
 Text GLabel 7850 5550 0    50   Input ~ 0
-B5
+PG12
 Text GLabel 7850 5750 0    50   Input ~ 0
-B6
+PG14
 Text GLabel 7850 5650 0    50   Input ~ 0
-B7
+PG13
 $Comp
 L Device:C C45
 U 1 1 6075782D
