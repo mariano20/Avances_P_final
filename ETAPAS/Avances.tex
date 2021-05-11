@@ -965,7 +965,9 @@ Un concepto muy importante en este tema es el \textbf{Pending Bit}. El cual es u
 
 Timer especifico ubicado dentro del procesador. Su función es en relación a si usamos un RTOS o no. En el primer caso su trabajo es asignar una base periódica para las funciones. En el segundo caso asignará tiempos de ejecución, pues en el caso de no usarse RTOS las funciones se ejecutan hasta terminar y recién ahí se pasa a la siguiente.
 
-\section{Pasos para programar una interrupción}
+\section{Interrupciones}
+
+\subsection{Pasos para programar una interrupción}
 
 \begin{enumerate}
 	\item Configurar el pin como pin de interrupción y sus configuraciones electrónicas, (Niveles, Modos, etc).
@@ -987,6 +989,40 @@ Si usamos varias interrupciones, el codigo irá dentro de la función \textbf{Ca
 	\caption{Interrupciones}
 	\label{interrupt}
 \end{figure}
+
+\subsection{Ciclo de vida de una interrupción}
+
+
+
+\section{UART}
+
+La utilización de la UART es simple gracias al entorno CubeIDE, solo se necesitan configurar los pines que son capaces de cumplir esa funcion y configurar los parametros (Baudrate, longitud de la palabra, sobremuestreo, etc).
+
+Se puede utilizar la UART en modo de interrupción. Para esto tenemos disponibles dos funciones: 
+
+
+\begin{itemize}
+	\item HAL\_UART\_Transmit\_IT
+	\item HAL\_UART\_Recive\_IT
+\end{itemize}
+
+Al tratarse de interrupciones, si hacemos una llamado a una función de las anteriores, comenzara a transmitir o recibir pero seguirá con otras instrucciones, no espera a final la transmisión o recepción.
+Si llamamos dos veces seguidas a una función como las anteriores, la segunda será ignorada puesto que la UART estará ocupada, este es un punto a tener en cuenta porque puede traernos inconvenientes.
+
+
+\subsection{Callbacks del UART}
+
+
+
+
+
+
+
+
+
+
+
+
 
 \chapter*{Varios}
 
