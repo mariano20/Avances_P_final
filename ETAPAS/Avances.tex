@@ -991,7 +991,7 @@ Si usamos varias interrupciones, el codigo irá dentro de la función \textbf{Ca
 \end{figure}
 
 \subsection{Ciclo de vida de una interrupción}
-
+(video 23) - (video 24 y 25 trata prioridades)
 
 
 \section{UART}
@@ -1012,12 +1012,40 @@ Si llamamos dos veces seguidas a una función como las anteriores, la segunda se
 
 \subsection{Callbacks del UART}
 
+(video 22)
+
+\section{DMA}
+
+El procesador delega la tarea de acceder a la memoria a este modulo llamado DMA, este el proposito de su existencia. La arquitectura del DMA cambia con las familias, pero esta es una buena aproximación (puede ser mas simple o mas compleja):
 
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Imagenes/stm/dma}
+	\caption{Estructura interna del modulo DMA}
+	\label{dma}
+\end{figure}
 
 
+\subsection{Buses de datos}
 
+Como es lógico, la conexión entre módulos/periféricos/bloques dentro del microcontrolador se realiza madiante buses de datos. Al igual que con el controlador DMA, la estructura puede variar al cambiar de micro, por este motivo se muestra un ejemplo en la imagen \ref{bus1} pero se invita al lector a buscar el datasheet que le corresponda al micro controlador en cuestión.
 
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.3]{Imagenes/stm/bus}
+	\caption{Buses de datos de un microcontrolador (En este caso un stm32f101xx)}
+	\label{bus1}
+\end{figure}
+
+Para saber con precisión qué está conectado con qué y tener la certeza de quien tiene acceso a cada bloque debemos mirar la matriz de buses, como la que se muestra en la figura \ref{bus2}.
+
+\begin{figure}[H]
+	\centering
+	\includegraphics[scale=0.5]{Imagenes/stm/busmatrix}
+	\caption{Matriz de buses de datos}
+	\label{bus2}
+\end{figure}
 
 
 
