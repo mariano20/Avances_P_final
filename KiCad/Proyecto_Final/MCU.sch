@@ -14,10 +14,10 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Connector:USB_B_Micro J3
+L Connector:USB_B_Micro J4
 U 1 1 606516B5
 P 950 5150
-F 0 "J3" H 1007 5617 50  0000 C CNN
+F 0 "J4" H 1007 5617 50  0000 C CNN
 F 1 "USB_B_Micro" H 1007 5526 50  0000 C CNN
 F 2 "Connector_USB:USB_Micro-B_Amphenol_10104110_Horizontal" H 1100 5100 50  0001 C CNN
 F 3 "~" H 1100 5100 50  0001 C CNN
@@ -25,10 +25,10 @@ F 3 "~" H 1100 5100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR083
+L power:GND #PWR086
 U 1 1 60652B42
 P 950 5650
-F 0 "#PWR083" H 950 5400 50  0001 C CNN
+F 0 "#PWR086" H 950 5400 50  0001 C CNN
 F 1 "GND" H 955 5477 50  0000 C CNN
 F 2 "" H 950 5650 50  0001 C CNN
 F 3 "" H 950 5650 50  0001 C CNN
@@ -73,10 +73,10 @@ F 3 "~" H 6450 3300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR065
+L power:GND #PWR066
 U 1 1 606CD1E8
 P 6450 3450
-F 0 "#PWR065" H 6450 3200 50  0001 C CNN
+F 0 "#PWR066" H 6450 3200 50  0001 C CNN
 F 1 "GND" H 6455 3277 50  0000 C CNN
 F 2 "" H 6450 3450 50  0001 C CNN
 F 3 "" H 6450 3450 50  0001 C CNN
@@ -95,10 +95,10 @@ F 3 "~" H 7700 3800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR074
+L power:GND #PWR077
 U 1 1 606CE00E
 P 7700 3950
-F 0 "#PWR074" H 7700 3700 50  0001 C CNN
+F 0 "#PWR077" H 7700 3700 50  0001 C CNN
 F 1 "GND" H 7705 3777 50  0000 C CNN
 F 2 "" H 7700 3950 50  0001 C CNN
 F 3 "" H 7700 3950 50  0001 C CNN
@@ -341,10 +341,10 @@ F 3 "~" H 6900 3400 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR073
+L power:GND #PWR076
 U 1 1 60731182
 P 7300 3750
-F 0 "#PWR073" H 7300 3500 50  0001 C CNN
+F 0 "#PWR076" H 7300 3500 50  0001 C CNN
 F 1 "GND" H 7305 3577 50  0000 C CNN
 F 2 "" H 7300 3750 50  0001 C CNN
 F 3 "" H 7300 3750 50  0001 C CNN
@@ -352,10 +352,10 @@ F 3 "" H 7300 3750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR067
+L power:GND #PWR069
 U 1 1 607315B2
 P 6900 3550
-F 0 "#PWR067" H 6900 3300 50  0001 C CNN
+F 0 "#PWR069" H 6900 3300 50  0001 C CNN
 F 1 "GND" H 6905 3377 50  0000 C CNN
 F 2 "" H 6900 3550 50  0001 C CNN
 F 3 "" H 6900 3550 50  0001 C CNN
@@ -482,10 +482,10 @@ Wire Wire Line
 Wire Wire Line
 	9950 2250 9950 2350
 $Comp
-L power:GND #PWR091
+L power:GND #PWR094
 U 1 1 607F36E6
 P 8850 9650
-F 0 "#PWR091" H 8850 9400 50  0001 C CNN
+F 0 "#PWR094" H 8850 9400 50  0001 C CNN
 F 1 "GND" H 8855 9477 50  0000 C CNN
 F 2 "" H 8850 9650 50  0001 C CNN
 F 3 "" H 8850 9650 50  0001 C CNN
@@ -559,10 +559,10 @@ F 3 "~" H 4750 5700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR082
+L power:+3.3V #PWR085
 U 1 1 6085DBFF
 P 4750 5550
-F 0 "#PWR082" H 4750 5400 50  0001 C CNN
+F 0 "#PWR085" H 4750 5400 50  0001 C CNN
 F 1 "+3.3V" H 4765 5723 50  0000 C CNN
 F 2 "" H 4750 5550 50  0001 C CNN
 F 3 "" H 4750 5550 50  0001 C CNN
@@ -583,10 +583,10 @@ F 3 "~" H 5500 5750 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR081
+L power:+3.3V #PWR084
 U 1 1 6085E577
 P 5750 5500
-F 0 "#PWR081" H 5750 5350 50  0001 C CNN
+F 0 "#PWR084" H 5750 5350 50  0001 C CNN
 F 1 "+3.3V" H 5765 5673 50  0000 C CNN
 F 2 "" H 5750 5500 50  0001 C CNN
 F 3 "" H 5750 5500 50  0001 C CNN
@@ -596,10 +596,10 @@ $EndComp
 Text GLabel 5500 5900 3    50   Input ~ 0
 BOOT0
 $Comp
-L power:GND #PWR085
+L power:GND #PWR088
 U 1 1 60866CE1
 P 5750 5700
-F 0 "#PWR085" H 5750 5450 50  0001 C CNN
+F 0 "#PWR088" H 5750 5450 50  0001 C CNN
 F 1 "GND" H 5755 5527 50  0000 C CNN
 F 2 "" H 5750 5700 50  0001 C CNN
 F 3 "" H 5750 5700 50  0001 C CNN
@@ -613,10 +613,10 @@ SWCLK
 Text GLabel 10450 4650 2    50   Input ~ 0
 SWO
 $Comp
-L Connector_Generic:Conn_02x05_Odd_Even J2
+L Connector_Generic:Conn_02x05_Odd_Even J3
 U 1 1 60715923
 P 1200 3800
-F 0 "J2" H 1250 4217 50  0000 C CNN
+F 0 "J3" H 1250 4217 50  0000 C CNN
 F 1 "ARM SWD" H 1250 4126 50  0000 C CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical_SMD" H 1200 3800 50  0001 C CNN
 F 3 "~" H 1200 3800 50  0001 C CNN
@@ -624,10 +624,10 @@ F 3 "~" H 1200 3800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR068
+L power:+3.3V #PWR070
 U 1 1 60716B32
 P 1000 3600
-F 0 "#PWR068" H 1000 3450 50  0001 C CNN
+F 0 "#PWR070" H 1000 3450 50  0001 C CNN
 F 1 "+3.3V" H 1015 3773 50  0000 C CNN
 F 2 "" H 1000 3600 50  0001 C CNN
 F 3 "" H 1000 3600 50  0001 C CNN
@@ -635,10 +635,10 @@ F 3 "" H 1000 3600 50  0001 C CNN
 	0    -1   -1   0   
 $EndComp
 $Comp
-L power:GND #PWR076
+L power:GND #PWR079
 U 1 1 6071723A
 P 900 4100
-F 0 "#PWR076" H 900 3850 50  0001 C CNN
+F 0 "#PWR079" H 900 3850 50  0001 C CNN
 F 1 "GND" H 905 3927 50  0000 C CNN
 F 2 "" H 900 4100 50  0001 C CNN
 F 3 "" H 900 4100 50  0001 C CNN
@@ -883,10 +883,10 @@ NRST
 Wire Wire Line
 	5200 3900 5300 3900
 $Comp
-L power:GND #PWR075
+L power:GND #PWR078
 U 1 1 607545DD
 P 6050 4000
-F 0 "#PWR075" H 6050 3750 50  0001 C CNN
+F 0 "#PWR078" H 6050 3750 50  0001 C CNN
 F 1 "GND" H 6055 3827 50  0000 C CNN
 F 2 "" H 6050 4000 50  0001 C CNN
 F 3 "" H 6050 4000 50  0001 C CNN
@@ -907,7 +907,7 @@ U 1 1 6076D631
 P 5600 3900
 F 0 "SW1" H 5600 4185 50  0000 C CNN
 F 1 "Reset" H 5600 4094 50  0000 C CNN
-F 2 "SamacSys_Parts:PTS526SM15SMTR2LFS" H 5600 4100 50  0001 C CNN
+F 2 "SamacSys_Parts:PTS647SN50SMTR2LFS" H 5600 4100 50  0001 C CNN
 F 3 "~" H 5600 4100 50  0001 C CNN
 	1    5600 3900
 	1    0    0    -1  
@@ -999,10 +999,10 @@ $EndComp
 Wire Wire Line
 	9750 2150 9750 2350
 $Comp
-L power:+3.3VA #PWR066
+L power:+3.3VA #PWR067
 U 1 1 607621F1
 P 7850 3450
-F 0 "#PWR066" H 7850 3300 50  0001 C CNN
+F 0 "#PWR067" H 7850 3300 50  0001 C CNN
 F 1 "+3.3VA" V 7865 3577 50  0000 L CNN
 F 2 "" H 7850 3450 50  0001 C CNN
 F 3 "" H 7850 3450 50  0001 C CNN
@@ -1054,10 +1054,10 @@ F 3 "~" H 13100 4350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3VA #PWR077
+L power:+3.3VA #PWR080
 U 1 1 607BA1AE
 P 13100 4200
-F 0 "#PWR077" H 13100 4050 50  0001 C CNN
+F 0 "#PWR080" H 13100 4050 50  0001 C CNN
 F 1 "+3.3VA" H 13115 4373 50  0000 C CNN
 F 2 "" H 13100 4200 50  0001 C CNN
 F 3 "" H 13100 4200 50  0001 C CNN
@@ -1076,10 +1076,10 @@ F 3 "~" H 13450 4350 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3VA #PWR078
+L power:+3.3VA #PWR081
 U 1 1 607BAEFB
 P 13450 4200
-F 0 "#PWR078" H 13450 4050 50  0001 C CNN
+F 0 "#PWR081" H 13450 4050 50  0001 C CNN
 F 1 "+3.3VA" H 13465 4373 50  0000 C CNN
 F 2 "" H 13450 4200 50  0001 C CNN
 F 3 "" H 13450 4200 50  0001 C CNN
@@ -1122,10 +1122,10 @@ Wire Wire Line
 	4250 7950 4150 7950
 Connection ~ 4150 7950
 $Comp
-L power:GND #PWR096
+L power:GND #PWR099
 U 1 1 6083C7B3
 P 3950 10500
-F 0 "#PWR096" H 3950 10250 50  0001 C CNN
+F 0 "#PWR099" H 3950 10250 50  0001 C CNN
 F 1 "GND" H 3955 10327 50  0000 C CNN
 F 2 "" H 3950 10500 50  0001 C CNN
 F 3 "" H 3950 10500 50  0001 C CNN
@@ -1215,11 +1215,6 @@ Wire Wire Line
 	4850 9500 4950 9500
 Wire Wire Line
 	5050 9800 4950 9800
-Wire Wire Line
-	5150 10100 5250 10100
-Connection ~ 5250 10100
-Wire Wire Line
-	5250 10100 5350 10100
 NoConn ~ 4450 9000
 NoConn ~ 4450 9300
 NoConn ~ 4450 9600
@@ -1242,18 +1237,16 @@ Text GLabel 7850 5050 0    50   Input ~ 0
 PG5
 Text GLabel 7850 5150 0    50   Input ~ 0
 PG8
-Text GLabel 13600 8650 2    50   Input ~ 0
+Text GLabel 14700 6100 2    50   Input ~ 0
 PG2
-Text GLabel 13600 8550 2    50   Input ~ 0
+Text GLabel 14700 6000 2    50   Input ~ 0
 PG3
-Text GLabel 13600 8450 2    50   Input ~ 0
+Text GLabel 14700 5900 2    50   Input ~ 0
 PG4
-Text GLabel 13600 8350 2    50   Input ~ 0
+Text GLabel 14700 5800 2    50   Input ~ 0
 PG5
-Text GLabel 13600 8250 2    50   Input ~ 0
+Text GLabel 14700 5700 2    50   Input ~ 0
 PG8
-Text GLabel 13600 6150 2    50   Input ~ 0
-PG15
 Text GLabel 7850 6650 0    50   Input ~ 0
 PF6
 Text GLabel 7850 6750 0    50   Input ~ 0
@@ -1264,15 +1257,14 @@ Text GLabel 7850 6950 0    50   Input ~ 0
 PF9
 Text GLabel 7850 7050 0    50   Input ~ 0
 PF10
-Text GLabel 13100 6950 0    50   Input ~ 0
+Text GLabel 13050 5800 0    50   Input ~ 0
 PF7
-Text GLabel 13100 6850 0    50   Input ~ 0
+Text GLabel 13050 5700 0    50   Input ~ 0
 PF8
-Text GLabel 13100 6750 0    50   Input ~ 0
+Text GLabel 13050 5600 0    50   Input ~ 0
 PF9
-Text GLabel 13100 6650 0    50   Input ~ 0
+Text GLabel 13050 5500 0    50   Input ~ 0
 PF10
-NoConn ~ 13100 6550
 Text GLabel 7850 7850 0    50   Input ~ 0
 PE1
 Text GLabel 7850 8050 0    50   Input ~ 0
@@ -1289,13 +1281,11 @@ Text GLabel 7850 6350 0    50   Input ~ 0
 PF3
 Text GLabel 7850 6150 0    50   Input ~ 0
 PF1
-Text GLabel 13100 7550 0    50   Input ~ 0
-PE1
-Text GLabel 13600 7450 2    50   Input ~ 0
+Text GLabel 13050 6450 0    50   Input ~ 0
 PE3
 Text GLabel 10450 7750 2    50   Input ~ 0
 PD0
-Text GLabel 15000 8150 2    50   Input ~ 0
+Text GLabel 14550 6850 0    50   Input ~ 0
 PD0
 Text GLabel 10450 7850 2    50   Input ~ 0
 PD1
@@ -1325,33 +1315,23 @@ Text GLabel 10450 9150 2    50   Input ~ 0
 PD14
 Text GLabel 10450 9250 2    50   Input ~ 0
 PD15
-Text GLabel 15000 8250 2    50   Input ~ 0
+Text GLabel 14550 6950 0    50   Input ~ 0
 PD1
-Text GLabel 15000 8350 2    50   Input ~ 0
-PD2
-Text GLabel 15000 8450 2    50   Input ~ 0
-PD3
-Text GLabel 15000 8550 2    50   Input ~ 0
-PD4
-Text GLabel 15000 8650 2    50   Input ~ 0
-PD5
-Text GLabel 15000 8750 2    50   Input ~ 0
-PD6
-Text GLabel 13100 7950 0    50   Input ~ 0
+Text GLabel 14200 5500 0    50   Input ~ 0
 PD8
-Text GLabel 13100 8050 0    50   Input ~ 0
+Text GLabel 14200 5600 0    50   Input ~ 0
 PD9
-Text GLabel 13100 8150 0    50   Input ~ 0
+Text GLabel 14200 5700 0    50   Input ~ 0
 PD10
-Text GLabel 13100 8250 0    50   Input ~ 0
+Text GLabel 14200 5800 0    50   Input ~ 0
 PD11
-Text GLabel 13100 8350 0    50   Input ~ 0
+Text GLabel 14200 5900 0    50   Input ~ 0
 PD12
-Text GLabel 13100 8450 0    50   Input ~ 0
+Text GLabel 14200 6000 0    50   Input ~ 0
 PD13
-Text GLabel 13100 8550 0    50   Input ~ 0
+Text GLabel 14200 6100 0    50   Input ~ 0
 PD14
-Text GLabel 13100 8650 0    50   Input ~ 0
+Text GLabel 14200 5400 0    50   Input ~ 0
 PD15
 Text GLabel 10450 6050 2    50   Input ~ 0
 PC0
@@ -1377,30 +1357,24 @@ Text GLabel 10450 7450 2    50   Input ~ 0
 PC14
 Text GLabel 10450 7550 2    50   Input ~ 0
 PC15
-Text GLabel 14850 6250 2    50   Input ~ 0
+Text GLabel 13050 6750 0    50   Input ~ 0
 PC15
-Text GLabel 14850 6150 2    50   Input ~ 0
+Text GLabel 13050 6650 0    50   Input ~ 0
 PC14
-Text GLabel 14850 5950 2    50   Input ~ 0
+Text GLabel 14550 6750 0    50   Input ~ 0
 PC12
-Text GLabel 14850 5850 2    50   Input ~ 0
+Text GLabel 14550 6650 0    50   Input ~ 0
 PC11
-Text GLabel 14850 5750 2    50   Input ~ 0
+Text GLabel 14550 6550 0    50   Input ~ 0
 PC10
-Text GLabel 14300 8450 0    50   Input ~ 0
+Text GLabel 13800 6950 0    50   Input ~ 0
 PC9
-Text GLabel 13600 7950 2    50   Input ~ 0
+Text GLabel 14700 5400 2    50   Input ~ 0
 PC8
-Text GLabel 13600 8050 2    50   Input ~ 0
+Text GLabel 14700 5500 2    50   Input ~ 0
 PC7
-Text GLabel 13600 8150 2    50   Input ~ 0
+Text GLabel 14700 5600 2    50   Input ~ 0
 PC6
-Text GLabel 14350 5850 0    50   Input ~ 0
-PC3
-Text GLabel 14350 5750 0    50   Input ~ 0
-PC1
-Text GLabel 14350 5650 0    50   Input ~ 0
-PC0
 Text GLabel 10450 4750 2    50   Input ~ 0
 PB4
 Text GLabel 10450 4850 2    50   Input ~ 0
@@ -1417,17 +1391,11 @@ Text GLabel 10450 5550 2    50   Input ~ 0
 PB12
 Text GLabel 10450 5650 2    50   Input ~ 0
 PB13
-Text GLabel 14850 6850 2    50   Input ~ 0
-PB13
-Text GLabel 14850 6750 2    50   Input ~ 0
-PB12
-Text GLabel 14850 6650 2    50   Input ~ 0
+Text GLabel 13050 6950 0    50   Input ~ 0
 PB9
-Text GLabel 14350 6850 0    50   Input ~ 0
-PB8
-Text GLabel 14350 6750 0    50   Input ~ 0
+Text GLabel 13050 6350 0    50   Input ~ 0
 PB5
-Text GLabel 14350 6650 0    50   Input ~ 0
+Text GLabel 13050 6250 0    50   Input ~ 0
 PB4
 Text GLabel 10450 4150 2    50   Input ~ 0
 PA15
@@ -1451,26 +1419,18 @@ Text GLabel 10450 2750 2    50   Input ~ 0
 PA1
 Text GLabel 10450 2650 2    50   Input ~ 0
 PA0
-Text GLabel 14850 7650 2    50   Input ~ 0
+Text GLabel 14550 6450 0    50   Input ~ 0
 PA15
-Text GLabel 14300 7950 0    50   Input ~ 0
+Text GLabel 13800 6450 0    50   Input ~ 0
 PA12
-Text GLabel 14300 8050 0    50   Input ~ 0
+Text GLabel 13800 6550 0    50   Input ~ 0
 PA11
-Text GLabel 14300 8150 0    50   Input ~ 0
+Text GLabel 13800 6650 0    50   Input ~ 0
 PA10
-Text GLabel 14300 8250 0    50   Input ~ 0
+Text GLabel 13800 6750 0    50   Input ~ 0
 PA9
-Text GLabel 14300 8350 0    50   Input ~ 0
+Text GLabel 13800 6850 0    50   Input ~ 0
 PA8
-Text GLabel 14350 7550 0    50   Input ~ 0
-PA4
-Text GLabel 14350 7450 0    50   Input ~ 0
-PA2
-Text GLabel 14350 7350 0    50   Input ~ 0
-PA1
-Text GLabel 14350 7250 0    50   Input ~ 0
-PA0
 $Comp
 L Device:Ferrite_Bead FB1
 U 1 1 6083777E
@@ -1609,7 +1569,7 @@ U 1 1 608E9CE9
 P 6650 7950
 F 0 "J11" H 6730 7942 50  0000 L CNN
 F 1 "SPI4" H 6730 7851 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical_SMD_Pin1Left" H 6650 7950 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 6650 7950 50  0001 C CNN
 F 3 "~" H 6650 7950 50  0001 C CNN
 	1    6650 7950
 	1    0    0    -1  
@@ -1628,7 +1588,7 @@ U 1 1 6079AF87
 P 13300 3400
 F 0 "J1" H 13380 3392 50  0000 L CNN
 F 1 "I2C1" H 13380 3301 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical_SMD" H 13300 3400 50  0001 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x01_P2.54mm_Vertical" H 13300 3400 50  0001 C CNN
 F 3 "~" H 13300 3400 50  0001 C CNN
 	1    13300 3400
 	1    0    0    -1  
@@ -1643,7 +1603,7 @@ U 1 1 6079BAE2
 P 2750 3650
 F 0 "TP11" H 2650 3850 50  0000 L CNN
 F 1 "TestPoint" H 2808 3677 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2950 3650 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 2950 3650 50  0001 C CNN
 F 3 "~" H 2950 3650 50  0001 C CNN
 	1    2750 3650
 	-1   0    0    1   
@@ -1654,16 +1614,16 @@ U 1 1 6079D16C
 P 2500 3650
 F 0 "TP10" H 2400 3850 50  0000 L CNN
 F 1 "TestPoint" H 2558 3677 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2700 3650 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 2700 3650 50  0001 C CNN
 F 3 "~" H 2700 3650 50  0001 C CNN
 	1    2500 3650
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:+3.3V #PWR071
+L power:+3.3V #PWR073
 U 1 1 6079EC4B
 P 2750 3650
-F 0 "#PWR071" H 2750 3500 50  0001 C CNN
+F 0 "#PWR073" H 2750 3500 50  0001 C CNN
 F 1 "+3.3V" H 2765 3823 50  0000 C CNN
 F 2 "" H 2750 3650 50  0001 C CNN
 F 3 "" H 2750 3650 50  0001 C CNN
@@ -1682,10 +1642,10 @@ F 3 "~" H 3200 3700 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR072
+L power:GND #PWR074
 U 1 1 6079F6DA
 P 3000 3700
-F 0 "#PWR072" H 3000 3450 50  0001 C CNN
+F 0 "#PWR074" H 3000 3450 50  0001 C CNN
 F 1 "GND" H 3005 3527 50  0000 C CNN
 F 2 "" H 3000 3700 50  0001 C CNN
 F 3 "" H 3000 3700 50  0001 C CNN
@@ -1698,16 +1658,16 @@ U 1 1 607BFB0B
 P 2250 3650
 F 0 "TP9" H 2150 3850 50  0000 L CNN
 F 1 "TestPoint" H 2308 3677 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 2450 3650 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 2450 3650 50  0001 C CNN
 F 3 "~" H 2450 3650 50  0001 C CNN
 	1    2250 3650
 	-1   0    0    1   
 $EndComp
 $Comp
-L power:+3.3VA #PWR069
+L power:+3.3VA #PWR071
 U 1 1 607CF205
 P 2250 3650
-F 0 "#PWR069" H 2250 3500 50  0001 C CNN
+F 0 "#PWR071" H 2250 3500 50  0001 C CNN
 F 1 "+3.3VA" H 2265 3823 50  0000 C CNN
 F 2 "" H 2250 3650 50  0001 C CNN
 F 3 "" H 2250 3650 50  0001 C CNN
@@ -1720,7 +1680,7 @@ U 1 1 607CF8A2
 P 4950 8900
 F 0 "TP13" H 4900 9100 50  0000 L CNN
 F 1 "TestPoint" H 5008 8927 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 5150 8900 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 5150 8900 50  0001 C CNN
 F 3 "~" H 5150 8900 50  0001 C CNN
 	1    4950 8900
 	1    0    0    -1  
@@ -1734,7 +1694,7 @@ U 1 1 607D02FA
 P 4950 9200
 F 0 "TP14" H 4900 9400 50  0000 L CNN
 F 1 "TestPoint" H 5008 9227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 5150 9200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 5150 9200 50  0001 C CNN
 F 3 "~" H 5150 9200 50  0001 C CNN
 	1    4950 9200
 	1    0    0    -1  
@@ -1748,7 +1708,7 @@ U 1 1 607D05B3
 P 4950 9500
 F 0 "TP15" H 4900 9700 50  0000 L CNN
 F 1 "TestPoint" H 5008 9527 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 5150 9500 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 5150 9500 50  0001 C CNN
 F 3 "~" H 5150 9500 50  0001 C CNN
 	1    4950 9500
 	1    0    0    -1  
@@ -1762,7 +1722,7 @@ U 1 1 607D0AC7
 P 4950 9800
 F 0 "TP16" H 4900 10000 50  0000 L CNN
 F 1 "TestPoint" H 5008 9827 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 5150 9800 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 5150 9800 50  0001 C CNN
 F 3 "~" H 5150 9800 50  0001 C CNN
 	1    4950 9800
 	1    0    0    -1  
@@ -1770,17 +1730,6 @@ $EndComp
 Connection ~ 4950 9800
 Wire Wire Line
 	4950 9800 4850 9800
-$Comp
-L Connector:TestPoint TP17
-U 1 1 607D0EB7
-P 5250 10100
-F 0 "TP17" H 5200 10300 50  0000 L CNN
-F 1 "TestPoint" H 5308 10127 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 5450 10100 50  0001 C CNN
-F 3 "~" H 5450 10100 50  0001 C CNN
-	1    5250 10100
-	1    0    0    -1  
-$EndComp
 Text GLabel 12200 3250 3    50   Input ~ 0
 SPI1_SCK
 Text GLabel 11800 3250 3    50   Input ~ 0
@@ -1797,7 +1746,7 @@ U 1 1 608551D7
 P 11400 3250
 F 0 "TP4" H 11350 3450 50  0000 L CNN
 F 1 "TestPoint" H 11458 3277 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 11600 3250 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 11600 3250 50  0001 C CNN
 F 3 "~" H 11600 3250 50  0001 C CNN
 	1    11400 3250
 	1    0    0    -1  
@@ -1808,7 +1757,7 @@ U 1 1 60855529
 P 11600 3250
 F 0 "TP5" H 11550 3450 50  0000 L CNN
 F 1 "TestPoint" H 11658 3277 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 11800 3250 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 11800 3250 50  0001 C CNN
 F 3 "~" H 11800 3250 50  0001 C CNN
 	1    11600 3250
 	1    0    0    -1  
@@ -1819,7 +1768,7 @@ U 1 1 608558A4
 P 11800 3250
 F 0 "TP6" H 11750 3450 50  0000 L CNN
 F 1 "TestPoint" H 11858 3277 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 12000 3250 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 12000 3250 50  0001 C CNN
 F 3 "~" H 12000 3250 50  0001 C CNN
 	1    11800 3250
 	1    0    0    -1  
@@ -1830,7 +1779,7 @@ U 1 1 60855B5E
 P 12000 3250
 F 0 "TP7" H 11950 3450 50  0000 L CNN
 F 1 "TestPoint" H 12058 3277 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 12200 3250 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 12200 3250 50  0001 C CNN
 F 3 "~" H 12200 3250 50  0001 C CNN
 	1    12000 3250
 	1    0    0    -1  
@@ -1841,7 +1790,7 @@ U 1 1 60855E26
 P 12200 3250
 F 0 "TP8" H 12150 3450 50  0000 L CNN
 F 1 "TestPoint" H 12258 3277 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 12400 3250 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 12400 3250 50  0001 C CNN
 F 3 "~" H 12400 3250 50  0001 C CNN
 	1    12200 3250
 	1    0    0    -1  
@@ -1849,12 +1798,12 @@ $EndComp
 Text GLabel 6850 10200 3    50   Input ~ 0
 Rx_Amp_Bypass
 $Comp
-L Connector:TestPoint TP18
+L Connector:TestPoint TP17
 U 1 1 60856E05
 P 6850 10200
-F 0 "TP18" H 6800 10400 50  0000 L CNN
+F 0 "TP17" H 6800 10400 50  0000 L CNN
 F 1 "TestPoint" H 6908 10227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 7050 10200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 7050 10200 50  0001 C CNN
 F 3 "~" H 7050 10200 50  0001 C CNN
 	1    6850 10200
 	1    0    0    -1  
@@ -1876,89 +1825,89 @@ Trx_Enable
 Text GLabel 8250 10200 3    50   Input ~ 0
 Trx_Rx_Enable
 $Comp
-L Connector:TestPoint TP19
+L Connector:TestPoint TP18
 U 1 1 60866968
 P 7050 10200
-F 0 "TP19" H 7000 10400 50  0000 L CNN
+F 0 "TP18" H 7000 10400 50  0000 L CNN
 F 1 "TestPoint" H 7108 10227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 7250 10200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 7250 10200 50  0001 C CNN
 F 3 "~" H 7250 10200 50  0001 C CNN
 	1    7050 10200
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint TP20
+L Connector:TestPoint TP19
 U 1 1 60866CC8
 P 7250 10200
-F 0 "TP20" H 7200 10400 50  0000 L CNN
+F 0 "TP19" H 7200 10400 50  0000 L CNN
 F 1 "TestPoint" H 7308 10227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 7450 10200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 7450 10200 50  0001 C CNN
 F 3 "~" H 7450 10200 50  0001 C CNN
 	1    7250 10200
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint TP21
+L Connector:TestPoint TP20
 U 1 1 60866E2E
 P 7450 10200
-F 0 "TP21" H 7400 10400 50  0000 L CNN
+F 0 "TP20" H 7400 10400 50  0000 L CNN
 F 1 "TestPoint" H 7508 10227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 7650 10200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 7650 10200 50  0001 C CNN
 F 3 "~" H 7650 10200 50  0001 C CNN
 	1    7450 10200
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint TP22
+L Connector:TestPoint TP21
 U 1 1 60866FEB
 P 7650 10200
-F 0 "TP22" H 7600 10400 50  0000 L CNN
+F 0 "TP21" H 7600 10400 50  0000 L CNN
 F 1 "TestPoint" H 7708 10227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 7850 10200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 7850 10200 50  0001 C CNN
 F 3 "~" H 7850 10200 50  0001 C CNN
 	1    7650 10200
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint TP23
+L Connector:TestPoint TP22
 U 1 1 60867236
 P 7850 10200
-F 0 "TP23" H 7800 10400 50  0000 L CNN
+F 0 "TP22" H 7800 10400 50  0000 L CNN
 F 1 "TestPoint" H 7908 10227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 8050 10200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 8050 10200 50  0001 C CNN
 F 3 "~" H 8050 10200 50  0001 C CNN
 	1    7850 10200
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint TP24
+L Connector:TestPoint TP23
 U 1 1 6086755E
 P 8050 10200
-F 0 "TP24" H 8000 10400 50  0000 L CNN
+F 0 "TP23" H 8000 10400 50  0000 L CNN
 F 1 "TestPoint" H 8108 10227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 8250 10200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 8250 10200 50  0001 C CNN
 F 3 "~" H 8250 10200 50  0001 C CNN
 	1    8050 10200
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint TP25
+L Connector:TestPoint TP24
 U 1 1 6086775D
 P 8250 10200
-F 0 "TP25" H 8200 10400 50  0000 L CNN
+F 0 "TP24" H 8200 10400 50  0000 L CNN
 F 1 "TestPoint" H 8308 10227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 8450 10200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 8450 10200 50  0001 C CNN
 F 3 "~" H 8450 10200 50  0001 C CNN
 	1    8250 10200
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:TestPoint TP26
+L Connector:TestPoint TP25
 U 1 1 60867A1B
 P 8450 10200
-F 0 "TP26" H 8400 10400 50  0000 L CNN
+F 0 "TP25" H 8400 10400 50  0000 L CNN
 F 1 "TestPoint" H 8508 10227 50  0001 L CNN
-F 2 "TestPoint:TestPoint_Pad_D1.0mm" H 8650 10200 50  0001 C CNN
+F 2 "Tesis2020-21:TestPoint_Pad_D1.0mm_NoRef" H 8650 10200 50  0001 C CNN
 F 3 "~" H 8650 10200 50  0001 C CNN
 	1    8450 10200
 	1    0    0    -1  
@@ -2017,10 +1966,10 @@ Connection ~ 1800 9500
 Wire Wire Line
 	1800 9500 1900 9500
 $Comp
-L power:GND #PWR093
+L power:GND #PWR096
 U 1 1 60A88677
 P 1050 9800
-F 0 "#PWR093" H 1050 9550 50  0001 C CNN
+F 0 "#PWR096" H 1050 9550 50  0001 C CNN
 F 1 "GND" H 1055 9627 50  0000 C CNN
 F 2 "" H 1050 9800 50  0001 C CNN
 F 3 "" H 1050 9800 50  0001 C CNN
@@ -2028,10 +1977,10 @@ F 3 "" H 1050 9800 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR092
+L power:GND #PWR095
 U 1 1 60A888D1
 P 1450 9700
-F 0 "#PWR092" H 1450 9450 50  0001 C CNN
+F 0 "#PWR095" H 1450 9450 50  0001 C CNN
 F 1 "GND" H 1455 9527 50  0000 C CNN
 F 2 "" H 1450 9700 50  0001 C CNN
 F 3 "" H 1450 9700 50  0001 C CNN
@@ -2040,10 +1989,10 @@ F 3 "" H 1450 9700 50  0001 C CNN
 $EndComp
 Connection ~ 1450 9700
 $Comp
-L power:GND #PWR094
+L power:GND #PWR097
 U 1 1 60A88D2E
 P 1800 9800
-F 0 "#PWR094" H 1800 9550 50  0001 C CNN
+F 0 "#PWR097" H 1800 9550 50  0001 C CNN
 F 1 "GND" H 1805 9627 50  0000 C CNN
 F 2 "" H 1800 9800 50  0001 C CNN
 F 3 "" H 1800 9800 50  0001 C CNN
@@ -2077,10 +2026,10 @@ F 3 "~" H 2450 9550 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+3.3V #PWR089
+L power:+3.3V #PWR092
 U 1 1 608BC835
 P 2650 9300
-F 0 "#PWR089" H 2650 9150 50  0001 C CNN
+F 0 "#PWR092" H 2650 9150 50  0001 C CNN
 F 1 "+3.3V" H 2665 9473 50  0000 C CNN
 F 2 "" H 2650 9300 50  0001 C CNN
 F 3 "" H 2650 9300 50  0001 C CNN
@@ -2088,10 +2037,10 @@ F 3 "" H 2650 9300 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR090
+L power:GND #PWR093
 U 1 1 608BC843
 P 2650 9500
-F 0 "#PWR090" H 2650 9250 50  0001 C CNN
+F 0 "#PWR093" H 2650 9250 50  0001 C CNN
 F 1 "GND" H 2655 9327 50  0000 C CNN
 F 2 "" H 2650 9500 50  0001 C CNN
 F 3 "" H 2650 9500 50  0001 C CNN
@@ -2131,10 +2080,10 @@ Wire Wire Line
 Wire Wire Line
 	950  5550 950  5650
 $Comp
-L power:+5V #PWR080
+L power:+5V #PWR083
 U 1 1 609B1B99
 P 1350 4950
-F 0 "#PWR080" H 1350 4800 50  0001 C CNN
+F 0 "#PWR083" H 1350 4800 50  0001 C CNN
 F 1 "+5V" H 1365 5123 50  0000 C CNN
 F 2 "" H 1350 4950 50  0001 C CNN
 F 3 "" H 1350 4950 50  0001 C CNN
@@ -2142,10 +2091,10 @@ F 3 "" H 1350 4950 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:+5V #PWR079
+L power:+5V #PWR082
 U 1 1 609B411B
 P 3100 4900
-F 0 "#PWR079" H 3100 4750 50  0001 C CNN
+F 0 "#PWR082" H 3100 4750 50  0001 C CNN
 F 1 "+5V" H 3115 5073 50  0000 C CNN
 F 2 "" H 3100 4900 50  0001 C CNN
 F 3 "" H 3100 4900 50  0001 C CNN
@@ -2153,10 +2102,10 @@ F 3 "" H 3100 4900 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR084
+L power:GND #PWR087
 U 1 1 609B4FE4
 P 3100 5700
-F 0 "#PWR084" H 3100 5450 50  0001 C CNN
+F 0 "#PWR087" H 3100 5450 50  0001 C CNN
 F 1 "GND" H 3105 5527 50  0000 C CNN
 F 2 "" H 3100 5700 50  0001 C CNN
 F 3 "" H 3100 5700 50  0001 C CNN
@@ -2183,10 +2132,10 @@ Wire Notes Line
 Wire Notes Line
 	700  4600 4150 4600
 $Comp
-L power:+5V #PWR070
+L power:+5V #PWR072
 U 1 1 60A19FAC
 P 2500 3650
-F 0 "#PWR070" H 2500 3500 50  0001 C CNN
+F 0 "#PWR072" H 2500 3500 50  0001 C CNN
 F 1 "+5V" H 2515 3823 50  0000 C CNN
 F 2 "" H 2500 3650 50  0001 C CNN
 F 3 "" H 2500 3650 50  0001 C CNN
@@ -2224,10 +2173,10 @@ F 3 "~" H 2000 8400 50  0001 C CNN
 $EndComp
 Connection ~ 1600 8550
 $Comp
-L power:GND #PWR088
+L power:GND #PWR091
 U 1 1 607CEDC1
 P 1600 8550
-F 0 "#PWR088" H 1600 8300 50  0001 C CNN
+F 0 "#PWR091" H 1600 8300 50  0001 C CNN
 F 1 "GND" H 1605 8377 50  0000 C CNN
 F 2 "" H 1600 8550 50  0001 C CNN
 F 3 "" H 1600 8550 50  0001 C CNN
@@ -2280,10 +2229,10 @@ Connection ~ 1500 7700
 Wire Wire Line
 	800  7700 1500 7700
 $Comp
-L power:GND #PWR087
+L power:GND #PWR090
 U 1 1 6079D43B
 P 800 7700
-F 0 "#PWR087" H 800 7450 50  0001 C CNN
+F 0 "#PWR090" H 800 7450 50  0001 C CNN
 F 1 "GND" H 805 7527 50  0000 C CNN
 F 2 "" H 800 7700 50  0001 C CNN
 F 3 "" H 800 7700 50  0001 C CNN
@@ -2392,10 +2341,10 @@ F 3 "~" H 1250 7400 50  0001 C CNN
 	0    1    1    0   
 $EndComp
 $Comp
-L power:+3.3V #PWR086
+L power:+3.3V #PWR089
 U 1 1 6077B927
 P 800 7250
-F 0 "#PWR086" H 800 7100 50  0001 C CNN
+F 0 "#PWR089" H 800 7100 50  0001 C CNN
 F 1 "+3.3V" H 815 7423 50  0000 C CNN
 F 2 "" H 800 7250 50  0001 C CNN
 F 3 "" H 800 7250 50  0001 C CNN
@@ -2427,10 +2376,10 @@ F 3 "~" H 4700 10100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector:Conn_Coaxial J14
+L Connector:Conn_Coaxial J13
 U 1 1 609BFF79
 P 5550 10100
-F 0 "J14" H 5650 10200 50  0000 L CNN
+F 0 "J13" H 5650 10200 50  0000 L CNN
 F 1 "CLK_OUT0" H 5650 10100 50  0000 L CNN
 F 2 "Tesis2020-21:RFSOLUTIONS_CON-SMA-EDGE-S" H 5550 10100 50  0001 C CNN
 F 3 " ~" H 5550 10100 50  0001 C CNN
@@ -2438,10 +2387,10 @@ F 3 " ~" H 5550 10100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L power:GND #PWR095
+L power:GND #PWR098
 U 1 1 609C0F02
 P 5550 10300
-F 0 "#PWR095" H 5550 10050 50  0001 C CNN
+F 0 "#PWR098" H 5550 10050 50  0001 C CNN
 F 1 "GND" H 5555 10127 50  0000 C CNN
 F 2 "" H 5550 10300 50  0001 C CNN
 F 3 "" H 5550 10300 50  0001 C CNN
@@ -2548,10 +2497,10 @@ F 3 "" H 13400 1600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x03 J4
+L Connector_Generic:Conn_01x03 J5
 U 1 1 60ABD761
 P 5950 5600
-F 0 "J4" H 6030 5642 50  0000 L CNN
+F 0 "J5" H 6030 5642 50  0000 L CNN
 F 1 "Boot_Select" H 6030 5551 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 5950 5600 50  0001 C CNN
 F 3 "~" H 5950 5600 50  0001 C CNN
@@ -2559,10 +2508,10 @@ F 3 "~" H 5950 5600 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x03 J13
+L Connector_Generic:Conn_01x03 J12
 U 1 1 60ADE0C5
 P 2850 9400
-F 0 "J13" H 2930 9442 50  0000 L CNN
+F 0 "J12" H 2930 9442 50  0000 L CNN
 F 1 "OutEn" H 2930 9351 50  0000 L CNN
 F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 2850 9400 50  0001 C CNN
 F 3 "~" H 2850 9400 50  0001 C CNN
@@ -2576,127 +2525,128 @@ Wire Wire Line
 Wire Wire Line
 	850  5550 950  5550
 Connection ~ 950  5550
-Text GLabel 15000 8850 2    50   Input ~ 0
-PD7
 $Comp
-L Connector_Generic:Conn_02x06_Odd_Even J7
+L Connector_Generic:Conn_02x06_Odd_Even J6
 U 1 1 60A18EB5
-P 13300 6750
-F 0 "J7" H 13350 7167 50  0000 C CNN
-F 1 "PF" H 13350 7076 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical_SMD" H 13300 6750 50  0001 C CNN
-F 3 "~" H 13300 6750 50  0001 C CNN
-	1    13300 6750
+P 13250 5600
+F 0 "J6" H 13300 6017 50  0000 C CNN
+F 1 "PA" H 13300 5926 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical" H 13250 5600 50  0001 C CNN
+F 3 "~" H 13250 5600 50  0001 C CNN
+	1    13250 5600
 	1    0    0    -1  
 $EndComp
-Text GLabel 13100 7050 0    50   Input ~ 0
+Text GLabel 13050 5900 0    50   Input ~ 0
 PF6
-Text GLabel 13600 6550 2    50   Input ~ 0
+Text GLabel 13550 5400 2    50   Input ~ 0
 PF0
-Text GLabel 13600 6750 2    50   Input ~ 0
+Text GLabel 13550 5600 2    50   Input ~ 0
 PF2
-Text GLabel 13600 6850 2    50   Input ~ 0
+Text GLabel 13550 5700 2    50   Input ~ 0
 PF3
-Text GLabel 13600 6650 2    50   Input ~ 0
+Text GLabel 13550 5500 2    50   Input ~ 0
 PF1
-Text GLabel 13600 6950 2    50   Input ~ 0
+Text GLabel 13550 5800 2    50   Input ~ 0
 PF4
-Text GLabel 13600 7050 2    50   Input ~ 0
+Text GLabel 13550 5900 2    50   Input ~ 0
 PF5
-Text GLabel 13100 6150 0    50   Input ~ 0
-PG9
-Text GLabel 13600 5650 2    50   Input ~ 0
-PG10
-Text GLabel 13600 5750 2    50   Input ~ 0
-PG11
-Text GLabel 13600 5850 2    50   Input ~ 0
-PG12
-Text GLabel 13600 5950 2    50   Input ~ 0
-PG13
-Text GLabel 13600 6050 2    50   Input ~ 0
-PG14
-$Comp
-L Connector_Generic:Conn_02x06_Top_Bottom J5
-U 1 1 60ABB7BC
-P 13300 5850
-F 0 "J5" H 13350 6267 50  0000 C CNN
-F 1 "PG" H 13350 6176 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x06_P2.54mm_Vertical_SMD" H 13300 5850 50  0001 C CNN
-F 3 "~" H 13300 5850 50  0001 C CNN
-	1    13300 5850
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_02x03_Top_Bottom J8
-U 1 1 60B09C91
-P 14550 6750
-F 0 "J8" H 14600 7067 50  0000 C CNN
-F 1 "PB" H 14600 6976 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x03_P2.54mm_Vertical_SMD" H 14550 6750 50  0001 C CNN
-F 3 "~" H 14550 6750 50  0001 C CNN
-	1    14550 6750
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_02x02_Top_Bottom J9
-U 1 1 60B3778F
-P 13300 7450
-F 0 "J9" H 13350 7667 50  0000 C CNN
-F 1 "PE" H 13350 7576 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x02_P2.54mm_Vertical_SMD" H 13300 7450 50  0001 C CNN
-F 3 "~" H 13300 7450 50  0001 C CNN
-	1    13300 7450
-	1    0    0    -1  
-$EndComp
-Text GLabel 13100 7450 0    50   Input ~ 0
+Text GLabel 13050 6850 0    50   Input ~ 0
 PE0
-NoConn ~ 13600 7550
-$Comp
-L Connector_Generic:Conn_02x07_Top_Bottom J6
-U 1 1 60B67425
-P 14550 5950
-F 0 "J6" H 14600 6467 50  0000 C CNN
-F 1 "PC" H 14600 6376 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x07_P2.54mm_Vertical_SMD" H 14550 5950 50  0001 C CNN
-F 3 "~" H 14550 5950 50  0001 C CNN
-	1    14550 5950
-	1    0    0    -1  
-$EndComp
-Text GLabel 14350 5950 0    50   Input ~ 0
-PC4
-Text GLabel 14850 6050 2    50   Input ~ 0
+Text GLabel 13050 6550 0    50   Input ~ 0
 PC13
 $Comp
-L Connector_Generic:Conn_02x05_Top_Bottom J10
-U 1 1 60BA6D68
-P 14550 7450
-F 0 "J10" H 14600 7867 50  0000 C CNN
-F 1 "PA" H 14600 7776 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x05_P2.54mm_Vertical_SMD" H 14550 7450 50  0001 C CNN
-F 3 "~" H 14550 7450 50  0001 C CNN
-	1    14550 7450
-	1    0    0    -1  
-$EndComp
-$Comp
-L Connector_Generic:Conn_02x08_Odd_Even J12
+L Connector_Generic:Conn_02x08_Odd_Even J7
 U 1 1 60AD181C
-P 13300 8250
-F 0 "J12" H 13350 8767 50  0000 C CNN
-F 1 "PD" H 13350 8676 50  0000 C CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_2x08_P2.54mm_Vertical" H 13300 8250 50  0001 C CNN
-F 3 "~" H 13300 8250 50  0001 C CNN
-	1    13300 8250
+P 14400 5700
+F 0 "J7" H 14450 6217 50  0000 C CNN
+F 1 "PD" H 14450 6126 50  0000 C CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_2x08_P2.54mm_Vertical" H 14400 5700 50  0001 C CNN
+F 3 "~" H 14400 5700 50  0001 C CNN
+	1    14400 5700
 	1    0    0    -1  
 $EndComp
 $Comp
-L Connector_Generic:Conn_01x06 J16
+L Connector_Generic:Conn_01x06 J9
 U 1 1 60CC9756
-P 14500 8150
-F 0 "J16" H 14580 8142 50  0000 L CNN
-F 1 "Conn_01x06" H 14580 8051 50  0000 L CNN
-F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 14500 8150 50  0001 C CNN
-F 3 "~" H 14500 8150 50  0001 C CNN
-	1    14500 8150
+P 14000 6650
+F 0 "J9" H 14080 6642 50  0000 L CNN
+F 1 "PE" H 14080 6551 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 14000 6650 50  0001 C CNN
+F 3 "~" H 14000 6650 50  0001 C CNN
+	1    14000 6650
 	1    0    0    -1  
 $EndComp
+Wire Wire Line
+	5150 10100 5350 10100
+$Comp
+L Connector_Generic:Conn_01x06 J10
+U 1 1 60AC9A0D
+P 14750 6650
+F 0 "J10" H 14830 6642 50  0000 L CNN
+F 1 "PC" H 14830 6551 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x06_P2.54mm_Vertical" H 14750 6650 50  0001 C CNN
+F 3 "~" H 14750 6650 50  0001 C CNN
+	1    14750 6650
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x08 J8
+U 1 1 60B0C372
+P 13250 6550
+F 0 "J8" H 13330 6542 50  0000 L CNN
+F 1 "PB" H 13330 6451 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x08_P2.54mm_Vertical" H 13250 6550 50  0001 C CNN
+F 3 "~" H 13250 6550 50  0001 C CNN
+	1    13250 6550
+	1    0    0    -1  
+$EndComp
+Text GLabel 13050 5400 0    50   Input ~ 0
+PG9
+$Comp
+L Connector_Generic:Conn_01x04 J2
+U 1 1 60C78796
+P 3900 3500
+F 0 "J2" H 3980 3492 50  0000 L CNN
+F 1 "Power" H 3980 3401 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x04_P2.54mm_Vertical" H 3900 3500 50  0001 C CNN
+F 3 "~" H 3900 3500 50  0001 C CNN
+	1    3900 3500
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+5V #PWR065
+U 1 1 60C796CE
+P 3700 3400
+F 0 "#PWR065" H 3700 3250 50  0001 C CNN
+F 1 "+5V" H 3715 3573 50  0000 C CNN
+F 2 "" H 3700 3400 50  0001 C CNN
+F 3 "" H 3700 3400 50  0001 C CNN
+	1    3700 3400
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:+3.3V #PWR075
+U 1 1 60C79C9A
+P 3700 3700
+F 0 "#PWR075" H 3700 3550 50  0001 C CNN
+F 1 "+3.3V" H 3715 3873 50  0000 C CNN
+F 2 "" H 3700 3700 50  0001 C CNN
+F 3 "" H 3700 3700 50  0001 C CNN
+	1    3700 3700
+	0    -1   -1   0   
+$EndComp
+$Comp
+L power:GND #PWR068
+U 1 1 60C7A4B7
+P 3700 3500
+F 0 "#PWR068" H 3700 3250 50  0001 C CNN
+F 1 "GND" H 3705 3327 50  0000 C CNN
+F 2 "" H 3700 3500 50  0001 C CNN
+F 3 "" H 3700 3500 50  0001 C CNN
+	1    3700 3500
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3700 3600 3700 3500
+Connection ~ 3700 3500
 $EndSCHEMATC
