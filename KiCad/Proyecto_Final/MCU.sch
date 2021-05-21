@@ -14,25 +14,14 @@ Comment3 ""
 Comment4 ""
 $EndDescr
 $Comp
-L Connector:USB_B_Micro J4
-U 1 1 606516B5
-P 950 5150
-F 0 "J4" H 1007 5617 50  0000 C CNN
-F 1 "USB_B_Micro" H 1007 5526 50  0000 C CNN
-F 2 "Connector_USB:USB_Micro-B_Amphenol_10104110_Horizontal" H 1100 5100 50  0001 C CNN
-F 3 "~" H 1100 5100 50  0001 C CNN
-	1    950  5150
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR086
 U 1 1 60652B42
-P 950 5650
-F 0 "#PWR086" H 950 5400 50  0001 C CNN
-F 1 "GND" H 955 5477 50  0000 C CNN
-F 2 "" H 950 5650 50  0001 C CNN
-F 3 "" H 950 5650 50  0001 C CNN
-	1    950  5650
+P 1350 5700
+F 0 "#PWR086" H 1350 5450 50  0001 C CNN
+F 1 "GND" H 1355 5527 50  0000 C CNN
+F 2 "" H 1350 5700 50  0001 C CNN
+F 3 "" H 1350 5700 50  0001 C CNN
+	1    1350 5700
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2075,19 +2064,15 @@ F 3 "" H 800 1300 50  0001 C CNN
 $EndComp
 Wire Wire Line
 	800  1300 1100 1300
-Wire Wire Line
-	1250 4950 1350 4950
-Wire Wire Line
-	950  5550 950  5650
 $Comp
 L power:+5V #PWR083
 U 1 1 609B1B99
-P 1350 4950
-F 0 "#PWR083" H 1350 4800 50  0001 C CNN
-F 1 "+5V" H 1365 5123 50  0000 C CNN
-F 2 "" H 1350 4950 50  0001 C CNN
-F 3 "" H 1350 4950 50  0001 C CNN
-	1    1350 4950
+P 1350 5000
+F 0 "#PWR083" H 1350 4850 50  0001 C CNN
+F 1 "+5V" H 1365 5173 50  0000 C CNN
+F 2 "" H 1350 5000 50  0001 C CNN
+F 3 "" H 1350 5000 50  0001 C CNN
+	1    1350 5000
 	1    0    0    -1  
 $EndComp
 $Comp
@@ -2112,16 +2097,16 @@ F 3 "" H 3100 5700 50  0001 C CNN
 	1    3100 5700
 	1    0    0    -1  
 $EndComp
-NoConn ~ 1250 5350
+NoConn ~ 1350 5300
 Text GLabel 3500 5200 2    50   Input ~ 0
 USB_D+
 Text GLabel 10450 5750 2    50   Input ~ 0
 USB_D-
 Text GLabel 2700 5400 0    50   Input ~ 0
 USB_CONN_D-
-Text GLabel 1250 5250 2    50   Input ~ 0
+Text GLabel 1350 5100 2    50   Input ~ 0
 USB_CONN_D-
-Text GLabel 1250 5150 2    50   Input ~ 0
+Text GLabel 1350 5200 2    50   Input ~ 0
 USB_CONN_D+
 Text GLabel 3500 5400 2    50   Input ~ 0
 USB_CONN_D+
@@ -2522,9 +2507,6 @@ Wire Wire Line
 	5500 5600 5750 5600
 Wire Wire Line
 	2450 9400 2650 9400
-Wire Wire Line
-	850  5550 950  5550
-Connection ~ 950  5550
 $Comp
 L Connector_Generic:Conn_02x06_Odd_Even J6
 U 1 1 60A18EB5
@@ -2649,4 +2631,24 @@ $EndComp
 Wire Wire Line
 	3700 3600 3700 3500
 Connection ~ 3700 3500
+$Comp
+L Tesis2020-21:UJ2-MIBH-G-SMT-TR J4
+U 1 1 60A87840
+P 950 5300
+F 0 "J4" H 950 5850 50  0000 C CNN
+F 1 "Conn_USB" H 950 5750 50  0000 C CNN
+F 2 "Tesis2020-21:CUI_UJ2-MIBH-G-SMT-TR" H 950 5300 50  0001 L BNN
+F 3 "" H 950 5300 50  0001 L BNN
+F 4 "2.95 mm" H 950 5300 50  0001 L BNN "MAXIMUM_PACKAGE_HEIGHT"
+F 5 "Manufacturer Recommendations" H 950 5300 50  0001 L BNN "STANDARD"
+F 6 "1.0" H 950 5300 50  0001 L BNN "PARTREV"
+F 7 "CUI" H 950 5300 50  0001 L BNN "MANUFACTURER"
+	1    950  5300
+	-1   0    0    -1  
+$EndComp
+Wire Wire Line
+	1350 5600 1350 5700
+Wire Wire Line
+	1350 5400 1350 5600
+Connection ~ 1350 5600
 $EndSCHEMATC
