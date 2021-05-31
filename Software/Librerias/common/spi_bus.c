@@ -1,31 +1,38 @@
 #include <stdint.h>
 
-void spi1_enable(uint8_t cs){
-	/*
-	Set chip select pin low.
-	*/
-	if (cs == 0){
-		/* Use GPIO HAL to drive CS0 low. */
-	}
-	else if (cs == 1){
-		/* Use GPIO HAL to drive CS1 low. */
-	}
+void spi_enable(GPIO_TypeDef *CS_bank, uint16_t CS_pin){
+	/* Use GPIO HAL to drive chip select pin low. */
+	HAL_GPIO_WritePin(*CS_bank, CS_pin, GPIO_PIN_RESET);
 }
 
-void spi1_disable(uint8_t cs){
-	/*
-	Set chip select pin high.
-	*/
-	if (cs == 0){
-		/* Use GPIO HAL to drive CS0 high. */
-	}
-	else if (cs == 1){
-		/* Use GPIO HAL to drive CS1 high. */
-	}
+void spi_disable(GPIO_TypeDef *CS_bank, uint16_t CS_pin){
+	/* Use GPIO HAL to drive chip select pin high. */
+	HAL_GPIO_WritePin(*CS_bank, CS_pin, GPIO_PIN_SET);
 }
 
-uint8_t spi1_TxRx(uint8_t addr){
-	uint8_t data;
-	/* Use HAL_SPI_TransmitReceive_IT. */
-	return data;
+uint8_t spi_rffc5072_read(rffc5072_st *mixer, uint8_t *txBuf, uint8_t *rxBuf){
+	uint8_t status = 1;
+	spi_enable(mixer->CS_bank, mixer->CS_pin);
+	/* Use HAL_SPI_Transmit_IT then HAL_SPI_Receive_IT because data is not byte aligned. */
+	if((HAL_SPI_Transmit_IT(mixer->spiHandle, txBuf, sizeof(txBuf))) == HAL_OK){
+		if((HAL_SPI_Receive_IT(mixer->spiHandle, rxBuf, sizeof(rxBuf))) == HAL_OK){
+		}else{
+			status = 0;
+		}
+	}else{
+		status = 0;
+	}
+	spi_disable(mixer->CS_bank, mixer->CS_pin);
+	return status;
+}
+
+uint8_t spi_rffc5072_write(rffc5072_st *mixer, uint8_t *txBuf){
+	uint8_t status = 1;
+	spi_enable(mixer->CS_bank, mixer->CS_pin);
+	if((HAL_SPI_Transmit_IT(mixer->spiHandle, txBuf, sizeof(txBuf))) == HAL_OK){}
+	else{
+		status = 0;
+	}
+	spi_disable(mixer->CS_bank, mixer->CS_pin);
+	return status;
 }
