@@ -44,6 +44,9 @@
 #define DEV_CTRL 	0x1D
 #define TEST 		0x1E
 #define READBACK 	0x1F
+/* Frequency synthesis constants */
+#define FVCO_MAX 5400
+#define F_REF 52
 
 
 typedef struct{
@@ -57,12 +60,13 @@ void rffc5072_init(rffc5072_st *mixer,				/* Initial configuration. */
 					SPI_HandleTypeDef *spiHandle,
 					GPIO_TypeDef *CS_bank,
 					uint16_t CS_pin);
-void rffc5072_read_reg(rffc5072_st *mixer,		/* Retrieve register value. */
+void rffc5072_read_reg(rffc5072_st *mixer,			/* Retrieve register value. */
 							uint8_t addr,
 							uint16_t *data);
-void rffc5072_write_reg(rffc5072_st *mixer,		/* Write value into register. */
+void rffc5072_write_reg(rffc5072_st *mixer,			/* Write value into register. */
 							uint8_t addr,
 							uint16_t data);
-
+uint16_t rffc5072_set_freq(rffc5072_st *mixer,		/* Set desired frequency. */
+							uint16_t lo_freq);
 
 #endif

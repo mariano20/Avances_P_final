@@ -81,6 +81,15 @@ void rffc5072_init(rffc5072_st *mixer,
 	for(i=0;i<RFFC5072_NUM_REGS;i++){
 		rffc5072_write_reg(mixer, rffc5072_regs_address[i], rffc5072_regs_default[i]);
 	}
+	/* Set PLL2 values for LO=2506.3 MHz (2400 + 106.3 [fm mariano rpi]) */
+	/* p2n: 1, p2lodiv: 2^0=1, p2presc: divide by 4, p2vcosel: 0 (vco1) */
+	rffc5072_write_reg(mixer, P2_FREQ1, 0x0088);	/* 0000000010001000 */
+	/* half-duplex, minimun mixer current */
+	rffc5072_write_reg(mixer, MIX_CONT, 0x0000);
+	/* 4-wire SPI control, enable part */
+	rffc5072_write_reg(mixer, SDI_CTRL, 0xf000);	/* 1111000000000000 */
+	/* Auto VCO */
+	rffc5072_write_reg(mixer, VCO_AUTO, 0xff00);	/* 1111111100000000 */
 }
 
 /*
@@ -113,3 +122,31 @@ void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data){
 	uint8_t status = spi_rffc5072_write(mixer, txDataBuf);
 	/* falta manejo de error */
 }
+
+uint16_t rffc5072_set_freq(rffc5072_st *mixer, uint16_t lo_freq){
+	uint8_t n_lo;
+	uint8_t lo_div;
+	uint8_t intlog2 = 0;
+	uint32_t fvco;	/* MMM.DDDDD */
+	uint8_t fbkdiv;
+	uint16_t n_div;
+	
+	uint16_t f_tmp = FVCO_MAX / lo_freq;
+	/* Compute log2 of f_tmp and round down */
+	while(f_tmp > 1){
+		f_tmp >>= 1;
+		intlog2++;
+	}
+	n_lo = intlog2;
+	lo_div = (1 << n_lo);	/* 2^n_lo */
+	fvco = lo_div * lo_freq;
+	
+	if(fvco < 3200){
+		fbkdiv = 2;
+	}else{
+		fbkdiv = 4;
+	}
+	
+	n_div = fvco / (fbkdiv * F_REF);
+}
+

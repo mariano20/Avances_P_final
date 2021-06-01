@@ -235,28 +235,6 @@ F 3 "~" H 2050 3100 50  0001 C CNN
 	1    0    0    -1  
 $EndComp
 $Comp
-L Device:C C80
-U 1 1 5FF2D567
-P 1150 3250
-F 0 "C80" H 1265 3296 50  0000 L CNN
-F 1 "33pF" H 1265 3205 50  0000 L CNN
-F 2 "Capacitor_SMD:C_0402_1005Metric" H 1188 3100 50  0001 C CNN
-F 3 "~" H 1150 3250 50  0001 C CNN
-	1    1150 3250
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:GND #PWR0100
-U 1 1 5FF2EC52
-P 1150 3400
-F 0 "#PWR0100" H 1150 3150 50  0001 C CNN
-F 1 "GND" H 1155 3227 50  0000 C CNN
-F 2 "" H 1150 3400 50  0001 C CNN
-F 3 "" H 1150 3400 50  0001 C CNN
-	1    1150 3400
-	1    0    0    -1  
-$EndComp
-$Comp
 L power:GND #PWR095
 U 1 1 5FF2F1A7
 P 2050 3250
@@ -1530,16 +1508,12 @@ F 3 "" H 8100 4100 50  0001 C CNN
 	1    8100 4100
 	0    1    1    0   
 $EndComp
-Text GLabel 6550 2300 0    50   Input ~ 0
-RESETX
 Text GLabel 6550 2450 0    50   Input ~ 0
 SPI1_CS0
 Text GLabel 6550 2600 0    50   Input ~ 0
 SPI1_SCK
 Text GLabel 6550 2750 0    50   Input ~ 0
 SPI1_MOSI
-Text GLabel 1050 3050 0    50   Input ~ 0
-RESETX
 $Comp
 L Device:C C78
 U 1 1 60996EEC
@@ -1576,10 +1550,6 @@ Wire Wire Line
 	6550 2450 6800 2450
 Wire Wire Line
 	6800 2450 6800 2800
-Wire Wire Line
-	6900 2800 6900 2300
-Wire Wire Line
-	6900 2300 6550 2300
 Wire Wire Line
 	7250 2650 7200 2650
 Wire Wire Line
@@ -1630,35 +1600,6 @@ F 3 "~" H 2500 3100 50  0001 C CNN
 $EndComp
 Text GLabel 6700 5100 3    50   Input ~ 0
 REF_IN
-$Comp
-L Device:R R21
-U 1 1 60A036F9
-P 1150 2850
-F 0 "R21" H 1220 2896 50  0000 L CNN
-F 1 "10k" H 1220 2805 50  0000 L CNN
-F 2 "Resistor_SMD:R_0402_1005Metric" V 1080 2850 50  0001 C CNN
-F 3 "~" H 1150 2850 50  0001 C CNN
-	1    1150 2850
-	1    0    0    -1  
-$EndComp
-$Comp
-L power:+3.3V #PWR093
-U 1 1 60A18487
-P 1150 2700
-F 0 "#PWR093" H 1150 2550 50  0001 C CNN
-F 1 "+3.3V" H 1165 2873 50  0000 C CNN
-F 2 "" H 1150 2700 50  0001 C CNN
-F 3 "" H 1150 2700 50  0001 C CNN
-	1    1150 2700
-	1    0    0    -1  
-$EndComp
-Wire Wire Line
-	1150 3000 1150 3050
-Wire Wire Line
-	1050 3050 1150 3050
-Connection ~ 1150 3050
-Wire Wire Line
-	1150 3050 1150 3100
 Wire Wire Line
 	10650 7450 10550 7450
 Wire Wire Line
@@ -1838,4 +1779,5 @@ F 3 "http://www.vishay.com/docs/66709/si2319cd.pdf" H 8000 6850 50  0001 L CNN
 $EndComp
 Wire Wire Line
 	7900 7050 7900 7400
+NoConn ~ 6900 2800
 $EndSCHEMATC
