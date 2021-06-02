@@ -123,15 +123,24 @@ void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data){
 	/* falta manejo de error */
 }
 
-uint16_t rffc5072_set_freq(rffc5072_st *mixer, uint16_t lo_freq){
+uint16_t rffc5072_set_freq(rffc5072_st *mixer, uint32_t lo_freq_hz){
 	uint8_t n_lo;
 	uint8_t lo_div;
 	uint8_t intlog2 = 0;
-	uint32_t fvco;	/* MMM.DDDDD */
 	uint8_t fbkdiv;
-	uint16_t n_div;
+	uint16_t n;	/* int(n_div) */
+	uint32_t n_div_decimal;	/* n_div - n */
+	uint16_t nummsb;
+	uint16_t numlsb;
 	
-	uint16_t f_tmp = FVCO_MAX / lo_freq;
+	/* Define new format for frequency: MMM.HHHHH (12 bits + 20 bits) */
+	uint16_t lo_freq_mhz = lo_freq_hz / ONE_MHZ;			/* Convert from Hz to MHz */
+	/*uint32_t freq_aux = lo_freq_mhz << 20; 					/* Store MHz part in the 12 MSBs */
+	/*lo_freq_mhz *= ONE_MHZ;									/* Keep MHz and discard decimal part */
+	uint32_t lo_freq_decimal = lo_freq_hz - (lo_freq_mhz * ONE_MHZ);	/* Keep decimal part in Hz */
+	/*freq_aux |= lo_freq_decimal;							/* Full frequency in custom format */
+	
+	uint16_t f_tmp = (FVCO_MAX * ONE_MHZ) / lo_freq_hz;
 	/* Compute log2 of f_tmp and round down */
 	while(f_tmp > 1){
 		f_tmp >>= 1;
@@ -139,14 +148,30 @@ uint16_t rffc5072_set_freq(rffc5072_st *mixer, uint16_t lo_freq){
 	}
 	n_lo = intlog2;
 	lo_div = (1 << n_lo);	/* 2^n_lo */
-	fvco = lo_div * lo_freq;
 	
-	if(fvco < 3200){
+	uint32_t fvco_dec = lo_div * lo_freq_decimal;
+	uint32_t fvco_int = lo_div * lo_freq_mhz;
+	while(fvco_dec > ONE_MHZ){
+		fvco_dec -= ONE_MHZ;
+		fvco_int++;
+	}
+	
+	if((lo_div * lo_freq_hz) < 3200000000){
 		fbkdiv = 2;
 	}else{
 		fbkdiv = 4;
 	}
 	
-	n_div = fvco / (fbkdiv * F_REF);
+	fvco_int *= ONE_MHZ;
+	fvco_int /= (fbkdiv * F_REF);
+	n = fvco_int / ONE_MHZ;
+	fvco_dec /= (fbkdiv * F_REF);
+	n_div_decimal = ((fvco_int - (n * ONE_MHZ)) + fvco_dec);
+	while(n_div_decimal > ONE_MHZ){
+		n_div_decimal -= ONE_MHZ;
+		n++;
+	}
+	nummsb = (n_div_decimal << 16) / ONE_MHZ;
+	numlsb = (((n_div_decimal << 16) - (nummsb * ONE_MHZ)) / ONE_MHZ) << 8;
 }
 

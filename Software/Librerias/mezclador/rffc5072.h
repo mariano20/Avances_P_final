@@ -47,6 +47,7 @@
 /* Frequency synthesis constants */
 #define FVCO_MAX 5400
 #define F_REF 52
+#define ONE_MHZ 1000000
 
 
 typedef struct{
