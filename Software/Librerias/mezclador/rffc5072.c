@@ -80,8 +80,8 @@ void rffc5072_init(rffc5072_st *mixer,
 	int i = 0;
 	for(i=0;i<RFFC5072_NUM_REGS;i++){
 		rffc5072_write_reg(mixer, rffc5072_regs_address[i], rffc5072_regs_default[i]);
+		mixer->regs_values[i] = rffc5072_regs_default[i];
 	}
-	/* Set PLL2 values for LO=2506.3 MHz (2400 + 106.3 [fm mariano rpi]) */
 	/* p2n: 1, p2lodiv: 2^0=1, p2presc: divide by 4, p2vcosel: 0 (vco1) */
 	rffc5072_write_reg(mixer, P2_FREQ1, 0x0088);	/* 0000000010001000 */
 	/* half-duplex, minimun mixer current */
@@ -92,9 +92,6 @@ void rffc5072_init(rffc5072_st *mixer,
 	rffc5072_write_reg(mixer, VCO_AUTO, 0xff00);	/* 1111111100000000 */
 }
 
-/*
-	hspi1.Init.DataSize = SPI_DATASIZE_16BIT
-*/
 void rffc5072_read_reg(rffc5072_st *mixer, uint8_t addr, uint16_t *data){
 	/*
 	First send 9 bits, then receive 16 bits.
@@ -120,6 +117,13 @@ void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data){
 	uint8_t txDataBuf[4] = {((addr & 0x7f) >> 2), ((addr << 7) | data_split[0]), 
 							data_split[1], data_split[2]};
 	uint8_t status = spi_rffc5072_write(mixer, txDataBuf);
+	if(status == 1){
+		for(i=0;i<RFFC5072_NUM_REGS;i++){
+			if(rffc5072_regs_address[i] == addr){
+				mixer->regs_values[i] = data;
+			}
+		}		
+	}
 	/* falta manejo de error */
 }
 
@@ -129,9 +133,10 @@ uint16_t rffc5072_set_freq(rffc5072_st *mixer, uint32_t lo_freq_hz){
 	uint8_t intlog2 = 0;
 	uint8_t fbkdiv;
 	uint16_t n;	/* int(n_div) */
-	uint32_t n_div_decimal;	/* n_div - n */
-	uint16_t nummsb;
-	uint16_t numlsb;
+	uint64_t n_div_decimal;	/* n_div - n */
+	uint64_t nummsb;
+	uint32_t numlsb;
+	
 	
 	/* Define new format for frequency: MMM.HHHHH (12 bits + 20 bits) */
 	uint16_t lo_freq_mhz = lo_freq_hz / ONE_MHZ;			/* Convert from Hz to MHz */
@@ -140,7 +145,7 @@ uint16_t rffc5072_set_freq(rffc5072_st *mixer, uint32_t lo_freq_hz){
 	uint32_t lo_freq_decimal = lo_freq_hz - (lo_freq_mhz * ONE_MHZ);	/* Keep decimal part in Hz */
 	/*freq_aux |= lo_freq_decimal;							/* Full frequency in custom format */
 	
-	uint16_t f_tmp = (FVCO_MAX * ONE_MHZ) / lo_freq_hz;
+	uint16_t f_tmp = FVCO_MAX / lo_freq_mhz;
 	/* Compute log2 of f_tmp and round down */
 	while(f_tmp > 1){
 		f_tmp >>= 1;
@@ -172,6 +177,12 @@ uint16_t rffc5072_set_freq(rffc5072_st *mixer, uint32_t lo_freq_hz){
 		n++;
 	}
 	nummsb = (n_div_decimal << 16) / ONE_MHZ;
-	numlsb = (((n_div_decimal << 16) - (nummsb * ONE_MHZ)) / ONE_MHZ) << 8;
+	numlsb = (((n_div_decimal << 16) - (nummsb * ONE_MHZ)) << 8) / ONE_MHZ;
+	
+	/* Load calculated values to registers */
+	uint16_t p2_freq1_reg = ((n << 7) | (lo_div << 4) | (fbkdiv << 2)) & 0xffff;
+	rffc5072_write_reg(mixer, P2_FREQ1, (mixer->regs_values[15] | p2_freq1_reg));
+	rffc5072_write_reg(mixer, P2_FREQ2, ((uint16_t)nummsb & 0xffff));
+	rffc5072_write_reg(mixer, P2_FREQ3, ((uint8_t)numlsb & 0xff));
 }
 

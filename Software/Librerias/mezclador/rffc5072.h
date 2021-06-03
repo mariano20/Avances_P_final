@@ -55,6 +55,8 @@ typedef struct{
 	SPI_HandleTypeDef *spiHandle;
 	GPIO_TypeDef *CS_bank;
 	uint16_t CS_pin;
+	/* Registers */
+	uint16_t regs_values[RFFC5072_NUM_REGS];
 }rffc5072_st;
 
 void rffc5072_init(rffc5072_st *mixer,				/* Initial configuration. */
