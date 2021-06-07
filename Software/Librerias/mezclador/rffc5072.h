@@ -57,6 +57,8 @@ typedef struct{
 	uint16_t CS_pin;
 	/* Registers */
 	uint16_t regs_values[RFFC5072_NUM_REGS];
+	uint32_t fvco_dec;
+	uint32_t fvco_int;
 }rffc5072_st;
 
 void rffc5072_init(rffc5072_st *mixer,				/* Initial configuration. */
@@ -69,7 +71,10 @@ void rffc5072_read_reg(rffc5072_st *mixer,			/* Retrieve register value. */
 void rffc5072_write_reg(rffc5072_st *mixer,			/* Write value into register. */
 							uint8_t addr,
 							uint16_t data);
-uint16_t rffc5072_set_freq(rffc5072_st *mixer,		/* Set desired frequency. */
+void rffc5072_set_freq(rffc5072_st *mixer,			/* Set desired frequency. */
 							uint16_t lo_freq);
+void rffc5072_lower_phase_noise(rffc5072_st *mixer);/* Maintain VCO frequency */
+void rffc5072_enable(rffc5072_st *mixer);			/* Enable the device */
+void rffc5072_disable(rffc5072_st *mixer);			/* Disable the device */
 
 #endif
