@@ -80,7 +80,6 @@ void rffc5072_init(rffc5072_st *mixer,
 	int i = 0;
 	for(i=0;i<RFFC5072_NUM_REGS;i++){
 		rffc5072_write_reg(mixer, rffc5072_regs_address[i], rffc5072_regs_default[i]);
-		mixer->regs_values[i] = rffc5072_regs_default[i];
 	}
 	/* p2n: 1, p2lodiv: 2^0=1, p2presc: divide by 4, p2vcosel: 0 (vco1) */
 	rffc5072_write_reg(mixer, P2_FREQ1, 0x0088);	/* 0000000010001000 */
@@ -104,6 +103,11 @@ void rffc5072_read_reg(rffc5072_st *mixer, uint8_t addr, uint16_t *data){
 	uint8_t txDataBuf[2] = {(((addr & 0x7f) | 0x80) >> 1), (addr << 7)};
 	if(spi_rffc5072_read(mixer, txDataBuf, rxDataBuf) == 1){
 		*data = (rxDataBuf[0] << 8) | rxDataBuf[1];
+		for(i=0;i<RFFC5072_NUM_REGS;i++){
+			if(rffc5072_regs_address[i] == addr){
+				mixer->regs_values[i] = data;
+			}
+		}
 	}
 	/* falta manejo de error */
 }
@@ -118,8 +122,7 @@ void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data){
 	uint8_t data_split[3] = {(uint8_t)(data >> 9), (uint8_t)(data >> 1), (uint8_t)(data << 7)};
 	uint8_t txDataBuf[4] = {((addr & 0x7f) >> 2), ((addr << 7) | data_split[0]), 
 							data_split[1], data_split[2]};
-	uint8_t status = spi_rffc5072_write(mixer, txDataBuf);
-	if(status == 1){
+	if(spi_rffc5072_write(mixer, txDataBuf) == 1){
 		for(i=0;i<RFFC5072_NUM_REGS;i++){
 			if(rffc5072_regs_address[i] == addr){
 				mixer->regs_values[i] = data;
