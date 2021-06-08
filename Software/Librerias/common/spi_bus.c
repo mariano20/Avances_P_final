@@ -37,11 +37,18 @@ uint8_t spi_rffc5072_write(rffc5072_st *mixer, uint8_t *txBuf){
 	return status;
 }
 
-void spi_max2837_read(max2837_st *transceiver){
-	
+uint8_t spi_max2837_read(max2837_st *transceiver, uint8_t *txBuf, uint8_t *rxBuf){
+	uint8_t status = 1;
+	spi_enable(transceiver->CS_bank, transceiver->CS_pin);
+	if((HAL_SPI_TransmitReceive_IT(transceiver->spiHandle, txBuf, rxBuf, sizeof(txBuf))) == HAL_OK){}
+	else{
+		status = 0;
+	}
+	spi_disable(transceiver->CS_bank, transceiver->CS_pin);
+	return status;
 }
 
-void spi_max2837_write(max2837_st *transceiver, uint8_t *txBuf){
+uint8_t spi_max2837_write(max2837_st *transceiver, uint8_t *txBuf){
 	uint8_t status = 1;
 	spi_enable(transceiver->CS_bank, transceiver->CS_pin);
 	if((HAL_SPI_Transmit_IT(transceiver->spiHandle, txBuf, sizeof(txBuf))) == HAL_OK){}

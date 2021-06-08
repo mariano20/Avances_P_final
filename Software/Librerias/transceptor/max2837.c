@@ -34,3 +34,112 @@ static const uint16_t max2837_regs_default[MAX2837_NUM_REGS] = {
 	0x3f0,	/* 29 */
 	0x080,	/* 30 */
 	0x000	/* 31 */};
+static const uint8_t max2837_regs_address[MAX2837_NUM_REGS] = {
+	0x00,
+	0x01,
+	0x02,
+	0x03,
+	0x04,
+	0x05,
+	0x06,
+	0x07,
+	0x08,
+	0x09,
+	0x0A,
+	0x0B,
+	0x0C,
+	0x0D,
+	0x0E,
+	0x0F,
+	0x10,
+	0x11,
+	0x12,
+	0x13,
+	0x14,
+	0x15,
+	0x16,
+	0x17,
+	0x18,
+	0x19,
+	0x1A,
+	0x1B,
+	0x1C,
+	0x1D,
+	0x1E,
+	0x1F};	
+void max2837_init(max2837_st *transceiver,
+					SPI_HandleTypeDef *spiHandle,
+					GPIO_TypeDef *CS_bank,
+					uint16_t CS_pin){
+						
+	/* Store SPI params. */
+	transceiver->spiHandle = spiHandle;
+	transceiver->CS_bank = CS_bank;
+	transceiver->CS_pin = CS_pin;
+	/* Load default registers' values. */
+	int i = 0;
+	for(i=0;i<MAX2837_NUM_REGS;i++){
+		max2837_write_reg(transceiver, max2837_regs_address[i], max2837_regs_default[i]);
+	}
+	
+}
+
+void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data){
+	/* 
+	First bit is the R/W bit set high/low,
+	then the 5 address bits and finally
+	the 10 data bits.
+	*/
+	uint8_t txDataBuf[2];
+	txDataBuf[0] = ((addr | PRIMER BIT) << 2) | (data >> 8);
+	txDataBuf[1] = (uint8_t)data;
+	if(spi_max2837_write(transceiver, txDataBuf) == 1){
+		for(i=0;i<MAX2837_NUM_REGS;i++){
+			if(max2837_regs_address[i] == addr){
+				transceiver->regs_values[i] = data;
+			}
+		}
+	}
+}
+					
+void max2837_read_reg(max2837_st *transceiver, uint8_t addr, uint16_t *data){
+	/*
+	Send R/W bit and address, then
+	receive the 10 data bits stored
+	in the specified register.
+	*/
+	uint8_t txDataBuf[3] = {(addr | PRIMER BIT) << 2, 0x00, 0x00};
+	uint8_t rxDataBuf[3];
+	if(spi_max2837_read(transceiver, txDataBuf, rxDataBuf) == 1){
+		*data = (rxDataBuf[1] << 2) | rxDataBuf[2];
+		for(i=0;i<MAX2837_NUM_REGS;i++){
+			if(max2837_regs_address[i] == addr){
+				transceiver->regs_values[i] = data;
+			}
+		}
+	}
+}
+
+uint8_t max2837_get_temp(max2837_st *transceiver){
+	uint8_t temperature;
+	/* Enable temperature sensor */
+	max2837_write_reg(transceiver, RX_TOP_SPI_3, (transceiver->regs_values[9] | 0x0002));
+	/* Trigger temperature sensor ADC */
+	max2837_write_reg(transceiver, RX_TOP_SPI_3, (transceiver->regs_values[9] | 0x0001));
+	/* Wait for conversion */
+	HAL_Delay(1);
+	/* Read 5 bit value */
+	max2837_read_reg(transceiver, TEMP_SENSOR, (uint16_t) *temperature);
+	/* Convert to celsius */
+	if(temperature > 8){
+		temperature -= 9;
+		temperature *= 4;
+	}
+	/* Turn off ADC and temperature sensor */
+	max2837_write_reg(transceiver, RX_TOP_SPI_3, (transceiver->regs_values[9] & 0x03fe));
+	max2837_write_reg(transceiver, RX_TOP_SPI_3, (transceiver->regs_values[9] & 0x03fd));
+	
+	return temperature;
+}
+
+
