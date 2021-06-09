@@ -55,6 +55,14 @@
 /* TX DC Correction Configuration */
 #define TX_DC_OFFSET 		0x1F
 
+#define FREF 40
+
+typedef enum{
+	MAX2837_MODE_SHUTDOWN,
+	MAX2837_MODE_STANDBY,
+	MAX2837_MODE_RX
+}max2837_mode;
+
 typedef struct{
 	/* SPI */
 	SPI_HandleTypeDef *spiHandle;
@@ -63,24 +71,29 @@ typedef struct{
 	/* GPIO */
 	GPIO_TypeDef *EN_bank;
 	uint16_t EN_pin;
-	GPIO_TypeDef *CS_bank;
-	uint16_t CS_pin;
+	uint16_t RxEN_pin;
 	/* Registers */
 	uint16_t regs_values[MAX2837_NUM_REGS];
+	max2837_mode current_mode;
 }max2837_st;
 
 void max2837_init(max2837_st *transceiver,				/* Initial configuration. */
 					SPI_HandleTypeDef *spiHandle,
 					GPIO_TypeDef *CS_bank,
-					uint16_t CS_pin);
+					uint16_t CS_pin,
+					GPIO_TypeDef *EN_bank,
+					uint16_t EN_pin,
+					uint16_t RxEN_pin);
 void max2837_read_reg(max2837_st *transceiver,			/* Retrieve register value. */
-							uint8_t addr,
-							uint16_t *data);
+						uint8_t addr,
+						uint16_t *data);
 void max2837_write_reg(max2837_st *transceiver,			/* Write value into register. */
-							uint8_t addr,
-							uint16_t data);
+						uint8_t addr,
+						uint16_t data);
 uint8_t max2837_get_temp(max2837_st *transceiver);		/* Read internal temperature. */
-void max2837_enable(max2837_st *transceiver);			/* Enable the device. */
-void max2837_disable(max2837_st *transceiver);			/* Disable the device. */
+void max2837_set_mode(max2837_st *transceiver,			/* Switch operating mode. */
+						max2837_mode mode);
+void max2837_set_freq(max2837_st *transceiver,			/* Set LO frequency in MHz. */
+						uint16_t lo_freq);
 
 #endif

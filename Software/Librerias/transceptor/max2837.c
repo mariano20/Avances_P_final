@@ -70,18 +70,25 @@ static const uint8_t max2837_regs_address[MAX2837_NUM_REGS] = {
 void max2837_init(max2837_st *transceiver,
 					SPI_HandleTypeDef *spiHandle,
 					GPIO_TypeDef *CS_bank,
-					uint16_t CS_pin){
+					uint16_t CS_pin,
+					GPIO_TypeDef *EN_bank,
+					uint16_t EN_pin,
+					uint16_t RxEN_pin){
 						
 	/* Store SPI params. */
 	transceiver->spiHandle = spiHandle;
 	transceiver->CS_bank = CS_bank;
 	transceiver->CS_pin = CS_pin;
+	/* Store GPIO definitions. */
+	transceiver->EN_bank = EN_bank;
+	transceiver->EN_pin = EN_pin;
+	transceiver->RxEN_pin = RxEN_pin;
 	/* Load default registers' values. */
 	int i = 0;
 	for(i=0;i<MAX2837_NUM_REGS;i++){
 		max2837_write_reg(transceiver, max2837_regs_address[i], max2837_regs_default[i]);
 	}
-	
+	max2837_set_mode(transceiver, MAX2837_MODE_SHUTDOWN);
 }
 
 void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data){
@@ -142,10 +149,31 @@ uint8_t max2837_get_temp(max2837_st *transceiver){
 	return temperature;
 }
 
-void max2837_enable(max2837_st *transceiver){
-	
+void max2837_set_mode(max2837_st *transceiver, max2837_mode mode){
+	transceiver->current_mode = mode;
+	switch(mode){
+		case MAX2837_MODE_SHUTDOWN:
+			HAL_GPIO_WritePin(transceiver->EN_bank, transceiver->EN_pin, GPIO_PIN_RESET);
+			HAL_GPIO_WritePin(transceiver->EN_bank, transceiver->RxEN_pin, GPIO_PIN_RESET);
+			break;
+		case MAX2837_MODE_STANDBY:
+			HAL_GPIO_WritePin(transceiver->EN_bank, transceiver->EN_pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(transceiver->EN_bank, transceiver->RxEN_pin, GPIO_PIN_RESET);
+			break;
+		case MAX2837_MODE_RX:
+			HAL_GPIO_WritePin(transceiver->EN_bank, transceiver->EN_pin, GPIO_PIN_SET);
+			HAL_GPIO_WritePin(transceiver->EN_bank, transceiver->RxEN_pin, GPIO_PIN_SET);
+			break;
+	}
 }
 
-void max2837_disable(max2837_st *transceiver){
+void max2837_set_freq(max2837_st *transceiver, uint16_t lo_freq){
+	uint16_t div_int;
+	uint32_t div_frac;
 	
+	/* Set R divider to 2 */
+	max2837_write_reg(transceiver, SYNTH_CFG_1, (transceiver->regs_values[20] | 0x0002));
+	div_int = lo_freq / 15;
+	div_frac = (lo_freq * 1000000) / 15;
+	div_frac -= (div_int * 1000000);
 }
