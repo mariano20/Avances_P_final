@@ -60,6 +60,11 @@ typedef struct{
 	SPI_HandleTypeDef *spiHandle;
 	GPIO_TypeDef *CS_bank;
 	uint16_t CS_pin;
+	/* GPIO */
+	GPIO_TypeDef *EN_bank;
+	uint16_t EN_pin;
+	GPIO_TypeDef *CS_bank;
+	uint16_t CS_pin;
 	/* Registers */
 	uint16_t regs_values[MAX2837_NUM_REGS];
 }max2837_st;
@@ -75,5 +80,7 @@ void max2837_write_reg(max2837_st *transceiver,			/* Write value into register. 
 							uint8_t addr,
 							uint16_t data);
 uint8_t max2837_get_temp(max2837_st *transceiver);		/* Read internal temperature. */
+void max2837_enable(max2837_st *transceiver);			/* Enable the device. */
+void max2837_disable(max2837_st *transceiver);			/* Disable the device. */
 
 #endif

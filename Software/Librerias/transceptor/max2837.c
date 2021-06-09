@@ -142,4 +142,10 @@ uint8_t max2837_get_temp(max2837_st *transceiver){
 	return temperature;
 }
 
+void max2837_enable(max2837_st *transceiver){
+	
+}
 
+void max2837_disable(max2837_st *transceiver){
+	
+}

@@ -73,8 +73,8 @@ void rffc5072_write_reg(rffc5072_st *mixer,			/* Write value into register. */
 							uint16_t data);
 void rffc5072_set_freq(rffc5072_st *mixer,			/* Set desired frequency. */
 							uint16_t lo_freq);
-void rffc5072_lower_phase_noise(rffc5072_st *mixer);/* Maintain VCO frequency */
-void rffc5072_enable(rffc5072_st *mixer);			/* Enable the device */
-void rffc5072_disable(rffc5072_st *mixer);			/* Disable the device */
+void rffc5072_lower_phase_noise(rffc5072_st *mixer);/* Maintain VCO frequency but lower noise. */
+void rffc5072_enable(rffc5072_st *mixer);			/* Enable the device. */
+void rffc5072_disable(rffc5072_st *mixer);			/* Disable the device. */
 
 #endif
