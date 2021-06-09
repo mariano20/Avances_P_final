@@ -10,4 +10,5 @@
   (lib (name MCU-rescue)(type Legacy)(uri ${KIPRJMOD}/MCU-rescue.lib)(options "")(descr ""))
   (lib (name CON-SMA-EDGE-S)(type Legacy)(uri ${KIPRJMOD}/Librerias/CON-SMA-EDGE-S.lib)(options "")(descr ""))
   (lib (name Proyecto_Final-rescue)(type Legacy)(uri ${KIPRJMOD}/Proyecto_Final-rescue.lib)(options "")(descr ""))
+  (lib (name UJ2-MIBH-G-SMT-TR)(type Legacy)(uri ${KIPRJMOD}/Librerias/UJ2-MIBH-G-SMT-TR.lib)(options "")(descr ""))
 )
