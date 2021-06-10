@@ -33,9 +33,9 @@
 #define HPFSM_4 			0x0F
 #define SPI_ENABLE_CTRL 	0x10
 /* Synthesizer Fractional Divide Ratio #1 */
-#define SYNTH_FRAC_DIV_1 	0x11
+#define SYNTH_FRAC_DIV_MSB 	0x11
 /* Synthesizer Fractional Divide Ratio #2 */
-#define SYNTH_FRAC_DIV_2 	0x12
+#define SYNTH_FRAC_DIV_LSB 	0x12
 /* Synthesizer Integer Divide Ratio */
 #define SYNTH_INT_DIV 		0x13
 #define SYNTH_CFG_1 		0x14
@@ -56,6 +56,7 @@
 #define TX_DC_OFFSET 		0x1F
 
 #define FREF 40
+#define ONE_MHZ 1000000
 
 typedef enum{
 	MAX2837_MODE_SHUTDOWN,
@@ -93,7 +94,11 @@ void max2837_write_reg(max2837_st *transceiver,			/* Write value into register. 
 uint8_t max2837_get_temp(max2837_st *transceiver);		/* Read internal temperature. */
 void max2837_set_mode(max2837_st *transceiver,			/* Switch operating mode. */
 						max2837_mode mode);
-void max2837_set_freq(max2837_st *transceiver,			/* Set LO frequency in MHz. */
-						uint16_t lo_freq);
+void max2837_set_freq(max2837_st *transceiver,			/* Set LO frequency in Hz. */
+						uint32_t lo_freq);
+void max2837_set_lna_gain(max2837_st *transceiver,		/* Set LNA gain. */
+						uint8_t gain_db);
+void max2837_set_lpf_bw(max2837_st *transceiver,		/* Configure LPF RF Bandwidth. */
+						uint8_t bw);
 
 #endif

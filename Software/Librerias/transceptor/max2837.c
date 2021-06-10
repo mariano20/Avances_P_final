@@ -84,21 +84,27 @@ void max2837_init(max2837_st *transceiver,
 	transceiver->EN_pin = EN_pin;
 	transceiver->RxEN_pin = RxEN_pin;
 	/* Load default registers' values. */
-	int i = 0;
+	uint8_t i = 0;
 	for(i=0;i<MAX2837_NUM_REGS;i++){
 		max2837_write_reg(transceiver, max2837_regs_address[i], max2837_regs_default[i]);
 	}
+	/* Enable RX quadrature generation, mixer and LNA */
+	max2837_write_reg(transceiver, RXRF_1, (transceiver->regs_values[0] | 0x0007));
+	/* Enable SPI control of LNA and VGA */
+	max2837_write_reg(transceiver, RX_TOP_SPI_2, (transceiver->regs_values[8] | 0x0003));
+	/* Enable lowpass filter */
+	max2837_write_reg(transceiver, LPF_1, (transceiver->regs_values[2] | 0x0001));
 	max2837_set_mode(transceiver, MAX2837_MODE_SHUTDOWN);
 }
 
 void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data){
 	/* 
-	First bit is the R/W bit set high/low,
+	First bit is the R/W bit set high,
 	then the 5 address bits and finally
 	the 10 data bits.
 	*/
 	uint8_t txDataBuf[2];
-	txDataBuf[0] = ((addr | PRIMER BIT) << 2) | (data >> 8);
+	txDataBuf[0] = (((addr & 0x1f) << 2) | 0x80) | (data >> 8);
 	txDataBuf[1] = (uint8_t)data;
 	if(spi_max2837_write(transceiver, txDataBuf) == 1){
 		for(i=0;i<MAX2837_NUM_REGS;i++){
@@ -111,11 +117,11 @@ void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data){
 					
 void max2837_read_reg(max2837_st *transceiver, uint8_t addr, uint16_t *data){
 	/*
-	Send R/W bit and address, then
+	Send R/W bit set low and address, then
 	receive the 10 data bits stored
 	in the specified register.
 	*/
-	uint8_t txDataBuf[3] = {(addr | PRIMER BIT) << 2, 0x00, 0x00};
+	uint8_t txDataBuf[3] = {((addr & 0x1f) << 2), 0x00, 0x00};
 	uint8_t rxDataBuf[3];
 	if(spi_max2837_read(transceiver, txDataBuf, rxDataBuf) == 1){
 		*data = (rxDataBuf[1] << 2) | rxDataBuf[2];
@@ -167,13 +173,142 @@ void max2837_set_mode(max2837_st *transceiver, max2837_mode mode){
 	}
 }
 
-void max2837_set_freq(max2837_st *transceiver, uint16_t lo_freq){
+void max2837_set_freq(max2837_st *transceiver, uint32_t lo_freq_hz){
 	uint16_t div_int;
 	uint32_t div_frac;
+	uint32_t div_rem;
+	uint32_t div_cmp;
+	uint8_t i = 0;
 	
 	/* Set R divider to 2 */
 	max2837_write_reg(transceiver, SYNTH_CFG_1, (transceiver->regs_values[20] | 0x0002));
-	div_int = lo_freq / 15;
+	/*div_int = lo_freq / 15;
 	div_frac = (lo_freq * 1000000) / 15;
-	div_frac -= (div_int * 1000000);
+	div_frac -= (div_int * 1000000);*/
+	div_int = (uint16_t) freq / 15000000;
+	div_rem = freq % 15000000;
+	div_frac = 0;
+	div_cmp = 15000000;
+	for( i = 0; i < 20; i++) {
+		div_frac <<= 1;
+		div_cmp >>= 1;
+		if (div_rem > div_cmp) {
+			div_frac |= 0x1;
+			div_rem -= div_cmp;
+		}
+	}
+	
+	/* Store N integer divider ratio */
+	max2837_write_reg(transceiver, SYNTH_INT_DIV, (transceiver->regs_values[19] | div_int));
+	/* Store MSB of fractional divider ratio */
+	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_MSB, (div_frac >> 10) & 0x3ff);
+	/* Store LSB of fractional divider ratio */
+	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_LSB, div_frac & 0x3ff);
+	
 }
+
+void max2837_set_lna_gain(max2837_st *transceiver, uint8_t gain_db){
+	switch(gain_db){
+		case 40:
+			gain_db = 0x00;
+			break;
+		case 32:
+			gain_db = 0x04;
+			break;
+		case 24:
+			gain_db = 0x02;
+			break;
+		case 16:
+			gain_db = 0x06;
+			break;
+		case 8:
+			gain_db = 0x03;
+			break;
+		case 0:
+			gain_db = 0x07;
+			break;
+		default:
+			gain_db = 0x07;
+			break;
+	}
+	max2837_write_reg(transceiver, RXRF_2, (transceiver->regs_values[1] | ((gain_db << 2) & 0xffff)));
+}
+
+typedef enum{
+	BW1_75MHZ,	/* 1.75 MHz */
+	BW2_5MHZ,	/* 2.5 MHz */
+	BW3_5MHZ,	/* 3.5 MHz */
+	BW5_MHZ,	/* 5 MHz */
+	BW5_5MHZ,	/* 5.5 MHz */
+	BW6_MHZ,	/* 6 MHz */
+	BW7_MHZ,	/* 7 MHz */
+	BW8_MHZ,	/* 8 MHz */
+	BW9_MHZ,	/* 9 MHz */
+	BW10_MHZ,	/* 10 MHz */
+	BW12_MHZ,	/* 12 MHz */
+	BW14_MHZ,	/* 14 MHz */
+	BW15_MHZ,	/* 15 MHz */
+	BW20_MHZ,	/* 20 MHz */
+	BW24_MHZ,	/* 24 MHz */
+	BW28_MHZ	/* 28 MHz */
+}bw_filtro;
+
+void max2837_set_lpf_bw(max2837_st *transceiver, bw_filtro bw){
+	uint8_t bw2;
+	switch(bw){
+		case BW1_75MHZ:
+			bw2 = 0x00;
+			break;
+		case BW2_5MHZ:
+			bw2 = 0x01;
+			break;
+		case BW3_5MHZ:
+			bw2 = 0x02;
+			break;
+		case BW5_MHZ:
+			bw2 = 0x03;
+			break;
+		case BW5_5MHZ:
+			bw2 = 0x04;
+			break;
+		case BW6_MHZ:
+			bw2 = 0x05;
+			break;
+		case BW7_MHZ:
+			bw2 = 0x06;
+			break;
+		case BW8_MHZ:
+			bw2 = 0x07;
+			break;
+		case BW9_MHZ:
+			bw2 = 0x08;
+			break;
+		case BW10_MHZ:
+			bw2 = 0x09;
+			break;
+		case BW12_MHZ:
+			bw2 = 0x0A;
+			break;
+		case BW14_MHZ:
+			bw2 = 0x0B;
+			break;
+		case BW15_MHZ:
+			bw2 = 0x0C;
+			break;
+		case BW20_MHZ:
+			bw2 = 0x0D;
+			break;
+		case BW24_MHZ:
+			bw2 = 0x0E;
+			break;
+		case BW28_MHZ:
+			bw2 = 0x0F;
+			break;
+		default:
+			bw2 = 0x0F;
+			break;
+	}
+	max2837_write_reg(transceiver, LPF_1, (transceiver->regs_values[2] | ((bw2 << 4) & 0xffff)));
+}
+
+

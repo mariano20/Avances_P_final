@@ -1,4 +1,3 @@
-#include <stdint.h>
 #include "rffc5072.h"
 #include <common/spi_bus.h>
 
@@ -77,7 +76,7 @@ void rffc5072_init(rffc5072_st *mixer,
 	mixer->CS_bank = CS_bank;
 	mixer->CS_pin = CS_pin;
 	/* Load default registers' values. */
-	int i = 0;
+	uint8_t i = 0;
 	for(i=0;i<RFFC5072_NUM_REGS;i++){
 		rffc5072_write_reg(mixer, rffc5072_regs_address[i], rffc5072_regs_default[i]);
 	}
