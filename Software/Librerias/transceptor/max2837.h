@@ -90,7 +90,9 @@ void max2837_read_reg(max2837_st *transceiver,			/* Retrieve register value. */
 						uint16_t *data);
 void max2837_write_reg(max2837_st *transceiver,			/* Write value into register. */
 						uint8_t addr,
-						uint16_t data);
+						uint16_t data,
+						uint8_t mask,
+						uint8_t offset);
 uint8_t max2837_get_temp(max2837_st *transceiver);		/* Read internal temperature. */
 void max2837_set_mode(max2837_st *transceiver,			/* Switch operating mode. */
 						max2837_mode mode);
@@ -100,5 +102,7 @@ void max2837_set_lna_gain(max2837_st *transceiver,		/* Set LNA gain. */
 						uint8_t gain_db);
 void max2837_set_lpf_bw(max2837_st *transceiver,		/* Configure LPF RF Bandwidth. */
 						uint8_t bw);
+uint8_t max2837_set_vga_gain(max2837_st *transceiver,		/* Set VGA gain. */
+						uint8_t gain_db);
 
 #endif

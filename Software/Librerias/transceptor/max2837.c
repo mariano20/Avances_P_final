@@ -89,29 +89,45 @@ void max2837_init(max2837_st *transceiver,
 		max2837_write_reg(transceiver, max2837_regs_address[i], max2837_regs_default[i]);
 	}
 	/* Enable RX quadrature generation, mixer and LNA */
-	max2837_write_reg(transceiver, RXRF_1, (transceiver->regs_values[0] | 0x0007));
+	max2837_write_reg(transceiver, RXRF_1, 0b111, 3, 0);
 	/* Enable SPI control of LNA and VGA */
-	max2837_write_reg(transceiver, RX_TOP_SPI_2, (transceiver->regs_values[8] | 0x0003));
+	max2837_write_reg(transceiver, RX_TOP_SPI_2, 0b11, 2, 0);
 	/* Enable lowpass filter */
-	max2837_write_reg(transceiver, LPF_1, (transceiver->regs_values[2] | 0x0001));
+	max2837_write_reg(transceiver, LPF_1, 1, 1, 0);
+	/* Enable RX VGA and output MUX */
+	max2837_write_reg(transceiver, VGA_1, 0b11, 2, 4);
+	/* Enable RSSI */
+	max2837_write_reg(transceiver, RX_TOP_SPI_1, 0b101, 3, 6);
+	/* Set RXVGA HPFSM to operating mode #1 */
+	max2837_write_reg(transceiver, HPFSM_3, 0, 1, 8);
+	/* Set R divider to 2 */
+	max2837_write_reg(transceiver, SYNTH_CFG_1, 1, 2, 1);
+	/* Disable CLKOUT pin (not used) */
+	max2837_write_reg(transceiver, XTAL_CFG, 0, 1, 7);
 	max2837_set_mode(transceiver, MAX2837_MODE_SHUTDOWN);
 }
 
-void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data){
+void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data, uint8_t mask, uint8_t offset){
 	/* 
 	First bit is the R/W bit set high,
 	then the 5 address bits and finally
 	the 10 data bits.
 	*/
 	uint8_t txDataBuf[2];
+	uint16_t bit_mask = 0x0000;
+	uint8_t i;
+	
+	for(i=16;i>0;i--){
+		bit_mask <<= 1;
+		if((i <= offset) || (i > (offset + mask)))
+			bit_mask |= 0x1;
+	}
+	data = (transceiver->regs_values[addr] & bit_mask) | data;
+	
 	txDataBuf[0] = (((addr & 0x1f) << 2) | 0x80) | (data >> 8);
 	txDataBuf[1] = (uint8_t)data;
 	if(spi_max2837_write(transceiver, txDataBuf) == 1){
-		for(i=0;i<MAX2837_NUM_REGS;i++){
-			if(max2837_regs_address[i] == addr){
-				transceiver->regs_values[i] = data;
-			}
-		}
+		transceiver->regs_values[addr] = data;
 	}
 }
 					
@@ -125,20 +141,16 @@ void max2837_read_reg(max2837_st *transceiver, uint8_t addr, uint16_t *data){
 	uint8_t rxDataBuf[3];
 	if(spi_max2837_read(transceiver, txDataBuf, rxDataBuf) == 1){
 		*data = (rxDataBuf[1] << 2) | rxDataBuf[2];
-		for(i=0;i<MAX2837_NUM_REGS;i++){
-			if(max2837_regs_address[i] == addr){
-				transceiver->regs_values[i] = data;
-			}
-		}
+		transceiver->regs_values[addr] = data;
 	}
 }
 
 uint8_t max2837_get_temp(max2837_st *transceiver){
 	uint8_t temperature;
 	/* Enable temperature sensor */
-	max2837_write_reg(transceiver, RX_TOP_SPI_3, (transceiver->regs_values[9] | 0x0002));
+	max2837_write_reg(transceiver, RX_TOP_SPI_3, 1, 1, 1);
 	/* Trigger temperature sensor ADC */
-	max2837_write_reg(transceiver, RX_TOP_SPI_3, (transceiver->regs_values[9] | 0x0001));
+	max2837_write_reg(transceiver, RX_TOP_SPI_3, 1, 1, 0);
 	/* Wait for conversion */
 	HAL_Delay(1);
 	/* Read 5 bit value */
@@ -149,8 +161,8 @@ uint8_t max2837_get_temp(max2837_st *transceiver){
 		temperature *= 4;
 	}
 	/* Turn off ADC and temperature sensor */
-	max2837_write_reg(transceiver, RX_TOP_SPI_3, (transceiver->regs_values[9] & 0x03fe));
-	max2837_write_reg(transceiver, RX_TOP_SPI_3, (transceiver->regs_values[9] & 0x03fd));
+	max2837_write_reg(transceiver, RX_TOP_SPI_3, 0, 1, 1);
+	max2837_write_reg(transceiver, RX_TOP_SPI_3, 0, 1, 0);
 	
 	return temperature;
 }
@@ -163,6 +175,7 @@ void max2837_set_mode(max2837_st *transceiver, max2837_mode mode){
 			HAL_GPIO_WritePin(transceiver->EN_bank, transceiver->RxEN_pin, GPIO_PIN_RESET);
 			break;
 		case MAX2837_MODE_STANDBY:
+			max2837_write_reg(transceiver, SPI_ENABLE_CTRL, 1, 1, 0);
 			HAL_GPIO_WritePin(transceiver->EN_bank, transceiver->EN_pin, GPIO_PIN_SET);
 			HAL_GPIO_WritePin(transceiver->EN_bank, transceiver->RxEN_pin, GPIO_PIN_RESET);
 			break;
@@ -180,8 +193,6 @@ void max2837_set_freq(max2837_st *transceiver, uint32_t lo_freq_hz){
 	uint32_t div_cmp;
 	uint8_t i = 0;
 	
-	/* Set R divider to 2 */
-	max2837_write_reg(transceiver, SYNTH_CFG_1, (transceiver->regs_values[20] | 0x0002));
 	/*div_int = lo_freq / 15;
 	div_frac = (lo_freq * 1000000) / 15;
 	div_frac -= (div_int * 1000000);*/
@@ -199,11 +210,11 @@ void max2837_set_freq(max2837_st *transceiver, uint32_t lo_freq_hz){
 	}
 	
 	/* Store N integer divider ratio */
-	max2837_write_reg(transceiver, SYNTH_INT_DIV, (transceiver->regs_values[19] | div_int));
+	max2837_write_reg(transceiver, SYNTH_INT_DIV, div_int, 8, 0);
 	/* Store MSB of fractional divider ratio */
-	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_MSB, (div_frac >> 10) & 0x3ff);
+	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_MSB, (div_frac >> 10) & 0x3ff, 0, 0);
 	/* Store LSB of fractional divider ratio */
-	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_LSB, div_frac & 0x3ff);
+	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_LSB, div_frac & 0x3ff, 0, 0);
 	
 }
 
@@ -231,7 +242,7 @@ void max2837_set_lna_gain(max2837_st *transceiver, uint8_t gain_db){
 			gain_db = 0x07;
 			break;
 	}
-	max2837_write_reg(transceiver, RXRF_2, (transceiver->regs_values[1] | ((gain_db << 2) & 0xffff)));
+	max2837_write_reg(transceiver, RXRF_2, (gain_db << 2), 3, 2);
 }
 
 typedef enum{
@@ -308,7 +319,16 @@ void max2837_set_lpf_bw(max2837_st *transceiver, bw_filtro bw){
 			bw2 = 0x0F;
 			break;
 	}
-	max2837_write_reg(transceiver, LPF_1, (transceiver->regs_values[2] | ((bw2 << 4) & 0xffff)));
+	max2837_write_reg(transceiver, LPF_1, (bw2 << 4), 4, 4);
+}
+
+uint8_t max2837_set_vga_gain(max2837_st *transceiver, uint8_t gain_db){
+	if((gain_db & 0x1) || gain_db > 62)/* 0b11111*2 */
+		return 0;
+		
+	max2837_write_reg(transceiver, VGA_2, (31 - (gain_db >> 1)), 5, 0);
+	return 1;
+	/* falta manejo de error en software */
 }
 
 
