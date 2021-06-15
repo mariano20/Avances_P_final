@@ -1,5 +1,3 @@
-#include <stdint.h>
-
 void spi_enable(GPIO_TypeDef *CS_bank, uint16_t CS_pin){
 	/* Use GPIO HAL to drive chip select pin low. */
 	HAL_GPIO_WritePin(*CS_bank, CS_pin, GPIO_PIN_RESET);

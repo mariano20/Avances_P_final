@@ -81,15 +81,15 @@ void rffc5072_init(rffc5072_st *mixer,
 		rffc5072_write_reg(mixer, rffc5072_regs_address[i], rffc5072_regs_default[i]);
 	}
 	/* p2n: 1, p2lodiv: 2^0=1, p2presc: divide by 4, p2vcosel: 0 (vco1) */
-	rffc5072_write_reg(mixer, P2_FREQ1, 0x0088);	/* 0000000010001000 */
+	rffc5072_write_reg(mixer, P2_FREQ1, 0x0088, 16, 0);	/* 0000000010001000 */
 	/* half-duplex, minimun mixer current */
-	rffc5072_write_reg(mixer, MIX_CONT, 0x0000);
+	rffc5072_write_reg(mixer, MIX_CONT, 0x0000, 16, 0);
 	/* Auto VCO */
-	rffc5072_write_reg(mixer, VCO_AUTO, 0xff00);	/* 1111111100000000 */
+	rffc5072_write_reg(mixer, VCO_AUTO, 0xff00, 16, 0);	/* 1111111100000000 */
 	/* Set LO to 2506.3 MHz for tuning to a local known FM station */
 	rffc5072_set_freq(mixer, 2506300000);
 	/* 4-wire SPI control, enable part */
-	rffc5072_write_reg(mixer, SDI_CTRL, 0xf000);	/* 1111000000000000 */
+	rffc5072_write_reg(mixer, SDI_CTRL, 0xf000, 16, 0);	/* 1111000000000000 */
 }
 
 void rffc5072_read_reg(rffc5072_st *mixer, uint8_t addr, uint16_t *data){
@@ -102,31 +102,31 @@ void rffc5072_read_reg(rffc5072_st *mixer, uint8_t addr, uint16_t *data){
 	uint8_t txDataBuf[2] = {(((addr & 0x7f) | 0x80) >> 1), (addr << 7)};
 	if(spi_rffc5072_read(mixer, txDataBuf, rxDataBuf) == 1){
 		*data = (rxDataBuf[0] << 8) | rxDataBuf[1];
-		for(i=0;i<RFFC5072_NUM_REGS;i++){
-			if(rffc5072_regs_address[i] == addr){
-				mixer->regs_values[i] = data;
-			}
-		}
+		mixer->regs_values[addr] = data;
 	}
 	/* falta manejo de error */
 }
 
-void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data){
+void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data, uint8_t mask, uint8_t offset){
 	/*
 	Send 25 bits.
 	1st bit undefined, 2nd is set low, 
 	then the 7 bits register address 
 	and finally the 16 data bits.
 	*/
-	uint8_t data_split[3] = {(uint8_t)(data >> 9), (uint8_t)(data >> 1), (uint8_t)(data << 7)};
-	uint8_t txDataBuf[4] = {((addr & 0x7f) >> 2), ((addr << 7) | data_split[0]), 
-							data_split[1], data_split[2]};
+	uint8_t data_split[3];
+	uint8_t txDataBuf[4];
+	uint16_t bit_mask;
+	
+	if(mask < 16){
+		bit_mask = bit_mask(16, mask, offset);
+		data = (mixer->regs_values[addr] & bit_mask) | data;
+	}
+	data_split[3] = {(uint8_t)(data >> 9), (uint8_t)(data >> 1), (uint8_t)(data << 7)};
+	txDataBuf[4] = {((addr & 0x7f) >> 2), ((addr << 7) | data_split[0]), 
+						data_split[1], data_split[2]};
 	if(spi_rffc5072_write(mixer, txDataBuf) == 1){
-		for(i=0;i<RFFC5072_NUM_REGS;i++){
-			if(rffc5072_regs_address[i] == addr){
-				mixer->regs_values[i] = data;
-			}
-		}		
+		mixer->regs_values[addr] = data;
 	}
 	/* falta manejo de error */
 }
@@ -149,9 +149,9 @@ void rffc5072_set_freq(rffc5072_st *mixer, uint32_t lo_freq_hz){
 	
 	
 	/* Define new format for frequency: MMM.HHHHH (12 bits + 20 bits) */
-	lo_freq_mhz = lo_freq_hz / ONE_MHZ;			/* Convert from Hz to MHz */
-	/*uint32_t freq_aux = lo_freq_mhz << 20; 					/* Store MHz part in the 12 MSBs */
-	/*lo_freq_mhz *= ONE_MHZ;									/* Keep MHz and discard decimal part */
+	lo_freq_mhz = lo_freq_hz / ONE_MHZ;						/* Convert from Hz to MHz */
+	/*uint32_t freq_aux = lo_freq_mhz << 20; 				/* Store MHz part in the 12 MSBs */
+	/*lo_freq_mhz *= ONE_MHZ;								/* Keep MHz and discard decimal part */
 	lo_freq_decimal = lo_freq_hz - (lo_freq_mhz * ONE_MHZ);	/* Keep decimal part in Hz */
 	/*freq_aux |= lo_freq_decimal;							/* Full frequency in custom format */
 	
@@ -194,9 +194,9 @@ void rffc5072_set_freq(rffc5072_st *mixer, uint32_t lo_freq_hz){
 	/* Load calculated values to registers */
 	p2_freq1_reg = ((n << 7) | (lo_div << 4) | (fbkdiv << 2)) & 0xffff;
 	rffc5072_disable(mixer);
-	rffc5072_write_reg(mixer, P2_FREQ1, (mixer->regs_values[15] | p2_freq1_reg));
-	rffc5072_write_reg(mixer, P2_FREQ2, ((uint16_t)nummsb & 0xffff));
-	rffc5072_write_reg(mixer, P2_FREQ3, ((uint8_t)numlsb & 0xff));
+	rffc5072_write_reg(mixer, P2_FREQ1, p2_freq1_reg, 14, 2);
+	rffc5072_write_reg(mixer, P2_FREQ2, ((uint16_t)nummsb & 0xffff), 16, 0);
+	rffc5072_write_reg(mixer, P2_FREQ3, ((uint8_t)numlsb & 0xff), 8, 8);
 	rffc5072_enable(mixer);
 }
 
@@ -222,16 +222,16 @@ void rffc5072_lower_phase_noise(rffc5072_st *mixer){
 	numlsb = (((n_div_decimal << 16) - (nummsb * ONE_MHZ)) << 8) / ONE_MHZ;
 	
 	/* Load calculated values to registers */
-	p2_freq1_reg = ((n << 7) | (fbkdiv << 2)) & 0xffff;
-	rffc5072_write_reg(mixer, P2_FREQ1, (mixer->regs_values[15] | p2_freq1_reg));
-	rffc5072_write_reg(mixer, P2_FREQ2, ((uint16_t)nummsb & 0xffff));
-	rffc5072_write_reg(mixer, P2_FREQ3, ((uint8_t)numlsb & 0xff));
+	rffc5072_write_reg(mixer, P2_FREQ1, n, 9, 7);
+	rffc5072_write_reg(mixer, P2_FREQ1, fbkdiv, 2, 2);
+	rffc5072_write_reg(mixer, P2_FREQ2, ((uint16_t)nummsb & 0xffff), 16, 0);
+	rffc5072_write_reg(mixer, P2_FREQ3, ((uint8_t)numlsb & 0xff), 8, 8);
 }
 
 void rffc5072_enable(rffc5072_st *mixer){
-	rffc5072_write_reg(mixer, SDI_CTRL, (mixer->regs_values[20] | 0x4000));
+	rffc5072_write_reg(mixer, SDI_CTRL, 1, 1, 14);
 }
 
 void rffc5072_disable(rffc5072_st *mixer){
-	rffc5072_write_reg(mixer, SDI_CTRL, (mixer->regs_values[20] & 0xbfff));
+	rffc5072_write_reg(mixer, SDI_CTRL, 0, 1, 14);
 }

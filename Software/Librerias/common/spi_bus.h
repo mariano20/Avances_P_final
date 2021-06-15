@@ -1,4 +1,3 @@
-#include <stdint.h>
 #include "stm32f7xx_hal.h"
 
 void spi_enable(GPIO_TypeDef *CS_bank, uint16_t CS_pin);

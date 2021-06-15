@@ -70,7 +70,9 @@ void rffc5072_read_reg(rffc5072_st *mixer,			/* Retrieve register value. */
 							uint16_t *data);
 void rffc5072_write_reg(rffc5072_st *mixer,			/* Write value into register. */
 							uint8_t addr,
-							uint16_t data);
+							uint16_t data,
+							uint8_t mask,
+							uint8_t offset);
 void rffc5072_set_freq(rffc5072_st *mixer,			/* Set desired frequency. */
 							uint32_t lo_freq);
 void rffc5072_lower_phase_noise(rffc5072_st *mixer);/* Maintain VCO frequency but lower noise. */

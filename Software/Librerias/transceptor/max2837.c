@@ -1,5 +1,6 @@
 #include "max2837.h"
 #include <common/spi_bus.h>
+#include <common/utils.h>
 
 static const uint16_t max2837_regs_default[MAX2837_NUM_REGS] = {
 	0x150,	/* 0 */
@@ -101,7 +102,11 @@ void max2837_init(max2837_st *transceiver,
 	/* Set RXVGA HPFSM to operating mode #1 */
 	max2837_write_reg(transceiver, HPFSM_3, 0, 1, 8);
 	/* Set R divider to 2 */
-	max2837_write_reg(transceiver, SYNTH_CFG_1, 1, 2, 1);
+	/*
+	Modificar divisor R y ponerlo en 1
+	si hay mucho ruido de fase.
+	*/
+	max2837_write_reg(transceiver, SYNTH_CFG_1, 0b01, 2, 1);
 	/* Disable CLKOUT pin (not used) */
 	max2837_write_reg(transceiver, XTAL_CFG, 0, 1, 7);
 	max2837_set_mode(transceiver, MAX2837_MODE_SHUTDOWN);
@@ -114,15 +119,12 @@ void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data, uin
 	the 10 data bits.
 	*/
 	uint8_t txDataBuf[2];
-	uint16_t bit_mask = 0x0000;
-	uint8_t i;
+	uint16_t bit_mask;
 	
-	for(i=16;i>0;i--){
-		bit_mask <<= 1;
-		if((i <= offset) || (i > (offset + mask)))
-			bit_mask |= 0x1;
+	if(mask < 16){
+		bit_mask = bit_mask(16, mask, offset);	
+		data = (transceiver->regs_values[addr] & bit_mask) | data;
 	}
-	data = (transceiver->regs_values[addr] & bit_mask) | data;
 	
 	txDataBuf[0] = (((addr & 0x1f) << 2) | 0x80) | (data >> 8);
 	txDataBuf[1] = (uint8_t)data;
@@ -193,9 +195,10 @@ void max2837_set_freq(max2837_st *transceiver, uint32_t lo_freq_hz){
 	uint32_t div_cmp;
 	uint8_t i = 0;
 	
-	/*div_int = lo_freq / 15;
-	div_frac = (lo_freq * 1000000) / 15;
-	div_frac -= (div_int * 1000000);*/
+	/*
+	Modificar divisor R y ponerlo en 1
+	si hay mucho ruido de fase.
+	*/
 	div_int = (uint16_t) freq / 15000000;
 	div_rem = freq % 15000000;
 	div_frac = 0;
@@ -212,13 +215,13 @@ void max2837_set_freq(max2837_st *transceiver, uint32_t lo_freq_hz){
 	/* Store N integer divider ratio */
 	max2837_write_reg(transceiver, SYNTH_INT_DIV, div_int, 8, 0);
 	/* Store MSB of fractional divider ratio */
-	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_MSB, (div_frac >> 10) & 0x3ff, 0, 0);
+	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_MSB, (div_frac >> 10) & 0x3ff, 16, 0);
 	/* Store LSB of fractional divider ratio */
-	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_LSB, div_frac & 0x3ff, 0, 0);
+	max2837_write_reg(transceiver, SYNTH_FRAC_DIV_LSB, div_frac & 0x3ff, 16, 0);
 	
 }
 
-void max2837_set_lna_gain(max2837_st *transceiver, uint8_t gain_db){
+uint8_t max2837_set_lna_gain(max2837_st *transceiver, uint8_t gain_db){
 	switch(gain_db){
 		case 40:
 			gain_db = 0x00;
@@ -240,9 +243,10 @@ void max2837_set_lna_gain(max2837_st *transceiver, uint8_t gain_db){
 			break;
 		default:
 			gain_db = 0x07;
-			break;
+			return 0;
 	}
 	max2837_write_reg(transceiver, RXRF_2, (gain_db << 2), 3, 2);
+	return 1;
 }
 
 typedef enum{
@@ -264,7 +268,7 @@ typedef enum{
 	BW28_MHZ	/* 28 MHz */
 }bw_filtro;
 
-void max2837_set_lpf_bw(max2837_st *transceiver, bw_filtro bw){
+uint8_t max2837_set_lpf_bw(max2837_st *transceiver, bw_filtro bw){
 	uint8_t bw2;
 	switch(bw){
 		case BW1_75MHZ:
@@ -317,9 +321,10 @@ void max2837_set_lpf_bw(max2837_st *transceiver, bw_filtro bw){
 			break;
 		default:
 			bw2 = 0x0F;
-			break;
+			return 0;
 	}
 	max2837_write_reg(transceiver, LPF_1, (bw2 << 4), 4, 4);
+	return 1;
 }
 
 uint8_t max2837_set_vga_gain(max2837_st *transceiver, uint8_t gain_db){
