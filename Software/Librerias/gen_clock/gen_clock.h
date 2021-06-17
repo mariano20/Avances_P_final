@@ -19,6 +19,13 @@ typedef struct{
 	uint8_t cfg3[6] = {0x8f, 0x4e, 0xbb, 0xe1, 0x10, 0x10};
 }genclk_st;
 
-
+void genclk_init(genclk_st *clockg, I2C_HandleTypeDef *i2cHandle);
+uint8_t genclk_i2c_write(genclk_st *clockg,
+						uint16_t mem_addr,
+						uint8_t data);
+uint8_t genclk_i2c_read(genclk_st *clockg,
+						uint16_t mem_addr,
+						uint8_t *data);
+void genclk_outEn(genclk_st *clockg, uint8_t *out_list);	/* Activate/Deactivate outputs */
 
 #endif

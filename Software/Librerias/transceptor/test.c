@@ -1,22 +1,31 @@
 #include <stdio.h>
 #include <stdint.h>
 
+void modifica(int*);
+int modif2(int*);
 void main(){
 
-	uint8_t i;
-	uint16_t bit_mask = 0x0000;
-	uint16_t mask;
-	uint8_t offset = 0;
-	uint32_t var = 0xfffffff9;
+	int var = 15;
 	
-	for(i=16;i>0;i--){
-		bit_mask <<= 1;
-		if((i <= offset) || (i > (offset + mask)))
-			bit_mask |= 0x1;
-	}
-	mask = (uint16_t)var;
+	int vec[5] = {1, 0, 0, 0, 1};
 	
-	printf("mascara: %d", mask);
+	modifica(vec);
+	
 	
 		
+}
+
+void modifica(int *p){
+	int i;
+	for(i=0;i<5;i++){
+		if(*p == 0){
+			printf("vec[%d]: %p\n\n", i, p);
+		}
+		p++;
+	}
+}
+
+int modif2(int *p){
+	*p = 3;
+	return *p;
 }
