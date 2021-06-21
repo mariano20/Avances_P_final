@@ -1,31 +1,32 @@
 #include <stdio.h>
 #include <stdint.h>
 
-void modifica(int*);
-int modif2(int*);
 void main(){
 
-	int var = 15;
+	uint16_t div_int;
+	uint16_t freq_mhz = 45;
+	uint32_t div_frac;
+	uint32_t div_rem;
+	uint32_t div_cmp;
+	uint8_t i = 0;
 	
-	int vec[5] = {1, 0, 0, 0, 1};
-	
-	modifica(vec);
-	
-	
-		
-}
-
-void modifica(int *p){
-	int i;
-	for(i=0;i<5;i++){
-		if(*p == 0){
-			printf("vec[%d]: %p\n\n", i, p);
+	/*
+	Modificar divisor R y ponerlo en 1
+	si hay mucho ruido de fase.
+	*/
+	div_int = 2600 / (freq_mhz << 1);
+	div_rem = 2600 % (freq_mhz << 1);
+	div_frac = 0;
+	div_cmp = freq_mhz << 1;
+	for( i = 0; i < 30; i++) {
+		div_frac <<= 1;
+		div_cmp >>= 1;
+		if (div_rem > div_cmp) {
+			div_frac |= 0x1;
+			div_rem -= div_cmp;
 		}
-		p++;
 	}
-}
-
-int modif2(int *p){
-	*p = 3;
-	return *p;
+	
+	printf("n_int= %d\n", div_int);
+	printf("n_frac= %lu\n", div_frac);
 }
