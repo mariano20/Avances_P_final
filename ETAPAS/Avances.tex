@@ -1047,8 +1047,19 @@ Para saber con precisión qué está conectado con qué y tener la certeza de qu
 	\label{bus2}
 \end{figure}
 
+\chapter{Notas referidas a la programación}
 
+\section{Clock}
 
+Con la ayuda del software \textbf{Timing Commander} se saetearon algunos valores y además se lo utilizó para comprobar que la interpretación de la teoría presentada en el Datasheet del Clock sea la correcta.
+
+\subsection{PLL pre divider}
+
+Se decide dejar la referencia intacta del cristal, es decir, se deja los valores por defecto de los registros dedicados a esta tarea para evitar introducir ruido de fase.
+
+\subsection{PLL loop Filter}
+
+Como no se encuentra la información necesaria para el seteo de los valores de los componentes del filtro, se decide por usar los valores brindados por el software mencionado anteriormente ya que se supone que este software arroja los valores que logran una buena performance.
 
 
 
