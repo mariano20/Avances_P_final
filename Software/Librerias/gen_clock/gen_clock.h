@@ -30,6 +30,6 @@ uint8_t genclk_i2c_read(genclk_st *clockg,
 /* Activate/Deactivate outputs */
 void genclk_outEn(genclk_st *clockg, uint8_t *out_list);
 /* Set frequency output divider values for specified frequency */
-void genclk_fod_settings(genclk_st *clockg, uint8_t out_n, uint8_t freq_mhz);
+uint8_t genclk_fod_settings(genclk_st *clockg, uint8_t out_n, uint8_t freq_mhz);
 
 #endif
