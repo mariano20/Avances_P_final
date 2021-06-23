@@ -1,8 +1,0 @@
-(fp_lib_table
-  (lib (name gsg-modules)(type KiCad)(uri ${KIPRJMOD}/Librerias/gsg-kicad-lib/gsg-modules.pretty)(options "")(descr ""))
-  (lib (name hackrf)(type KiCad)(uri ${KIPRJMOD}/Librerias/hackrf)(options "")(descr ""))
-  (lib (name Tesis2020-21)(type KiCad)(uri ${KIPRJMOD}/Librerias/Tesis2020-21.pretty)(options "")(descr ""))
-  (lib (name SamacSys_Parts)(type KiCad)(uri ${KIPRJMOD}/Librerias/SamacSys/SamacSys_Parts.pretty)(options "")(descr ""))
-  (lib (name footprints)(type KiCad)(uri ${KIPRJMOD}/Librerias/ul_MAX2837ETM/footprints.pretty)(options "")(descr ""))
-  (lib (name max1193pretty)(type KiCad)(uri ${KIPRJMOD}/Librerias/max1193pretty)(options "")(descr ""))
-)
