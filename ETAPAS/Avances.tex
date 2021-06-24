@@ -960,6 +960,8 @@ El código perteneciente a las interrupciones/Excepciones se encuentra en la mem
 
 Un concepto muy importante en este tema es el \textbf{Pending Bit}. El cual es un bit que le avisa al NVIC que tiene una interrupción que atender. Por este motivo es muy importante que el programador lo desactive (mediante código) al salir de la interrupción (y lo activo al entrar) porque sino el NVIC interpretará que debe seguir ejecutando el código de la interrupción y nunca se detendrá.
 
+Cuando se trabaja con el software CubeMX, es este el que automáticamente activa las ISRs y los IRQs y nos agrega las funciones que tenemos que llamar para ejecutar la/s rutinas de interrupción. Nosotros solos tenemos que encargarnos de agregar las funciones callbacks dentro de nuestro codigo y las acciones que se ejecuten cuando la/s interrupciones se presenten. Vease \cite{noviello2017mastering}, pagina 203.
+
 \section{Systick Timer}
 
 
