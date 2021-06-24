@@ -1,5 +1,5 @@
 #include "rffc5072.h"
-#include "spi_bus.h"
+#include "utils.h"
 
 /* Default register values. */
 static const uint16_t rffc5072_regs_default[RFFC5072_NUM_REGS] = { 
@@ -75,6 +75,9 @@ void rffc5072_init(rffc5072_st *mixer,
 	mixer->spiHandle = spiHandle;
 	mixer->CS_bank = CS_bank;
 	mixer->CS_pin = CS_pin;
+	/* Clear SPI flags. */
+	mixer->mixer_read_flg = 0;
+	mixer->mixer_write_flg = 0;
 	/* Load default registers' values. */
 	uint8_t i = 0;
 	for(i=0;i<RFFC5072_NUM_REGS;i++){
@@ -98,11 +101,11 @@ void rffc5072_read_reg(rffc5072_st *mixer, uint8_t addr, uint16_t *data){
 	1st bit undefined, 2nd is set high, 
 	then the 7 bits register address.
 	*/
-	uint8_t rxDataBuf[2];
 	uint8_t txDataBuf[2] = {(((addr & 0x7f) | 0x80) >> 1), (addr << 7)};
-	if(spi_rffc5072_read(mixer, txDataBuf, rxDataBuf) == 1){
-		*data = (rxDataBuf[0] << 8) | rxDataBuf[1];
-		mixer->regs_values[addr] = data;
+	mixer->current_addr = addr;
+	spi_enable(mixer->CS_bank, mixer->CS_pin);
+	if((HAL_SPI_Transmit_IT(mixer->spiHandle, txDataBuf, sizeof(txDataBuf))) == HAL_OK){
+		mixer->mixer_read_flg = 1;
 	}
 	/* falta manejo de error */
 }
@@ -122,9 +125,13 @@ void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data, uint8_t
 		bit_mask = bit_mask(16, mask, offset);
 		data = (mixer->regs_values[addr] & bit_mask) | data;
 	}
-	data_split[3] = {(uint8_t)(data >> 9), (uint8_t)(data >> 1), (uint8_t)(data << 7)};
-	txDataBuf[4] = {((addr & 0x7f) >> 2), ((addr << 7) | data_split[0]), 
-						data_split[1], data_split[2]};
+	data_split[0] = (uint8_t)(data >> 9);
+	data_split[1] = (uint8_t)(data >> 1);
+	data_split[2] = (uint8_t)(data << 7);
+	txDataBuf[0] = ((addr & 0x7f) >> 2);
+	txDataBuf[1] = ((addr << 7) | data_split[0]);
+	txDataBuf[2] = data_split[1];
+	txDataBuf[3] = data_split[2];
 	if(spi_rffc5072_write(mixer, txDataBuf) == 1){
 		mixer->regs_values[addr] = data;
 	}

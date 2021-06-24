@@ -55,6 +55,10 @@ typedef struct{
 	SPI_HandleTypeDef *spiHandle;
 	GPIO_TypeDef *CS_bank;
 	uint16_t CS_pin;
+	uint8_t mixer_read_flg;
+	uint8_t mixer_write_flg;
+	uint8_t rxDataBuf[2];
+	uint8_t current_addr;
 	/* Registers */
 	uint16_t regs_values[RFFC5072_NUM_REGS];
 	uint32_t fvco_dec;

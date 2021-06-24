@@ -27,6 +27,7 @@
 #include "gen_clock.h"
 #include "max2837.h"
 #include "rffc5072.h"
+#include "utils.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -70,6 +71,25 @@ static void MX_ADC1_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
+void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi){
+	if(mixer.mixer_read_flg){
+		if((HAL_SPI_Receive_IT(mixer.spiHandle, mixer.rxDataBuf, sizeof(mixer.rxDataBuf))) == HAL_OK){
+			mixer.regs_values[mixer.current_addr] = (mixer.rxDataBuf[0] << 8) | mixer.rxDataBuf[1];
+		}
+		spi_disable(mixer->CS_bank, mixer->CS_pin);
+	}
+
+}
+
+void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
+
+
+}
+
+void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi){
+
+
+}
 
 /* USER CODE END 0 */
 
@@ -301,7 +321,7 @@ static void MX_SPI1_Init(void)
   hspi1.Init.CLKPolarity = SPI_POLARITY_LOW;
   hspi1.Init.CLKPhase = SPI_PHASE_1EDGE;
   hspi1.Init.NSS = SPI_NSS_SOFT;
-  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_16;
+  hspi1.Init.BaudRatePrescaler = SPI_BAUDRATEPRESCALER_64;
   hspi1.Init.FirstBit = SPI_FIRSTBIT_MSB;
   hspi1.Init.TIMode = SPI_TIMODE_DISABLE;
   hspi1.Init.CRCCalculation = SPI_CRCCALCULATION_DISABLE;
