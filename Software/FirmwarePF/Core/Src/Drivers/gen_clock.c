@@ -57,7 +57,11 @@ void genclk_init(genclk_st *clockg, I2C_HandleTypeDef *i2cHandle){
 	genclk_i2c_write(clockg, 0x67, 0x01);
 	
 	/* Enable OUT1-4 */
-	clockg->outputs_en = {0, 1, 1, 1, 1};
+	clockg->outputs_en[0] = 0;
+	clockg->outputs_en[1] = 1;
+	clockg->outputs_en[2] = 1;
+	clockg->outputs_en[3] = 1;
+	clockg->outputs_en[4] = 1;
 	genclk_outEn(clockg, clockg->outputs_en);
 	
 }

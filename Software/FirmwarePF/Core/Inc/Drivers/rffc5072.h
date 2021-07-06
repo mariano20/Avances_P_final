@@ -58,6 +58,7 @@ typedef struct{
 	uint8_t mixer_read_flg;
 	uint8_t mixer_write_flg;
 	uint8_t rxDataBuf[2];
+	uint16_t txData_temp;
 	uint8_t current_addr;
 	/* Registers */
 	uint16_t regs_values[RFFC5072_NUM_REGS];
@@ -70,8 +71,7 @@ void rffc5072_init(rffc5072_st *mixer,				/* Initial configuration. */
 					GPIO_TypeDef *CS_bank,
 					uint16_t CS_pin);
 void rffc5072_read_reg(rffc5072_st *mixer,			/* Retrieve register value. */
-							uint8_t addr,
-							uint16_t *data);
+							uint8_t addr);
 void rffc5072_write_reg(rffc5072_st *mixer,			/* Write value into register. */
 							uint8_t addr,
 							uint16_t data,

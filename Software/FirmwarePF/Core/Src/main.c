@@ -28,6 +28,7 @@
 #include "max2837.h"
 #include "rffc5072.h"
 #include "utils.h"
+#include "i2c-lcd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -74,21 +75,40 @@ static void MX_ADC1_Init(void);
 void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi){
 	if(mixer.mixer_read_flg){
 		if((HAL_SPI_Receive_IT(mixer.spiHandle, mixer.rxDataBuf, sizeof(mixer.rxDataBuf))) == HAL_OK){
-			mixer.regs_values[mixer.current_addr] = (mixer.rxDataBuf[0] << 8) | mixer.rxDataBuf[1];
 		}
-		spi_disable(mixer->CS_bank, mixer->CS_pin);
+		else{
+			mixer.mixer_read_flg = 0;
+			spi_disable(mixer.CS_bank, mixer.CS_pin);
+			lcd_send_string("Mix_r_err SPI Rx");
+		}
+	}
+	else if(mixer.mixer_write_flg){
+		mixer.mixer_write_flg = 0;
+		mixer.regs_values[mixer.current_addr] = mixer.txData_temp;
+		spi_disable(mixer.CS_bank, mixer.CS_pin);
 	}
 
+	if(transceiver.transceiver_write_flg){
+		transceiver.transceiver_write_flg = 0;
+		transceiver.regs_values[transceiver.current_addr] = transceiver.txData_temp;
+		spi_disable(transceiver.CS_bank, transceiver.CS_pin);
+	}
 }
 
 void HAL_SPI_RxCpltCallback(SPI_HandleTypeDef *hspi){
-
-
+	if(mixer.mixer_read_flg){
+		mixer.regs_values[mixer.current_addr] = (mixer.rxDataBuf[0] << 8) | mixer.rxDataBuf[1];
+		mixer.mixer_read_flg = 0;
+		spi_disable(mixer.CS_bank, mixer.CS_pin);
+	}
 }
 
 void HAL_SPI_TxRxCpltCallback(SPI_HandleTypeDef *hspi){
-
-
+	if(transceiver.transceiver_read_flg){
+		transceiver.transceiver_read_flg = 0;
+		transceiver.regs_values[transceiver.current_addr] = (transceiver.rxDataBuf[1] << 2) | transceiver.rxDataBuf[2];
+		spi_disable(transceiver.CS_bank, transceiver.CS_pin);
+	}
 }
 
 /* USER CODE END 0 */
@@ -131,6 +151,7 @@ int main(void)
   genclk_init(&clockg, &hi2c1);
   max2837_init(&transceiver, &hspi1, SPI1_CS1_GPIO_Port, SPI1_CS1_Pin, GPIOB, Trx_Enable_Pin, Trx_Rx_Enable_Pin);
   rffc5072_init(&mixer, &hspi1, SPI1_CS0_GPIO_Port, SPI1_CS0_Pin);
+  lcd_init();
 
   /* USER CODE END 2 */
 

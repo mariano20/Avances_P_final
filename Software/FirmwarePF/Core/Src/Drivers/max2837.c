@@ -1,5 +1,4 @@
 #include "max2837.h"
-#include "spi_bus.h"
 #include "utils.h"
 
 static const uint16_t max2837_regs_default[MAX2837_NUM_REGS] = {
@@ -128,22 +127,37 @@ void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data, uin
 	
 	txDataBuf[0] = (((addr & 0x1f) << 2) | 0x80) | (data >> 8);
 	txDataBuf[1] = (uint8_t)data;
-	if(spi_max2837_write(transceiver, txDataBuf) == 1){
-		transceiver->regs_values[addr] = data;
+	transceiver->current_addr = addr;
+	transceiver->txData_temp = data;
+	spi_enable(transceiver->CS_bank, transceiver->CS_pin);
+	if((HAL_SPI_Transmit_IT(transceiver->spiHandle, txDataBuf, sizeof(txDataBuf))) == HAL_OK){
+		transceiver->transceiver_write_flg = 1;
+	}
+	else{
+		transceiver->transceiver_write_flg = 0;
+		spi_disable(transceiver->CS_bank, transceiver->CS_pin);
+		lcd_clear();
+		lcd_send_string("Trv_w_err SPI Tx");
 	}
 }
 					
-void max2837_read_reg(max2837_st *transceiver, uint8_t addr, uint16_t *data){
+void max2837_read_reg(max2837_st *transceiver, uint8_t addr){
 	/*
 	Send R/W bit set low and address, then
 	receive the 10 data bits stored
 	in the specified register.
 	*/
 	uint8_t txDataBuf[3] = {((addr & 0x1f) << 2), 0x00, 0x00};
-	uint8_t rxDataBuf[3];
-	if(spi_max2837_read(transceiver, txDataBuf, rxDataBuf) == 1){
-		*data = (rxDataBuf[1] << 2) | rxDataBuf[2];
-		transceiver->regs_values[addr] = data;
+	transceiver->current_addr = addr;
+	spi_enable(transceiver->CS_bank, transceiver->CS_pin);
+	if((HAL_SPI_TransmitReceive_IT(transceiver->spiHandle, txDataBuf, transceiver->rxDataBuf, sizeof(txDataBuf))) == HAL_OK){
+		transceiver->transceiver_read_flg = 1;
+	}
+	else{
+		transceiver->transceiver_read_flg = 0;
+		spi_disable(transceiver->CS_bank, transceiver->CS_pin);
+		lcd_clear();
+		lcd_send_string("Trv_r_err SPI Tx");
 	}
 }
 

@@ -90,12 +90,12 @@ void rffc5072_init(rffc5072_st *mixer,
 	/* Auto VCO */
 	rffc5072_write_reg(mixer, VCO_AUTO, 0xff00, 16, 0);	/* 1111111100000000 */
 	/* Set LO to 2506.3 MHz for tuning to a local known FM station */
-	rffc5072_set_freq(mixer, 2506300000);
+	/*rffc5072_set_freq(mixer, 2506300000);*/
 	/* 4-wire SPI control, enable part */
 	rffc5072_write_reg(mixer, SDI_CTRL, 0xf000, 16, 0);	/* 1111000000000000 */
 }
 
-void rffc5072_read_reg(rffc5072_st *mixer, uint8_t addr, uint16_t *data){
+void rffc5072_read_reg(rffc5072_st *mixer, uint8_t addr){
 	/*
 	First send 9 bits, then receive 16 bits.
 	1st bit undefined, 2nd is set high, 
@@ -107,7 +107,13 @@ void rffc5072_read_reg(rffc5072_st *mixer, uint8_t addr, uint16_t *data){
 	if((HAL_SPI_Transmit_IT(mixer->spiHandle, txDataBuf, sizeof(txDataBuf))) == HAL_OK){
 		mixer->mixer_read_flg = 1;
 	}
-	/* falta manejo de error */
+	else{
+		mixer->mixer_read_flg = 0;
+		spi_disable(mixer->CS_bank, mixer->CS_pin);
+		lcd_clear();
+		lcd_send_string("Mix_r_err SPI Tx");
+		/* falta manejo de error */
+	}
 }
 
 void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data, uint8_t mask, uint8_t offset){
@@ -132,10 +138,20 @@ void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data, uint8_t
 	txDataBuf[1] = ((addr << 7) | data_split[0]);
 	txDataBuf[2] = data_split[1];
 	txDataBuf[3] = data_split[2];
-	if(spi_rffc5072_write(mixer, txDataBuf) == 1){
-		mixer->regs_values[addr] = data;
+	mixer->txData_temp = data;
+
+	mixer->current_addr = addr;
+	spi_enable(mixer->CS_bank, mixer->CS_pin);
+	if((HAL_SPI_Transmit_IT(mixer->spiHandle, txDataBuf, sizeof(txDataBuf))) == HAL_OK){
+		mixer->mixer_write_flg = 1;
 	}
-	/* falta manejo de error */
+	else{
+		mixer->mixer_write_flg = 0;
+		spi_disable(mixer->CS_bank, mixer->CS_pin);
+		lcd_clear();
+		lcd_send_string("Mix_w_err SPI Tx");
+		/* falta manejo de error */
+	}
 }
 
 void rffc5072_set_freq(rffc5072_st *mixer, uint32_t lo_freq_hz){
