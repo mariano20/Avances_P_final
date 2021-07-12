@@ -1437,4 +1437,34 @@ F 3 "" H 15400 2050 50  0001 C CNN
 	1    15400 2050
 	1    0    0    -1  
 $EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J17
+U 1 1 60ECDFD4
+P 8750 1700
+F 0 "J17" H 8830 1692 50  0000 L CNN
+F 1 "TP_I" H 8830 1601 50  0000 L CNN
+F 2 "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical" H 8750 1700 50  0001 C CNN
+F 3 "~" H 8750 1700 50  0001 C CNN
+	1    8750 1700
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J18
+U 1 1 60ECE35C
+P 8750 2050
+F 0 "J18" H 8830 2042 50  0000 L CNN
+F 1 "TP_Q" H 8830 1951 50  0000 L CNN
+F 2 "Connector_PinHeader_1.27mm:PinHeader_1x02_P1.27mm_Vertical" H 8750 2050 50  0001 C CNN
+F 3 "~" H 8750 2050 50  0001 C CNN
+	1    8750 2050
+	1    0    0    -1  
+$EndComp
+Text GLabel 8550 1800 0    50   Input ~ 0
+INA-
+Text GLabel 8550 1700 0    50   Input ~ 0
+INA+
+Text GLabel 8550 2050 0    50   Input ~ 0
+INB+
+Text GLabel 8550 2150 0    50   Input ~ 0
+INB-
 $EndSCHEMATC
