@@ -1072,6 +1072,38 @@ Como no se encuentra la información necesaria para el seteo de los valores de l
 
 Se siguieron los pasos de \cite{ct1} y se comprobó que funciona correctamente, se logró recibir y trasmitir datos entre la pc y la bluepill.
 
+\chapter{Interfaz USB}
+
+\section{Protocolo}
+
+Notas sobre el protocolo USB. Si se especifica algún valor, es para \textbf{USB HS (High Speed)}.
+\begin{itemize}
+	\item Toda transferencia la inicia el \textbf{HOST}.
+	\item Un \textbf{endpoint} es un buffer en el que se almacena información a transmitir o recibida. Cada endpoint tiene una dirección, número y máximo número de bytes de datos que puede manipular por transacción.
+	\item \textbf{IN} = transferencia \textbf{hacia el HOST}.
+	\item \textbf{OUT} = transferencia \textbf{desde el HOST}.
+	\item 4 tipos de transferencias: control, bulk, interrupt e isochronus.
+	\item Bulk transfers son las más rápidas\footnote{Si el bus no tiene ningún otro dispositvo conectado.} pero no garantiza sincronización.
+	\item Interrupt transfers poseen latencia máxima garantizada.
+	\item Isochronus transfers tienen sincronización asegurada pero no hay correción de errores.
+	\item endpoint 0 es siempre de control.
+\end{itemize}
+
+\section{Pasos a seguir para implementación}
+
+Se utilizará la librería libusb ya que permite Plug \& Play y es lo que utilizan los drivers actuales para hardware SDR.
+\begin{enumerate}
+	\item Implementar comunicación USB entre HOST y STM32: Lograr transferencia bidireccional a voluntad entre ambos extremos.
+	\item Hacer un driver/utilidad/herramienta del lado del HOST para comunicarse con el dispositivo que:
+	\begin{itemize}
+		\item Permita setear parámetros (BW, frecuencia, filtros, etc).
+		\item Reciba datos (muestras I/Q).
+		\item Lea parámetros de configuración actuales.
+	\end{itemize}
+	\item Adaptar del lado del dispositivo el firmware existente para que interactúe correctamente con el punto anterior.
+	\item Hacer la vinculación entre nuestro driver y el de SoapySDR para poder utilizar el hardware con software SDR existente (GNU Radio, Pothosware, SDR\#, etc).
+\end{enumerate}
+
 \chapter*{Varios}
 
 \textbf{10/09/20 Gino}
