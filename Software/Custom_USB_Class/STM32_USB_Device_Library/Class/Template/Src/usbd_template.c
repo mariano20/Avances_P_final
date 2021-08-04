@@ -39,9 +39,12 @@
 #include "usbd_template.h"
 #include "usbd_ctlreq.h"
 
+#include "stm32f7xx_hal.h"
+
 #include "max2837.h"
 #include "rffc5072.h"
 #include "gen_clock.h"
+#include "utils.h"
 
 
 /** @addtogroup STM32_USB_DEVICE_LIBRARY
@@ -108,10 +111,14 @@ static uint8_t *USBD_TEMPLATE_GetDeviceQualifierDesc(uint16_t *length);
   * @{
   */
 
- uint8_t data_out_buffer[1024] = {};
- extern max2837_st transceiver;
- extern rffc5072_st mixer;
- extern genclk_st clockg;
+
+uint8_t data_out_buffer[1024] = {};
+extern max2837_st transceiver;
+extern rffc5072_st mixer;
+extern genclk_st clockg;
+extern uint8_t max2837_temperature;
+extern uint16_t max2837_rssi;
+extern ADC_HandleTypeDef hadc1;
 
 USBD_ClassTypeDef USBD_TEMPLATE_ClassDriver =
 {
@@ -126,8 +133,8 @@ USBD_ClassTypeDef USBD_TEMPLATE_ClassDriver =
   USBD_TEMPLATE_IsoINIncomplete,
   USBD_TEMPLATE_IsoOutIncomplete,
   USBD_TEMPLATE_GetCfgDesc,
-  USBD_TEMPLATE_GetCfgDesc,
-  USBD_TEMPLATE_GetCfgDesc,
+  NULL,
+  NULL,
   USBD_TEMPLATE_GetDeviceQualifierDesc,
 };
 
@@ -267,38 +274,60 @@ static uint8_t USBD_TEMPLATE_Setup(USBD_HandleTypeDef *pdev,
         max2837_set_freq(&transceiver, (uint32_t)(pdev->pData));
         break;
       case USB_MAX2837_SET_MODE:
+        max2837_set_mode(&transceiver, (max2837_mode)(req->wValue));
         break;
       case USB_MAX2837_SET_LNA_GAIN:
+        max2837_set_lna_gain(&transceiver, (uint8_t)(req->wValue));
         break;
       case USB_MAX2837_SET_VGA_GAIN:
+        max2837_set_vga_gain(&transceiver, (uint8_t)(req->wValue));
         break;
       case USB_MAX2837_SET_LPF_BW:
+        max2837_set_lpf_bw(&transceiver, (uint8_t)(req->wValue));
         break;
       case USB_MAX2837_GET_TEMP:
+        max2837_temperature = max2837_get_temp(&transceiver);
         break;
       case USB_MAX2837_GET_RSSI:
+        HAL_ADC_Start(&hadc1);
+        HAL_ADC_PollForConversion(&hadc1, HAL_MAX_DELAY);
+        max2837_rssi = HAL_ADC_GetValue(&hadc1);
         break;
       case USB_RFFC5072_SET_LO_FREQ:
+        rffc5072_set_freq(&mixer, (uint32_t)(pdev->pData));
         break;
       case USB_RFFC5072_SET_LOW_PHASENOISE:
+        rffc5072_lower_phase_noise(&mixer);
         break;
       case USB_RFFC5072_ENABLE:
+        rffc5072_enable(&mixer);
         break;
       case USB_RFFC5072_DISABLE:
+        rffc5072_disable(&mixer);
         break;
       case USB_GENCLK_SET_FREQ:
+        genclk_fod_settings(&clockg, (uint8_t)(req->wValue), (uint8_t)(req->wIndex));
         break;
       case USB_GENCLK_SET_OUTPUTS:
+        genclk_outEn(&clockg, (uint8_t)(pdev->pData));
         break;
       case USB_ENABLE_BANDPASS_FILTER:
+        HAL_GPIO_WritePin(Filt_Bypass_GPIO_Port, Filt_Bypass_Pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(Filtro_GPIO_Port, Filtro_Pin, GPIO_PIN_RESET);
         break;
       case USB_ENABLE_AMP:
+        HAL_GPIO_WritePin(Rx_Amp_Pwr_GPIO_Port, Rx_Amp_Pwr_Pin, GPIO_PIN_RESET);
+        HAL_GPIO_WritePin(Rx_Amp_Bypass_GPIO_Port, Rx_Amp_Bypass_Pin, GPIO_PIN_SET);
+        HAL_GPIO_WritePin(Rx_Amp_GPIO_Port, Rx_Amp_Pin, GPIO_PIN_RESET);
         break;
       case USB_BYPASS_MIXER:
+        bypass_rf_mixer(1);
         break;
       case USB_QUICK_TEST:
+        tune_freq(106300000);
         break;
       case USB_TUNE_FREQ:
+        tune_freq((uint32_t)(pdev->pData));
         break;
 
     default:
@@ -362,6 +391,16 @@ uint8_t *USBD_TEMPLATE_DeviceQualifierDescriptor(uint16_t *length)
   */
 static uint8_t USBD_TEMPLATE_DataIn(USBD_HandleTypeDef *pdev, uint8_t epnum)
 {
+  // A bulk transfer is complete when the endpoint does on of the following:
+  // - Has transferred exactly the amount of data expected
+  // - Transfers a packet with a payload size less than wMaxPacketSize or transfers a zero-length packet
+  if (pdev->ep_in[epnum].total_length && !(pdev->ep_in[epnum].total_length % USB_HS_MAX_PACKET_SIZE))
+  {
+    pdev->ep_in[epnum].total_length = 0;
+    USBD_LL_Transmit(pdev, epnum, NULL, 0);
+  }
+  else
+    data_in_busy = 0;
 
   return (uint8_t)USBD_OK;
 }

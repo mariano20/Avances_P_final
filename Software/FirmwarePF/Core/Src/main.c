@@ -57,6 +57,9 @@ SPI_HandleTypeDef hspi4;
 genclk_st clockg;
 max2837_st transceiver;
 rffc5072_st mixer;
+
+uint8_t max2837_temperature;
+uint16_t max2837_rssi;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -148,8 +151,9 @@ int main(void)
   MX_ADC1_Init();
   /* USER CODE BEGIN 2 */
 
+  gpio_init();
   genclk_init(&clockg, &hi2c1);
-  max2837_init(&transceiver, &hspi1, SPI1_CS1_GPIO_Port, SPI1_CS1_Pin, GPIOB, Trx_Enable_Pin, Trx_Rx_Enable_Pin);
+  max2837_init(&transceiver, &hspi1, SPI1_CS1_GPIO_Port, SPI1_CS1_Pin, Trx_Enable_GPIO_Port, Trx_Enable_Pin, Trx_Rx_Enable_Pin);
   rffc5072_init(&mixer, &hspi1, SPI1_CS0_GPIO_Port, SPI1_CS0_Pin);
   lcd_init();
 

@@ -82,7 +82,17 @@ extern "C" {
   * @}
   */
 
+typedef struct
+{
+  uint32_t data[USB_HS_MAX_PACKET_SIZE / 4U];      /* Force 32bits alignment */
+  uint8_t  *RxBuffer;
+  uint8_t  *TxBuffer;
+  uint32_t RxLength;
+  uint32_t TxLength;
 
+  __IO uint32_t TxState;
+  __IO uint32_t RxState;
+} USBD_TEMPLATE_HandleTypeDef;
 
 /** @defgroup USBD_CORE_Exported_Macros
   * @{

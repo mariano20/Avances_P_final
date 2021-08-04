@@ -11,3 +11,12 @@ ammount of zeros determined by *lenght*, positioned at a
 certain *offset* from the LSB.
 */
 uint32_t bit_mask(uint8_t size, uint8_t length, uint8_t offset);
+
+/* Control RF mixer switch. */
+void bypass_rf_mixer(uint8_t bypass);
+
+/* Set GPIOs to a known initial state. */
+void gpio_init();
+
+/* Set mixer and transceiver PLLs for a given frequency. */
+void tune_freq(uint32_t desired_freq);

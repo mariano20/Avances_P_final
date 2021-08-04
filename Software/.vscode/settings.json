@@ -9,6 +9,15 @@
         "usbd_core.h": "c",
         "stm32f7xx.h": "c",
         "stm32f7xx_hal_conf.h": "c",
-        "stm32f7xx_hal_pcd.h": "c"
+        "stm32f7xx_hal_pcd.h": "c",
+        "utils.h": "c",
+        "*.tcc": "cpp",
+        "vector": "cpp",
+        "functional": "cpp",
+        "istream": "cpp",
+        "limits": "cpp",
+        "ostream": "cpp",
+        "streambuf": "cpp",
+        "tuple": "cpp"
     }
 }
