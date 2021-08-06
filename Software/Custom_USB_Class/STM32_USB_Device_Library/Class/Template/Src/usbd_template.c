@@ -112,7 +112,7 @@ static uint8_t *USBD_TEMPLATE_GetDeviceQualifierDesc(uint16_t *length);
   */
 
 
-uint8_t data_out_buffer[1024] = {};
+uint8_t data_out_buffer[USB_HS_MAX_PACKET_SIZE] = {};
 extern max2837_st transceiver;
 extern rffc5072_st mixer;
 extern genclk_st clockg;
@@ -471,6 +471,11 @@ static uint8_t USBD_TEMPLATE_IsoOutIncomplete(USBD_HandleTypeDef *pdev, uint8_t 
   */
 static uint8_t USBD_TEMPLATE_DataOut(USBD_HandleTypeDef *pdev, uint8_t epnum)
 {
+  uint8_t USB_rx_count;
+
+  USB_rx_count = USBD_GetRxCount(pdev, epnum);
+
+  USBD_LL_PrepareReceive(pdev, TEMPLATE_EPOUT_ADDR, data_out_buffer, USB_HS_MAX_PACKET_SIZE);
 
   return (uint8_t)USBD_OK;
 }

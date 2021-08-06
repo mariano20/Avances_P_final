@@ -38,6 +38,31 @@ void bypass_rf_mixer(uint8_t bypass){
 	}	
 }
 
+void max1193_set_mode(max1193_mode mode){
+	switch (mode)
+	{
+	case MAX1193_MODE_SHUTDOWN:
+		HAL_GPIO_WritePin(PD0_adc_GPIO_Port, PD0_adc_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(PD1_adc_GPIO_Port, PD1_adc_Pin, GPIO_PIN_RESET);
+		break;
+	case MAX1193_MODE_STANDBY:
+		HAL_GPIO_WritePin(PD0_adc_GPIO_Port, PD0_adc_Pin, GPIO_PIN_RESET);
+		HAL_GPIO_WritePin(PD1_adc_GPIO_Port, PD1_adc_Pin, GPIO_PIN_SET);
+		break;
+	case MAX1193_MODE_IDLE:
+		HAL_GPIO_WritePin(PD0_adc_GPIO_Port, PD0_adc_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(PD1_adc_GPIO_Port, PD1_adc_Pin, GPIO_PIN_RESET);
+		break;
+	case MAX1193_MODE_NORMAL:
+		HAL_GPIO_WritePin(PD0_adc_GPIO_Port, PD0_adc_Pin, GPIO_PIN_SET);
+		HAL_GPIO_WritePin(PD1_adc_GPIO_Port, PD1_adc_Pin, GPIO_PIN_SET);
+		break;
+	
+	default:
+		break;
+	}
+}
+
 void gpio_init(){
 	/* Bandpass Filter Active. */
 	HAL_GPIO_WritePin(Filt_Bypass_GPIO_Port, Filt_Bypass_Pin, GPIO_PIN_SET);
@@ -49,8 +74,7 @@ void gpio_init(){
 	/* Enable Rx Mixer. */
 	bypass_rf_mixer(0);
 	/* Set external ADC to Standby mode. */
-	HAL_GPIO_WritePin(PD0_adc_GPIO_Port, PD0_adc_Pin, GPIO_PIN_RESET);
-	HAL_GPIO_WritePin(PD1_adc_GPIO_Port, PD1_adc_Pin, GPIO_PIN_SET);
+	max1193_set_mode(MAX1193_MODE_STANDBY);
 }
 
 void tune_freq(uint32_t desired_freq){
@@ -75,4 +99,83 @@ void tune_freq(uint32_t desired_freq){
 		bypass_rf_mixer(1);
 		max2837_set_freq(&transceiver, transceiver_lo_freq);
 	}
+}
+
+void start_read(){
+
+}
+
+void stop_read(){
+
+}
+
+void pack_iq_samples(){
+	uint8_t current_channel, i;
+	static uint8_t first_read = 1;
+	uint8_t vec_I[8], vec_Q[8], IQ_buf[2];
+	static uint8_t pow2[] = {1, 2, 4, 8, 16, 32, 64, 128};
+	static uint8_t first_channel_read = (uint8_t)HAL_GPIO_ReadPin(A_B_GPIO_Port, A_B_Pin);
+
+	current_channel = (uint8_t)HAL_GPIO_ReadPin(A_B_GPIO_Port, A_B_Pin);
+	if (first_read == 1){
+		if (current_channel == 1){		/* Reading Channel A */
+			vec_I[0] = (uint8_t)HAL_GPIO_ReadPin(D0_GPIO_Port, D0_Pin);
+			vec_I[1] = (uint8_t)HAL_GPIO_ReadPin(D1_GPIO_Port, D1_Pin);
+			vec_I[2] = (uint8_t)HAL_GPIO_ReadPin(D2_GPIO_Port, D2_Pin);
+			vec_I[3] = (uint8_t)HAL_GPIO_ReadPin(D3_GPIO_Port, D3_Pin);
+			vec_I[4] = (uint8_t)HAL_GPIO_ReadPin(D4_GPIO_Port, D4_Pin);
+			vec_I[5] = (uint8_t)HAL_GPIO_ReadPin(D5_GPIO_Port, D5_Pin);
+			vec_I[6] = (uint8_t)HAL_GPIO_ReadPin(D6_GPIO_Port, D6_Pin);
+			vec_I[7] = (uint8_t)HAL_GPIO_ReadPin(D7_GPIO_Port, D7_Pin);
+
+			for(i=0;i<8;i++){
+				IQ_buf[0] = IQ_buf[0] + (vec_I[i] * pow2[i]);
+			}
+		}
+		else if (current_channel == 0){	/* Reading Channel B */
+		}
+		first_read = current_channel & first_channel_read;
+	}
+	else if (first_read == 0){
+		if (current_channel == 1){		/* Reading Channel A */
+			vec_I[0] = (uint8_t)HAL_GPIO_ReadPin(D0_GPIO_Port, D0_Pin);
+			vec_I[1] = (uint8_t)HAL_GPIO_ReadPin(D1_GPIO_Port, D1_Pin);
+			vec_I[2] = (uint8_t)HAL_GPIO_ReadPin(D2_GPIO_Port, D2_Pin);
+			vec_I[3] = (uint8_t)HAL_GPIO_ReadPin(D3_GPIO_Port, D3_Pin);
+			vec_I[4] = (uint8_t)HAL_GPIO_ReadPin(D4_GPIO_Port, D4_Pin);
+			vec_I[5] = (uint8_t)HAL_GPIO_ReadPin(D5_GPIO_Port, D5_Pin);
+			vec_I[6] = (uint8_t)HAL_GPIO_ReadPin(D6_GPIO_Port, D6_Pin);
+			vec_I[7] = (uint8_t)HAL_GPIO_ReadPin(D7_GPIO_Port, D7_Pin);
+
+			for(i=0;i<8;i++){
+				IQ_buf[0] = IQ_buf[0] + (vec_I[i] * pow2[i]);
+			}
+		}
+		else if (current_channel == 0){	/* Reading Channel B */
+			vec_Q[0] = (uint8_t)HAL_GPIO_ReadPin(D0_GPIO_Port, D0_Pin);
+			vec_Q[1] = (uint8_t)HAL_GPIO_ReadPin(D1_GPIO_Port, D1_Pin);
+			vec_Q[2] = (uint8_t)HAL_GPIO_ReadPin(D2_GPIO_Port, D2_Pin);
+			vec_Q[3] = (uint8_t)HAL_GPIO_ReadPin(D3_GPIO_Port, D3_Pin);
+			vec_Q[4] = (uint8_t)HAL_GPIO_ReadPin(D4_GPIO_Port, D4_Pin);
+			vec_Q[5] = (uint8_t)HAL_GPIO_ReadPin(D5_GPIO_Port, D5_Pin);
+			vec_Q[6] = (uint8_t)HAL_GPIO_ReadPin(D6_GPIO_Port, D6_Pin);
+			vec_Q[7] = (uint8_t)HAL_GPIO_ReadPin(D7_GPIO_Port, D7_Pin);
+
+			for(i=0;i<8;i++){
+				IQ_buf[1] = IQ_buf[1] + (vec_Q[i] * pow2[i]);
+			}
+		}
+	}
+	while()	/* coso para que cambie cuando cambie, osea, eso*/
+}
+
+void quick_test(){
+	max2837_set_mode(&transceiver, MAX2837_MODE_STANDBY);
+	rffc5072_disable(&mixer);
+	HAL_Delay(10);
+	tune_freq(106300000);
+	max2837_set_mode(&transceiver, MAX2837_MODE_RX);
+	rffc5072_enable(&mixer);
+	max1193_set_mode(MAX1193_MODE_NORMAL);
+	HAL_Delay(10);
 }

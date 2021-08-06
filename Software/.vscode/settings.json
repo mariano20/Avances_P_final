@@ -18,6 +18,11 @@
         "limits": "cpp",
         "ostream": "cpp",
         "streambuf": "cpp",
-        "tuple": "cpp"
+        "tuple": "cpp",
+        "usbd_conf.h": "c",
+        "stm32f7xx_ll_usb.h": "c",
+        "rffc5072.h": "c",
+        "max2837.h": "c",
+        "main.h": "c"
     }
 }

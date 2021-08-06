@@ -58,7 +58,7 @@ extern "C" {
 #define CDC_DATA_FS_MAX_PACKET_SIZE                 64U  /* Endpoint IN & OUT Packet size */
 #define CDC_CMD_PACKET_SIZE                         8U  /* Control Endpoint Packet size */
 
-#define USB_CDC_CONFIG_DESC_SIZ                     67U
+#define USB_CDC_CONFIG_DESC_SIZ                     32U
 #define CDC_DATA_HS_IN_PACKET_SIZE                  CDC_DATA_HS_MAX_PACKET_SIZE
 #define CDC_DATA_HS_OUT_PACKET_SIZE                 CDC_DATA_HS_MAX_PACKET_SIZE
 
@@ -77,6 +77,29 @@ extern "C" {
 #define CDC_GET_LINE_CODING                         0x21U
 #define CDC_SET_CONTROL_LINE_STATE                  0x22U
 #define CDC_SEND_BREAK                              0x23U
+
+/* Custom Vendor Requests */
+#define USB_MAX2837_SET_LO_FREQ           0x01U
+#define USB_MAX2837_SET_MODE              0x02U
+#define USB_MAX2837_SET_LNA_GAIN          0x03U
+#define USB_MAX2837_SET_VGA_GAIN          0x04U
+#define USB_MAX2837_SET_LPF_BW            0x05U
+#define USB_MAX2837_GET_TEMP              0x06U
+#define USB_MAX2837_GET_RSSI              0x10U
+
+#define USB_RFFC5072_SET_LO_FREQ          0x07U
+#define USB_RFFC5072_SET_LOW_PHASENOISE   0x08U
+#define USB_RFFC5072_ENABLE               0x09U
+#define USB_RFFC5072_DISABLE              0x0AU
+
+#define USB_GENCLK_SET_FREQ               0x0BU
+#define USB_GENCLK_SET_OUTPUTS            0x0CU
+
+#define USB_ENABLE_BANDPASS_FILTER        0x0DU
+#define USB_ENABLE_AMP                    0x0EU
+#define USB_BYPASS_MIXER                  0x0FU
+#define USB_QUICK_TEST                    0x11U
+#define USB_TUNE_FREQ                     0x12U
 
 /**
   * @}
