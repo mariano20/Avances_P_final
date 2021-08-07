@@ -1083,9 +1083,9 @@ Notas sobre el protocolo USB. Si se especifica algún valor, es para \textbf{USB
 	\item \textbf{IN} = transferencia \textbf{hacia el HOST}.
 	\item \textbf{OUT} = transferencia \textbf{desde el HOST}.
 	\item 4 tipos de transferencias: control, bulk, interrupt e isochronus.
-	\item Bulk transfers son las más rápidas\footnote{Si el bus no tiene ningún otro dispositvo conectado.} pero no garantiza sincronización.
+	\item Bulk transfers son las más rápidas\footnote{Si el bus no tiene ningún otro dispositivo conectado.} pero no garantiza sincronización.
 	\item Interrupt transfers poseen latencia máxima garantizada.
-	\item Isochronus transfers tienen sincronización asegurada pero no hay correción de errores.
+	\item Isochronus transfers tienen sincronización asegurada pero no hay corrección de errores.
 	\item endpoint 0 es siempre de control.
 \end{itemize}
 
@@ -1102,6 +1102,37 @@ Se utilizará la librería libusb ya que permite Plug \& Play y es lo que utiliz
 	\end{itemize}
 	\item Adaptar del lado del dispositivo el firmware existente para que interactúe correctamente con el punto anterior.
 	\item Hacer la vinculación entre nuestro driver y el de SoapySDR para poder utilizar el hardware con software SDR existente (GNU Radio, Pothosware, SDR\#, etc).
+\end{enumerate}
+
+\section{Librería libUSB}
+
+\subsection{Linux}
+
+Se utiliza la distribución Ubuntu 20.04, la cual contiene preinstalados los paquetes necesarios para el desarrollo con la librería.
+
+\subsection{Windows}
+
+Se siguieron los siguientes pasos para poder crear programas con la librería.
+\begin{enumerate}
+	\item Instalar Visual Studio Code y la extensión de C/C++.
+	\item Instalar el compilador y debugger de C/C++ (gcc/g++) a través de \textbf{MSYS2}.
+	\item Luego de instalar MSYS2, este se abrirá y se ingresan los siguientes comandos:
+	\begin{enumerate}
+		\item \textit{pacman -Syu}
+		\item Luego de completar el paso anterior el programa puede necesitar un reinicio y se deberá abrirlo nuevamente desde el ejecutable ``MSYS2 MSYS''. Ahora se ingresa: \textit{pacman -Su}
+		\item Luego: \textit{pacman -S --needed base-devel mingw-w64-x86\_64-toolchain} y se elige la opción por defecto (all) para las 2 selecciones.
+	\end{enumerate}
+	\item Ahora ya se puede instalar la librería libUSB con el siguiente comando, dentro de MSYS2: \textit{pacman -S mingw-w64-x86\_64-libusb}
+	\item Se debe añadir la ruta hacia el compilador en la variable de entorno PATH de Windows:
+	\begin{enumerate}
+		\item Desde el menú inicio ir a configuración.
+		\item En la barra de búsqueda ingresar ``entorno'' y elegir la opción ``Editar las variables de entorno de esta cuenta''.
+		\item Seleccionar la variable Path, Editar y luego agregar una Nueva.
+		\item Si se utilizaron las opciones por defecto al instalar MSYS2, la ruta es: C:\textbackslash msys64\textbackslash mingw64\textbackslash bin
+		\item Guardar y cerrar las ventanas.
+	\end{enumerate}
+	\item Ahora al abrir una nueva ventana de comandos en cualquier ubicación, se puede ingresar \textit{gcc --version} o \textit{g++ --version} y se imprimirá en pantalla la versión instalada de los compiladores.
+	\item Ahora cuando se quiera usar la librería en VS Code se lo debe hacer usando \textit{\#include "libusb-1.0\/libusb.h"}. Al hacer eso saldrá un error de que no se encuentra dicho archivo de cabecera, pero aplicando la solución que sugiere el mismo VS Code se soluciona. Cabe destacar que eso es solamente aplicable al proyecto abierto y no es global.
 \end{enumerate}
 
 \chapter*{Varios}
