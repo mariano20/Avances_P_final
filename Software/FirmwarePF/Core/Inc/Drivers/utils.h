@@ -31,9 +31,6 @@ void gpio_init();
 /* Set mixer and transceiver PLLs for a given frequency. */
 void tune_freq(uint32_t desired_freq);
 
-/* Activate external ADC and read samples continuosly. */
-void start_read();
-
 /* Stops reading samples and set ADC to Standby Mode. */
 void stop_read();
 

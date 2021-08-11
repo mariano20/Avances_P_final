@@ -101,10 +101,6 @@ void tune_freq(uint32_t desired_freq){
 	}
 }
 
-void start_read(){
-
-}
-
 void stop_read(){
 
 }
@@ -114,7 +110,6 @@ void pack_iq_samples(){
 	static uint8_t first_read = 1;
 	uint8_t vec_I[8], vec_Q[8], IQ_buf[2];
 	static uint8_t pow2[] = {1, 2, 4, 8, 16, 32, 64, 128};
-	static uint8_t first_channel_read = (uint8_t)HAL_GPIO_ReadPin(A_B_GPIO_Port, A_B_Pin);
 
 	current_channel = (uint8_t)HAL_GPIO_ReadPin(A_B_GPIO_Port, A_B_Pin);
 	if (first_read == 1){
@@ -131,10 +126,11 @@ void pack_iq_samples(){
 			for(i=0;i<8;i++){
 				IQ_buf[0] = IQ_buf[0] + (vec_I[i] * pow2[i]);
 			}
+			first_read = 0;
 		}
 		else if (current_channel == 0){	/* Reading Channel B */
+		/* Discard samples if first reading is of Channel B. */
 		}
-		first_read = current_channel & first_channel_read;
 	}
 	else if (first_read == 0){
 		if (current_channel == 1){		/* Reading Channel A */
@@ -166,7 +162,15 @@ void pack_iq_samples(){
 			}
 		}
 	}
-	while()	/* coso para que cambie cuando cambie, osea, eso*/
+
+	if (IQ_buf[0] != NULL && IQ_buf[1] != NULL){
+		CDC_Transmit_HS(IQ_buf, sizeof(IQ_buf));
+		IQ_buf[0] = NULL;
+		IQ_buf[1] = NULL;
+	}
+	while((uint8_t)HAL_GPIO_ReadPin(A_B_GPIO_Port, A_B_Pin) != current_channel){		
+	}	/* Until the A/B pin from ADC changes, do nothing. */
+	pack_iq_samples();
 }
 
 void quick_test(){
