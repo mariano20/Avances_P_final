@@ -1,20 +1,26 @@
 #include <iostream>
 #include <libusb-1.0/libusb.h>
+#include <signal.h>
 
 using namespace std;
 
 #define USB_REQ_LED_ON 0x01 
 #define USB_REQ_LED_OFF 0x02
 
+volatile sig_atomic_t ctrlc=1;
+
+void ctrlc_handler(int); /*catch CTRL+C to stop Data Stream*/
 
 int main() {
 	libusb_device **devs; //pointer to pointer of device, used to retrieve a list of devices
 	libusb_device_handle *dev_handle; //a device handle
 	libusb_context *ctx = NULL; //a libusb session
 	int r; //for return values
-	unsigned char buffer[3];
+	unsigned char buffer[2];
 	int actual;
 	ssize_t cnt; //holding number of devices in list
+	signal(SIGINT, ctrlc_handler);
+
 	r = libusb_init(&ctx); //initialize the library for the session we just declared
 	if(r < 0) {
 		cout<<"Init Error "<<r<<endl; //there was an error
@@ -48,11 +54,15 @@ int main() {
 	
 	cout<<"Sending Bulk Transfer..."<<endl;
 
-    r = libusb_bulk_transfer(dev_handle, 0x81, buffer, sizeof(buffer), &actual, 10);
+	while(ctrlc){
+    	r = libusb_bulk_transfer(dev_handle, 0x81, buffer, sizeof(buffer), &actual, 10);
 
-	//r = libusb_control_transfer(dev_handle, (LIBUSB_REQUEST_TYPE_VENDOR | LIBUSB_ENDPOINT_OUT | LIBUSB_RECIPIENT_DEVICE), USB_REQ_LED_ON, 0, 0, NULL, 0, 0); //my device's out endpoint was 2, found with trial- the device had 2 endpoints: 2 and 129
-	
-	
+		cout<<"Recibido: "<<actual<<endl;
+		for(int i=0; i<2; i++){
+			cout<< "Buffer: "<<(int)buffer[i]<<endl;
+		}
+		//r = libusb_control_transfer(dev_handle, (LIBUSB_REQUEST_TYPE_VENDOR | LIBUSB_ENDPOINT_OUT | LIBUSB_RECIPIENT_DEVICE), USB_REQ_LED_ON, 0, 0, NULL, 0, 0); //my device's out endpoint was 2, found with trial- the device had 2 endpoints: 2 and 129
+}	
 	r = libusb_release_interface(dev_handle, 1); //release the claimed interface
 	if(r!=0) {
 		cout<<"Cannot Release Interface"<<endl;
@@ -60,14 +70,16 @@ int main() {
 	}
 	cout<<"Released Interface"<<endl;
 
-	cout<<"Recibido: "<<actual<<endl;
-	for(int i=0; i<3; i++){
-		cout<< "Buffer: "<<(int)buffer[i]<<endl;
-	}
+
 
 
 	libusb_close(dev_handle); //close the device we opened
 	libusb_exit(ctx); //needs to be called to end the
-
+	cout<<"El gino no quiere que exista esta linea:";
+	cin>>r;
 	return 0;
+}
+
+void ctrlc_handler(int foo){ 
+	ctrlc=0;
 }
