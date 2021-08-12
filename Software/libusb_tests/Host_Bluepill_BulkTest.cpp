@@ -16,10 +16,10 @@ int main() {
 	libusb_device_handle *dev_handle; //a device handle
 	libusb_context *ctx = NULL; //a libusb session
 	int r; //for return values
-	unsigned char buffer[2];
+	unsigned char buffer[64];
 	int actual;
 	ssize_t cnt; //holding number of devices in list
-	signal(SIGINT, ctrlc_handler);
+	signal(SIGINT, ctrlc_handler); 
 
 	r = libusb_init(&ctx); //initialize the library for the session we just declared
 	if(r < 0) {
@@ -58,7 +58,7 @@ int main() {
     	r = libusb_bulk_transfer(dev_handle, 0x81, buffer, sizeof(buffer), &actual, 10);
 
 		cout<<"Recibido: "<<actual<<endl;
-		for(int i=0; i<2; i++){
+		for(int i=0; i<64; i++){
 			cout<< "Buffer: "<<(int)buffer[i]<<endl;
 		}
 		//r = libusb_control_transfer(dev_handle, (LIBUSB_REQUEST_TYPE_VENDOR | LIBUSB_ENDPOINT_OUT | LIBUSB_RECIPIENT_DEVICE), USB_REQ_LED_ON, 0, 0, NULL, 0, 0); //my device's out endpoint was 2, found with trial- the device had 2 endpoints: 2 and 129
@@ -72,11 +72,8 @@ int main() {
 
 
 
-
 	libusb_close(dev_handle); //close the device we opened
 	libusb_exit(ctx); //needs to be called to end the
-	cout<<"El gino no quiere que exista esta linea:";
-	cin>>r;
 	return 0;
 }
 
