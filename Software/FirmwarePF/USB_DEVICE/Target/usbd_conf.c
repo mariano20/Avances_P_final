@@ -175,8 +175,9 @@ static void PCD_DataInStageCallback(PCD_HandleTypeDef *hpcd, uint8_t epnum)
 void HAL_PCD_DataInStageCallback(PCD_HandleTypeDef *hpcd, uint8_t epnum)
 #endif /* USE_HAL_PCD_REGISTER_CALLBACKS */
 {
+  uint8_t ret;
   USBD_LL_DataInStage((USBD_HandleTypeDef*)hpcd->pData, epnum, hpcd->IN_ep[epnum].xfer_buff);
-  pack_iq_samples();
+  ret = pack_iq_samples();
 }
 
 /**

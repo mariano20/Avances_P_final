@@ -101,11 +101,7 @@ void tune_freq(uint32_t desired_freq){
 	}
 }
 
-void stop_read(){
-
-}
-
-void pack_iq_samples(){
+uint8_t pack_iq_samples(){
 	uint8_t current_channel, i;
 	static uint8_t first_read = 1;
 	uint8_t vec_I[8], vec_Q[8], IQ_buf[2];
@@ -167,6 +163,7 @@ void pack_iq_samples(){
 		CDC_Transmit_HS(IQ_buf, sizeof(IQ_buf));
 		IQ_buf[0] = NULL;
 		IQ_buf[1] = NULL;
+		return 0;
 	}
 	while((uint8_t)HAL_GPIO_ReadPin(A_B_GPIO_Port, A_B_Pin) != current_channel){		
 	}	/* Until the A/B pin from ADC changes, do nothing. */
