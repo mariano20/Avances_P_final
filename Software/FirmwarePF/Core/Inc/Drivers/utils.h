@@ -31,11 +31,8 @@ void gpio_init();
 /* Set mixer and transceiver PLLs for a given frequency. */
 void tune_freq(uint32_t desired_freq);
 
-/* Stops reading samples and set ADC to Standby Mode. */
-void stop_read();
-
 /* Packs I/Q samples in IQIQIQIQ format. */
-void pack_iq_samples();
+uint8_t pack_iq_samples();
 
 /* 
 Performs a quick test. Tunes to a local known FM radio and
