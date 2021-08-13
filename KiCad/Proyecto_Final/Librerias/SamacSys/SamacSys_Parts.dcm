@@ -65,4 +65,10 @@ K
 F https://www.ckswitches.com/media/2567/pts647.pdf
 $ENDCMP
 #
+$CMP SKY13335-381LF
+D RF Switch ICs .1-6.0GHz SPDT IL .4dB @2.5GHz
+K
+F 
+$ENDCMP
+#
 #End Doc Library
