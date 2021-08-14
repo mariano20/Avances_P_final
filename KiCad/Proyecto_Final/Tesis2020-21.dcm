@@ -5,6 +5,11 @@ D Signal Conditioning 2.4G BALUN
 F https://www.arrow.com/en/products/2450bl05a0100t/johanson-dielectrics
 $ENDCMP
 #
+$CMP 2500BL14M100
+D Signal Conditioning 2.4G BALUN
+F https://www.arrow.com/en/products/2450bl05a0100t/johanson-dielectrics
+$ENDCMP
+#
 $CMP B0310J50100AHF
 D Signal Conditioning 300-1000MHz 50/100 Ohm IL=1.0dB
 F https://cdn.anaren.com/product-documents/Xinger/BalunTransformers/B0310J50100AHF/B0310J50100AHF_DataSheet(Rev_D).pdf
