@@ -196,7 +196,7 @@ void rffc5072_set_freq(rffc5072_st *mixer, uint32_t lo_freq_hz){
 	mixer->fvco_int = fvco_int;
 	mixer->fvco_dec = fvco_dec;
 	
-	if((lo_div * lo_freq_hz) < 3200000000){
+	if((lo_div * lo_freq_hz) < 3200000000ULL){
 		fbkdiv = 2;
 	}else{
 		fbkdiv = 4;

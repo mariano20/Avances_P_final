@@ -213,10 +213,10 @@ void max2837_set_freq(max2837_st *transceiver, uint32_t lo_freq_hz){
 	Modificar divisor R y ponerlo en 1
 	si hay mucho ruido de fase.
 	*/
-	div_int = (uint16_t) freq / 15000000;
-	div_rem = freq % 15000000;
+	div_int = (uint16_t) freq / 15000000ULL;
+	div_rem = freq % 15000000ULL;
 	div_frac = 0;
-	div_cmp = 15000000;
+	div_cmp = 15000000ULL;
 	for( i = 0; i < 20; i++) {
 		div_frac <<= 1;
 		div_cmp >>= 1;

@@ -56,7 +56,7 @@
 #define TX_DC_OFFSET 		0x1F
 
 #define FREF 40
-#define ONE_MHZ 1000000
+#define ONE_MHZ 1000000ULL
 
 typedef enum{
 	MAX2837_MODE_SHUTDOWN,
