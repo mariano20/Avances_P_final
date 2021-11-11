@@ -31,5 +31,8 @@ fp-info-cache
 *.ses
 KiCad/Proyecto_Final/*.pdf
 KiCad/Proyecto_Final/svg/
+KiCad/Proyecto_Final/svg2/
+*.obj
+*.step
 # No subir carpeta temporal de Google Drive
 .tmp.drivedownload/
