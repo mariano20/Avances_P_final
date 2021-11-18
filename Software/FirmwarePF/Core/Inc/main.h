@@ -32,6 +32,10 @@ extern "C" {
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "Drivers/gen_clock.h"
+#include "Drivers/max2837.h"
+#include "Drivers/rffc5072.h"
+#include "Drivers/utils.h"
 
 /* USER CODE END Includes */
 

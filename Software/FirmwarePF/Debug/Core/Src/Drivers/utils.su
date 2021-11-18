@@ -1,0 +1,9 @@
+utils.c:8:6:spi_enable	16	static
+utils.c:13:6:spi_disable	16	static
+utils.c:18:10:bit_mask	24	static
+utils.c:31:6:bypass_rf_mixer	16	static
+utils.c:42:6:max1193_set_mode	16	static
+utils.c:67:6:gpio_init	8	static
+utils.c:81:6:tune_freq	32	static
+utils.c:105:9:pack_iq_samples	32	static
+utils.c:174:6:quick_test	8	static

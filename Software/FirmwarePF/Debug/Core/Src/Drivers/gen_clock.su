@@ -1,0 +1,5 @@
+gen_clock.c:3:6:genclk_init	16	static
+gen_clock.c:92:9:genclk_i2c_write	32	static
+gen_clock.c:106:9:genclk_i2c_read	32	static
+gen_clock.c:118:6:genclk_outEn	24	static
+gen_clock.c:137:9:genclk_fod_settings	56	static

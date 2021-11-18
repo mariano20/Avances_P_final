@@ -1,5 +1,5 @@
-#include "max2837.h"
-#include "utils.h"
+#include "Drivers/max2837.h"
+#include "Drivers/utils.h"
 
 static const uint16_t max2837_regs_default[MAX2837_NUM_REGS] = {
 	0x150,	/* 0 */
@@ -86,7 +86,7 @@ void max2837_init(max2837_st *transceiver,
 	/* Load default registers' values. */
 	uint8_t i = 0;
 	for(i=0;i<MAX2837_NUM_REGS;i++){
-		max2837_write_reg(transceiver, max2837_regs_address[i], max2837_regs_default[i]);
+		max2837_write_reg(transceiver, max2837_regs_address[i], max2837_regs_default[i], 0, 0);
 	}
 	/* Enable RX quadrature generation, mixer and LNA */
 	max2837_write_reg(transceiver, RXRF_1, 0b111, 3, 0);
@@ -118,11 +118,11 @@ void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data, uin
 	the 10 data bits.
 	*/
 	uint8_t txDataBuf[2];
-	uint16_t bit_mask;
+	uint16_t bit_masko;
 	
 	if(mask < 16){
-		bit_mask = bit_mask(16, mask, offset);	
-		data = (transceiver->regs_values[addr] & bit_mask) | data;
+		bit_masko = bit_mask(16, mask, offset);
+		data = (transceiver->regs_values[addr] & bit_masko) | data;
 	}
 	
 	txDataBuf[0] = (((addr & 0x1f) << 2) | 0x80) | (data >> 8);
@@ -136,8 +136,8 @@ void max2837_write_reg(max2837_st *transceiver,	uint8_t addr, uint16_t data, uin
 	else{
 		transceiver->transceiver_write_flg = 0;
 		spi_disable(transceiver->CS_bank, transceiver->CS_pin);
-		lcd_clear();
-		lcd_send_string("Trv_w_err SPI Tx");
+		//lcd_clear();
+		//lcd_send_string("Trv_w_err SPI Tx");
 	}
 }
 					
@@ -156,8 +156,8 @@ void max2837_read_reg(max2837_st *transceiver, uint8_t addr){
 	else{
 		transceiver->transceiver_read_flg = 0;
 		spi_disable(transceiver->CS_bank, transceiver->CS_pin);
-		lcd_clear();
-		lcd_send_string("Trv_r_err SPI Tx");
+		//lcd_clear();
+		//lcd_send_string("Trv_r_err SPI Tx");
 	}
 }
 
@@ -170,7 +170,7 @@ uint8_t max2837_get_temp(max2837_st *transceiver){
 	/* Wait for conversion */
 	HAL_Delay(1);
 	/* Read 5 bit value */
-	max2837_read_reg(transceiver, TEMP_SENSOR, (uint16_t) *temperature);
+	max2837_read_reg(transceiver, TEMP_SENSOR);//, (uint16_t) *temperature);
 	/* Convert to celsius */
 	if(temperature > 8){
 		temperature -= 9;
@@ -213,8 +213,8 @@ void max2837_set_freq(max2837_st *transceiver, uint32_t lo_freq_hz){
 	Modificar divisor R y ponerlo en 1
 	si hay mucho ruido de fase.
 	*/
-	div_int = (uint16_t) freq / 15000000ULL;
-	div_rem = freq % 15000000ULL;
+	div_int = (uint16_t) lo_freq_hz / 15000000ULL;
+	div_rem = lo_freq_hz % 15000000ULL;
 	div_frac = 0;
 	div_cmp = 15000000ULL;
 	for( i = 0; i < 20; i++) {

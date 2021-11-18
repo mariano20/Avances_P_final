@@ -1,5 +1,5 @@
-#include "rffc5072.h"
-#include "utils.h"
+#include "Drivers/rffc5072.h"
+#include "Drivers/utils.h"
 
 /* Default register values. */
 static const uint16_t rffc5072_regs_default[RFFC5072_NUM_REGS] = { 
@@ -81,7 +81,7 @@ void rffc5072_init(rffc5072_st *mixer,
 	/* Load default registers' values. */
 	uint8_t i = 0;
 	for(i=0;i<RFFC5072_NUM_REGS;i++){
-		rffc5072_write_reg(mixer, rffc5072_regs_address[i], rffc5072_regs_default[i]);
+		rffc5072_write_reg(mixer, rffc5072_regs_address[i], rffc5072_regs_default[i], 0, 0);
 	}
 	/* p2n: 1, p2lodiv: 2^0=1, p2presc: divide by 4, p2vcosel: 0 (vco1) */
 	rffc5072_write_reg(mixer, P2_FREQ1, 0x0088, 16, 0);	/* 0000000010001000 */
@@ -110,8 +110,8 @@ void rffc5072_read_reg(rffc5072_st *mixer, uint8_t addr){
 	else{
 		mixer->mixer_read_flg = 0;
 		spi_disable(mixer->CS_bank, mixer->CS_pin);
-		lcd_clear();
-		lcd_send_string("Mix_r_err SPI Tx");
+		//lcd_clear();
+		//lcd_send_string("Mix_r_err SPI Tx");
 		/* falta manejo de error */
 	}
 }
@@ -125,11 +125,11 @@ void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data, uint8_t
 	*/
 	uint8_t data_split[3];
 	uint8_t txDataBuf[4];
-	uint16_t bit_mask;
+	uint16_t bit_masko;
 	
 	if(mask < 16){
-		bit_mask = bit_mask(16, mask, offset);
-		data = (mixer->regs_values[addr] & bit_mask) | data;
+		bit_masko = bit_mask(16, mask, offset);
+		data = (mixer->regs_values[addr] & bit_masko) | data;
 	}
 	data_split[0] = (uint8_t)(data >> 9);
 	data_split[1] = (uint8_t)(data >> 1);
@@ -148,8 +148,8 @@ void rffc5072_write_reg(rffc5072_st *mixer, uint8_t addr, uint16_t data, uint8_t
 	else{
 		mixer->mixer_write_flg = 0;
 		spi_disable(mixer->CS_bank, mixer->CS_pin);
-		lcd_clear();
-		lcd_send_string("Mix_w_err SPI Tx");
+		//lcd_clear();
+		//lcd_send_string("Mix_w_err SPI Tx");
 		/* falta manejo de error */
 	}
 }

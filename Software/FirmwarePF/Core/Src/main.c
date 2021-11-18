@@ -24,11 +24,11 @@
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
 #include "usbd_cdc_if.h"
-#include "gen_clock.h"
+/*#include "gen_clock.h"
 #include "max2837.h"
 #include "rffc5072.h"
-#include "utils.h"
-#include "i2c-lcd.h"
+#include "utils.h"*/
+//#include "i2c-lcd.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -82,7 +82,7 @@ void HAL_SPI_TxCpltCallback(SPI_HandleTypeDef *hspi){
 		else{
 			mixer.mixer_read_flg = 0;
 			spi_disable(mixer.CS_bank, mixer.CS_pin);
-			lcd_send_string("Mix_r_err SPI Rx");
+			//lcd_send_string("Mix_r_err SPI Rx");
 		}
 	}
 	else if(mixer.mixer_write_flg){
@@ -155,7 +155,14 @@ int main(void)
   genclk_init(&clockg, &hi2c1);
   max2837_init(&transceiver, &hspi1, SPI1_CS1_GPIO_Port, SPI1_CS1_Pin, Trx_Enable_GPIO_Port, Trx_Enable_Pin, Trx_Rx_Enable_Pin);
   rffc5072_init(&mixer, &hspi1, SPI1_CS0_GPIO_Port, SPI1_CS0_Pin);
-  lcd_init();
+  //lcd_init();
+  genclk_fod_settings(&clockg, 1, 24);
+  HAL_Delay(200);
+  genclk_fod_settings(&clockg, 2, 43);
+  HAL_Delay(200);
+  genclk_fod_settings(&clockg, 3, 38);
+  HAL_Delay(200);
+  genclk_fod_settings(&clockg, 4, 49);
 
   /* USER CODE END 2 */
 

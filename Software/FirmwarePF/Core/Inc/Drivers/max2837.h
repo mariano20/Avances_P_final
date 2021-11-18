@@ -102,7 +102,7 @@ void max2837_set_mode(max2837_st *transceiver,			/* Switch operating mode. */
 						max2837_mode mode);
 void max2837_set_freq(max2837_st *transceiver,			/* Set LO frequency in Hz. */
 						uint32_t lo_freq);
-void max2837_set_lna_gain(max2837_st *transceiver,		/* Set LNA gain. */
+uint8_t max2837_set_lna_gain(max2837_st *transceiver,		/* Set LNA gain. */
 						uint8_t gain_db);
 uint8_t max2837_set_lpf_bw(max2837_st *transceiver,		/* Configure LPF RF Bandwidth. */
 						uint8_t bw);

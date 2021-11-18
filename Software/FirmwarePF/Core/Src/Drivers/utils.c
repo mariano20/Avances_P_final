@@ -1,17 +1,18 @@
-#include "max2837.h"
-#include "rffc5072.h"
+#include "main.h"
+#include "Drivers/max2837.h"
+#include "Drivers/rffc5072.h"
 
 extern max2837_st transceiver;
 extern rffc5072_st mixer;
 
 void spi_enable(GPIO_TypeDef *CS_bank, uint16_t CS_pin){
 	/* Use GPIO HAL to drive chip select pin low. */
-	HAL_GPIO_WritePin(*CS_bank, CS_pin, GPIO_PIN_RESET);
+	HAL_GPIO_WritePin(CS_bank, CS_pin, GPIO_PIN_RESET);
 }
 
 void spi_disable(GPIO_TypeDef *CS_bank, uint16_t CS_pin){
 	/* Use GPIO HAL to drive chip select pin high. */
-	HAL_GPIO_WritePin(*CS_bank, CS_pin, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(CS_bank, CS_pin, GPIO_PIN_SET);
 }
 
 uint32_t bit_mask(uint8_t size, uint8_t length, uint8_t offset){

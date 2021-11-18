@@ -1,10 +1,27 @@
-#include "gen_clock.h"
+#include "Drivers/gen_clock.h"
 
 void genclk_init(genclk_st *clockg, I2C_HandleTypeDef *i2cHandle){
 	clockg->i2cHandle = i2cHandle;
+	clockg->clocks[0] = 0;
+		clockg->clocks[1] = 0;
+		clockg->clocks[2] = 0;
+		clockg->clocks[3] = 0;
+		clockg->cfg0[0] = clockg->cfg0[4] = clockg->cfg0[5] = 0x00;
+		clockg->cfg0[1] = clockg->cfg1[1] = clockg->cfg2[1] = clockg->cfg3[1] = 0x4e;
+		clockg->cfg0[2] = 0x34;
+		clockg->cfg0[3] = clockg->cfg1[3] = clockg->cfg2[3] = clockg->cfg3[3] = 0xe1;
+		clockg->cfg1[0] = 0x35;
+		clockg->cfg1[2] = 0x61;
+		clockg->cfg2[0] = 0x62;
+		clockg->cfg2[2] = 0x8e;
+		clockg->cfg3[0] = 0x8f;
+		clockg->cfg3[2] = 0xbb;
+		clockg->cfg1[4] = clockg->cfg1[5] = 0x10;
+		clockg->cfg2[4] = clockg->cfg2[5] = 0x10;
+		clockg->cfg3[4] = clockg->cfg3[5] = 0x10;
 	
 	/* Reverses SD/OE pin polarity */
-	genclk_i2c_write(clockg, 0x10, 0b10000010);
+	genclk_i2c_write(clockg, 0x10, 0x82);
 	
 	/* Set Crystal Load Capacitor Registers */
 	/*
@@ -18,13 +35,19 @@ void genclk_init(genclk_st *clockg, I2C_HandleTypeDef *i2cHandle){
 	genclk_i2c_write(clockg, 0x12, 0b10000001);
 	genclk_i2c_write(clockg, 0x13, 0b10000000);
 	
+	genclk_i2c_write(clockg, 0x15, 0x00);
+	genclk_i2c_write(clockg, 0x16, 0x84);
+
 	/* Configure PLL Feedback Divider */
 	/*
 	M = FVCO / FREF;
 	M = 2600MHz / 25MHz = 104;
 	*/
-	genclk_i2c_write(clockg, 0x17, 0b00000110);
-	genclk_i2c_write(clockg, 0x18, 0b10000000);
+	genclk_i2c_write(clockg, 0x17, 0x06);
+	genclk_i2c_write(clockg, 0x18, 0x80);
+	genclk_i2c_write(clockg, 0x19, 0x00);
+	genclk_i2c_write(clockg, 0x1A, 0x00);
+	genclk_i2c_write(clockg, 0x1B, 0x00);
 	
 	/* VCO Calibration config, Timing Commander values */
 	genclk_i2c_write(clockg, 0x1C, 0x9f);
@@ -44,7 +67,7 @@ void genclk_init(genclk_st *clockg, I2C_HandleTypeDef *i2cHandle){
 		3.3v and normal slew rate. */
 		
 	/* Output 1 */
-	genclk_i2c_write(clockg, 0x60, 0x3b);
+	genclk_i2c_write(clockg, 0x60, 0x9b);
 	genclk_i2c_write(clockg, 0x61, 0x01);
 	/* Output 2 */
 	genclk_i2c_write(clockg, 0x62, 0x3b);
@@ -57,7 +80,7 @@ void genclk_init(genclk_st *clockg, I2C_HandleTypeDef *i2cHandle){
 	genclk_i2c_write(clockg, 0x67, 0x01);
 	
 	/* Enable OUT1-4 */
-	clockg->outputs_en[0] = 0;
+	clockg->outputs_en[0] = 1;
 	clockg->outputs_en[1] = 1;
 	clockg->outputs_en[2] = 1;
 	clockg->outputs_en[3] = 1;
@@ -108,6 +131,7 @@ void genclk_outEn(genclk_st *clockg, uint8_t *out_list){
 	OEbits |= 0b00000111;
 	/* Write register */
 	genclk_i2c_write(clockg, 0x68, OEbits);	
+	genclk_i2c_write(clockg, 0x69, 0xfc);
 }
 
 uint8_t genclk_fod_settings(genclk_st *clockg, uint8_t out_n, uint8_t freq_mhz){
@@ -121,10 +145,10 @@ uint8_t genclk_fod_settings(genclk_st *clockg, uint8_t out_n, uint8_t freq_mhz){
 	n_int = 2600 / (freq_mhz << 1);
 	/* Rounding up to nearest integer algorithm */
 	div_h = ((2600 * 10000000ULL) + (freq_mhz << 1) - 1) / (freq_mhz << 1);
-	div_h -= (n_int * 10000000);
+	div_h -= ((uint64_t)n_int * 10000000ULL);
 	/* n_frac = 2^24 * FRAC(N) */
 	div_h <<= 24;
-	div_h /= 10000000;
+	div_h /= 10000000ULL;
 	n_frac = (uint32_t)div_h;
 	
 	switch(out_n){
@@ -143,6 +167,7 @@ uint8_t genclk_fod_settings(genclk_st *clockg, uint8_t out_n, uint8_t freq_mhz){
 			reg_frac_2 = 0x34;
 			reg_frac_3 = 0x33;
 			reg_frac_4 = 0x32;
+			n_frac += 8054000;
 			break;
 		case 3:
 			reg_int_lsb = 0x4E;
@@ -151,6 +176,7 @@ uint8_t genclk_fod_settings(genclk_st *clockg, uint8_t out_n, uint8_t freq_mhz){
 			reg_frac_2 = 0x44;
 			reg_frac_3 = 0x43;
 			reg_frac_4 = 0x42;
+			n_frac += 5500000;
 			break;
 		case 4:
 			reg_int_lsb = 0x5E;
@@ -169,10 +195,10 @@ uint8_t genclk_fod_settings(genclk_st *clockg, uint8_t out_n, uint8_t freq_mhz){
 	genclk_i2c_write(clockg, reg_int_msb, n_int >> 4);	/* Store 8 MSB */
 	
 	/* Write output divider fractional part for output n */
-	genclk_i2c_write(clockg, reg_frac_1, n_frac << 2);	/* Store 6 LSB */
+	genclk_i2c_write(clockg, reg_frac_1, (n_frac << 2) & 0xFC);	/* Store 6 LSB */
 	genclk_i2c_write(clockg, reg_frac_2, n_frac >> 6);
 	genclk_i2c_write(clockg, reg_frac_3, n_frac >> 14);
-	genclk_i2c_write(clockg, reg_frac_4, n_frac >> 22);	/* Store 8 MSB */
+	genclk_i2c_write(clockg, reg_frac_4, (n_frac >> 22) & 0x7F);	/* Store 8 MSB */
 	
 	clockg->clocks[out_n - 1] = freq_mhz;
 	

@@ -1,0 +1,7 @@
+rffc5072.c:69:6:rffc5072_init	40	static
+rffc5072.c:98:6:rffc5072_read_reg	24	static
+rffc5072.c:119:6:rffc5072_write_reg	32	static
+rffc5072.c:157:6:rffc5072_set_freq	144	static
+rffc5072.c:226:6:rffc5072_lower_phase_noise	136	static
+rffc5072.c:254:6:rffc5072_enable	24	static
+rffc5072.c:258:6:rffc5072_disable	24	static

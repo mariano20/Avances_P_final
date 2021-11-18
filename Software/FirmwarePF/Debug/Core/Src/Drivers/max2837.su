@@ -1,0 +1,9 @@
+max2837.c:70:6:max2837_init	40	static
+max2837.c:114:6:max2837_write_reg	24	static
+max2837.c:144:6:max2837_read_reg	24	static
+max2837.c:164:9:max2837_get_temp	32	static
+max2837.c:186:6:max2837_set_mode	24	static
+max2837.c:205:6:max2837_set_freq	40	static
+max2837.c:238:9:max2837_set_lna_gain	24	static
+max2837.c:285:9:max2837_set_lpf_bw	32	static
+max2837.c:344:9:max2837_set_vga_gain	24	static
